@@ -1,6 +1,6 @@
 title: 深入浅出 React Native：使用 JavaScript 构建原生应用
 date: 2015-07-23 09:23:32
-tags: "reactjs javascript ios android"
+tags: "reactjs"
 ---
 ![genie.github.io](/assets/41.jpg)
 数月前，Facebook 对外宣布开源了著名的React Native框架，这个框架允许你使用 JavaScript开发原生的iOS应用！基于PhoneGap使用JavaScript和HTML5开发 iOS应用已经有好几年了，那 React Native 有什么牛的？
