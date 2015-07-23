@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/7 | 盖聂的个人博客</title>
+  <title>使用 JavaScript 构建原生应用实战篇（一） | 盖聂的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="盖聂的个人博客">
-<meta property="og:url" content="http://genie88.github.io/archives/2015/07/index.html">
+  <meta name="description" content="这篇教程将带着你一路构建一个汉语卡片学习应用。如果你之前一点 JavaScript 都没写过，别担心。这篇教程带着你进行一步一步进行编码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 JavaScript 构建原生应用实战篇（一）">
+<meta property="og:url" content="http://genie88.github.io/2015/07/23/building-a-flashcard-app-with-react-native/index.html">
 <meta property="og:site_name" content="盖聂的个人博客">
-<meta property="og:description">
+<meta property="og:description" content="这篇教程将带着你一路构建一个汉语卡片学习应用。如果你之前一点 JavaScript 都没写过，别担心。这篇教程带着你进行一步一步进行编码。">
+<meta property="og:image" content="http://genie88.github.io/assets/41.jpg">
+<meta property="og:image" content="http://genie88.github.io/assets/42.jpg">
+<meta property="og:updated_time" content="2015-07-23T11:50:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="盖聂的个人博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="使用 JavaScript 构建原生应用实战篇（一）">
+<meta name="twitter:description" content="这篇教程将带着你一路构建一个汉语卡片学习应用。如果你之前一点 JavaScript 都没写过，别担心。这篇教程带着你进行一步一步进行编码。">
   
     <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
   
@@ -147,82 +150,79 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-building-a-flashcard-app-with-react-native" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/23/building-a-flashcard-app-with-react-native/" class="archive-article-date">
-  	<time datetime="2015-07-23T11:32:59.000Z" itemprop="datePublished">Jul 23</time>
+    <div class="article-meta">
+      <a href="/2015/07/23/building-a-flashcard-app-with-react-native/" class="article-date">
+  	<time datetime="2015-07-23T11:32:59.000Z" itemprop="datePublished">2015-07-23</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/23/building-a-flashcard-app-with-react-native/">使用 JavaScript 构建原生应用实战篇（一）</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 JavaScript 构建原生应用实战篇（一）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactJs/">ReactJs</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/assets/41.jpg" alt="genie.github.io"><br>这篇教程将带着你一路构建一个汉语卡片学习应用。如果你之前一点 JavaScript 都没写过，别担心。这篇教程带着你进行一步一步进行编码。<br><a id="more"></a> </p>
+<h2 id="准备工作">准备工作</h2><p>React Native 框架托管在 GitHub 开源仓库上。你可以通过两种方式获取到它：使用 git 克隆仓库，或者下载一个 zip 压缩包文件。如果你的机器上已经安装了 React Native，在着手编码前还有其他几个因素需要考虑。</p>
+<p>React Native 依赖于 Node.js，即 JavaScript 运行时来创建 JavaScript 代码。如果你已经安装了 Node.js，那就可以上手了。<br>首先，使用 Homebrew 官网提供的指引安装 Homebrew，然后在终端执行以下命令：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure></p>
+<p>接下来，使用 homebrew 安装 watchman，一个来自Facebook 的观察程序：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install watchman</span><br></pre></td></tr></table></figure></p>
+<p>通过配置 watchman，React 实现了在代码发生变化时，完成相关的重建的功能。就像在使用 Xcode 时，每次保存文件都会进行一次创建。</p>
+<p>接下来使用 <code>npm</code> 工具安装 React Native CLI 工具：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure></p>
+<p>这使用 Node 包管理器 <code>npm</code> 下载并安装 CLI 工具，并且全局安装；<code>npm</code> 在功能上与 CocoaPods 或者 Carthage 类似。</p>
+<p>浏览到你想要创建 React Native 应用的文件夹下，使用 CLI 工具构建项目：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init demo</span><br></pre></td></tr></table></figure></p>
+<p>现在，已经创建了一个初始项目，包含了创建和运行一个 React Native 应用所需的一切。</p>
+<p>如果仔细观察了创建的文件夹和文件，你会发现一个 node_modules 文件夹，包含了 React Native 框架。你也会发现一个 index.ios.js 文件，这是 CLI 工具创建的一个空壳应用。最后，会出现一个 Xcode 项目文件和一个 iOS 文件夹，包含了少量的代码用来引入 bootstrap 到你的项目中。</p>
+<p>打开 Xcode ,并打开刚才创建的初始项目文件，编译并运行改项目。如果一切顺利的话，模拟器将会启动并且展示下面的画面：<br><img src="/assets/42.jpg" alt="genie.github.io"></p>
+<p>那么，恭喜你，你的React Native 开发环境已经部署好了。</p>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/23/reactjs-native-ios-app/" class="archive-article-date">
-  	<time datetime="2015-07-23T01:23:32.000Z" itemprop="datePublished">Jul 23</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/23/reactjs-native-ios-app/">深入浅出 React Native：使用 JavaScript 构建原生应用</a>
-    </h1>
   
+    <a href="/2015/07/23/reactjs-native-ios-app/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入浅出 React Native：使用 JavaScript 构建原生应用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reactjs/">reactjs</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
