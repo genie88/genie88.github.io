@@ -1,12 +1,45 @@
-title: React的属性校验和默认值
+title: React的属性
 date: 2015-08-07 08:19:15
 tags: ReactJs
 ---
-React提供了属性验证和声明式的默认值供我们开发时选用。
+Properties(属性)对于React就像Attribute对于HTML。事实上, 在JSX中property的使用就像attribute的使用一样。如果你熟悉HTML的话, 你就会知道HTML元素可以通过标签内的attribute的值来实现个性化。properties属性可以把单纯的组件变成可配置的界面元素。属性是组件重用的关键和对层级组织组件很有帮助。如果我们想要根据外部的信息来改变组件的外观或者行为时，就可以使用Properties!
 <!--more--> 
 
+##Prop定义
+可以采用JSX的语法，直接为组件创建属性，如下代码所示创建了名称为foo和bar的两个属性。
+```js
+ var component = <Component foo={x} bar={y} />;
+```
+那么，就可以在组件内部通过this.props对象分别得到这两个属性的值。
+```js
+var foo = this.props.foo ,
+    bar = this.props.bar ;
+```
+一般来说，React组件的props属性是只读的。Props 应该被当作禁止修改。修改 props 对象可能会导致预料之外的结果，所以最好不要去修改 props 对象。因此，下面的代码时不合理的，应该尽力避免使用：
+```js
+var component = <Component />;
+    component.props.foo = x; // 不好
+    component.props.bar = y; // 同样不好
+```
+
+可以采用 JSX 的新特性 ...延展的语法来快速注入和定义属性，
+```js
+  var props = {};
+  props.foo = x;
+  props.bar = y;
+  var component = <Component {...props} />;
+```
+传入对象的属性会被复制到组件内。它能被多次使用，也可以和其它属性一起用。注意顺序很重要，后面的会覆盖掉前面的。也就是说
+```js
+var props = { foo: 'default' };
+var component = <Component {...props} foo={'override'} />;
+console.log(component.props.foo); // 'override'
+
+```
+
+
 ##Prop验证
-React库为组件的props提供了很多验证器 (validator) 来验证传入数据的有效性。当向 props 传入无效数据时，JavaScript 控制台会抛出警告。注意为了性能考虑，只在开发环境验证 propTypes。
+React提供了属性验证和声明式的默认值供我们开发时选用。React库为组件的props提供了很多验证器 (validator) 来验证传入数据的有效性。当向 props 传入无效数据时，JavaScript 控制台会抛出警告。注意为了性能考虑，只在开发环境验证 propTypes。
 
 下面用例子来说明不同验证器的区别：
 ```js
