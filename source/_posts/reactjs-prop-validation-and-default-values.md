@@ -147,6 +147,103 @@ React.createClass({
 ```
 注意 getDefaultProps 的结果会被缓存然后再进行渲染Render。但是每次Render之前都会进行Prop验证。
 
+
+##传递 Props
+当你需要具有层级关系的多个组件时, 有些时候需要沿着结构向下传递properties。
+###使用transferPropsTo方法
+```js
+var ChildComponent = React.createClass({
+  render : function() {
+    return <div style={{
+      color      : this.props.color,
+      background : this.props.background
+    }}>
+      I am {this.props.color}
+    </div>
+  }
+});
+  
+var ParentComponent = React.createClass({
+  render : function() {
+    return this.transferPropsTo(
+      <ChildComponent background={null} />
+    );
+  }
+});
+
+React.renderComponent(
+  <ParentComponent color="blue" background="red" />,
+  document.body
+);
+```
+transferPropsTo()方法会把properties属性从父元素传递到子元素, 除非在子元素的属性仲声明了特别的值, 就像这里的background。
+
+###手动传递
+大部分情况下你应该显式地向下传递 props。这样可以确保只公开你认为是安全的内部 API 的子集。
+```js
+var FancyCheckbox = React.createClass({
+  render: function() {
+    var fancyClass = this.props.checked ? 'FancyChecked' : 'FancyUnchecked';
+    return (
+      <div className={fancyClass} onClick={this.props.onClick}>
+        {this.props.children}
+      </div>
+    );
+  }
+});
+React.render(
+  <FancyCheckbox checked={true} onClick={console.log.bind(console)}>
+    Hello world!
+  </FancyCheckbox>,
+  document.body
+);
+```
+
+###使用解构赋值传递未知或部分属性
+有时把所有属性都传下去是不安全或啰嗦的。这时可以使用 解构赋值 中的剩余属性特性来把未知属性批量提取出来。
+列出所有要当前使用的属性，后面跟着 ...other。这样能确保把所有剩余的 props 传下去，除了那些已经被使用了的。
+```js
+var FancyCheckbox = React.createClass({
+  render: function() {
+    //使用解构赋值提取本组件需要用到的属性，然后将剩余的属性进行传递
+    var { checked, ...other } = this.props; 
+    var fancyClass = checked ? 'FancyChecked' : 'FancyUnchecked';
+    // `other` 包含 { onClick: console.log } 但 checked 属性除外
+    return (
+      <div {...other} className={fancyClass} />
+    );
+  }
+});
+React.render(
+  <FancyCheckbox checked={true} onClick={console.log.bind(console)}>
+    Hello world!
+  </FancyCheckbox>,
+  document.body
+);
+```
+
+###使用和传递同一个属性
+如果当前组件需要使用某个属性又要将这个属性往下传递，可以直接使用 checked={checked} 再传一次。这样做比传整个 this.props 对象要好，因为更利于重构和语法检查。
+```js
+var FancyCheckbox = React.createClass({
+  render: function() {
+    var { checked, title, ...other } = this.props;
+    var fancyClass = checked ? 'FancyChecked' : 'FancyUnchecked';
+    var fancyTitle = checked ? 'X ' + title : 'O ' + title;
+    return (
+      <label>
+        <input {...other}
+          checked={checked}
+          className={fancyClass}
+          type="checkbox"
+        />
+        {fancyTitle}
+      </label>
+    );
+  }
+});
+```
+
 ##传递 Props：小技巧
 有一些常用的 React 组件只是对 HTML 做简单扩展。通常，你想少写点代码来把传入组件的 props 复制到对应的 HTML 元素上。这时 JSX 的 spread 语法会帮到你：
 ```js
