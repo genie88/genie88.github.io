@@ -1,15 +1,288 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 JavaScript 构建原生应用实战篇（四） | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一篇文章我们已经学会了如何利用ReactJs Native构建基础的应用界面。这一篇文章我们要学习如何响应用户操作，了解React Native的事件处理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 JavaScript 构建原生应用实战篇（四）">
+<meta property="og:url" content="http://genie88.github.io/2015/08/04/building-a-flashcard-app-with-react-native-part-4/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="上一篇文章我们已经学会了如何利用ReactJs Native构建基础的应用界面。这一篇文章我们要学习如何响应用户操作，了解React Native的事件处理。">
+<meta property="og:image" content="http://genie88.github.io/assets/41.jpg">
+<meta property="og:image" content="http://genie88.github.io/assets/45.png">
+<meta property="og:image" content="http://genie88.github.io/assets/46.png">
+<meta property="og:image" content="http://genie88.github.io/assets/47.png">
+<meta property="og:image" content="http://genie88.github.io/assets/48.png">
+<meta property="og:image" content="http://genie88.github.io/assets/49.png">
+<meta property="og:updated_time" content="2015-08-09T12:26:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 JavaScript 构建原生应用实战篇（四）">
+<meta name="twitter:description" content="上一篇文章我们已经学会了如何利用ReactJs Native构建基础的应用界面。这一篇文章我们要学习如何响应用户操作，了解React Native的事件处理。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-building-a-flashcard-app-with-react-native-part-4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/04/building-a-flashcard-app-with-react-native-part-4/" class="article-date">
+  	<time datetime="2015-08-04T04:51:45.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
     </div>
-    <%- partial('_partial/after-footer') %>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 JavaScript 构建原生应用实战篇（四）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactJs/">ReactJs</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/assets/41.jpg" alt="genie.github.io"><br>上一篇文章我们已经学会了如何利用ReactJs Native构建基础的应用界面。这一篇文章我们要学习如何响应用户操作，了解React Native的事件处理。<br><a id="more"></a><br>在 <code>index.ios.js</code> 文件中，我们新建一个视图组件<code>StudyScreen</code>，现在就让它里面什么内容也没有吧。添加如下代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudyScreen</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">View</span> <span class="attribute">style</span>=<span class="value">&#123;styles.container&#125;</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">      <span class="tag">&lt;/<span class="title">View</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>找到上一篇文章创建的<code>StudyListScreen</code>组件，将其里面的renderRow函数修改成如下所示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">renderRow(rowData, sectionID, rowID) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">View</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">TouchableHighlight</span></span><br><span class="line">        <span class="attribute">onPress</span>=<span class="value">&#123;()=</span>&gt;</span> this.onListPressed(rowData)&#125;</span><br><span class="line">        underlayColor='#84EFC6'&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="title">View</span> <span class="attribute">style</span>=<span class="value">&#123;styles.row&#125;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Text</span> <span class="attribute">style</span>=<span class="value">&#123;styles.title&#125;</span>&gt;</span>&#123;rowData.title&#125;<span class="tag">&lt;/<span class="title">Text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Text</span> <span class="attribute">style</span>=<span class="value">&#123;styles.status&#125;</span>&gt;</span>&#123;rowData.status&#125;<span class="tag">&lt;/<span class="title">Text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">View</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">TouchableHighlight</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">View</span> <span class="attribute">style</span>=<span class="value">&#123;styles.separator&#125;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">View</span>&gt;</span></span><br><span class="line">  )</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们增加了onPress这一个属性的定义，<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onPress=&#123;()=&gt; <span class="keyword">this</span>.onListPressed(rowData)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，当用户点击到我们的学习列表ListView中的某个Row时，就会触发这个该事件响应处理函数。里面的语句将会被执行。<br><code>onListPressed</code>这个函数还没有被定义，我们来完善一下它。我们在renderRow函数的上面添加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">onListPressed(data) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  <span class="keyword">this</span>.props.navigator.push(&#123;</span><br><span class="line">    title: data.title,       <span class="comment">//新视图的标题</span></span><br><span class="line">    component: StudyScreen,  <span class="comment">//新视图中展示的组件</span></span><br><span class="line">    passProps: data,         <span class="comment">//传递给新视图的数据</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，当用户点击列表的某项时，就会向我们的栈式导航栏中压入一个新的视图窗口。在iphone模拟器中刷新看下我们的实际操作效果吧。<br><img src="/assets/45.png" alt="genie.github.io"><img src="/assets/46.png" alt="genie.github.io"><br>如果我们按下<code>cmd＋D</code>组合键，我们可以看到React提供给我们使用的调试选项。<br><img src="/assets/47.png" alt="genie.github.io"><br>选择使用chrome进行调试，将会打开一个新的tab调试页面。按下cmd＋option＋j打开控制台，可以看到如下的调试信息输出。<br><img src="/assets/48.png" alt="genie.github.io"><br>没错，打印的如下信息<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span> &#123;title: <span class="string">"Animals"</span>, status: <span class="string">"96%"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就是onListPressed函数中的调试语句输出<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(data);</span><br></pre></td></tr></table></figure></p>
+<p>怎么样，非常简单吧？相信到这里你已经对ReactNative有了更深入的认识。接下来，我们将集中精力于我们刚才留空的<code>StudyScreen</code>组件页面。<br>找到之前创建的<code>StudyScreen</code>组件的定义，将其修改成：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudyScreen</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      loading: <span class="literal">false</span>,</span><br><span class="line">      cardData: &#123;</span><br><span class="line">          definition: <span class="string">'learn'</span>,</span><br><span class="line">          chinese: <span class="string">'学习'</span>,</span><br><span class="line">          pinyin: <span class="string">'xue xi'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">var</span> spinner = <span class="keyword">this</span>.state.loading ?</span><br><span class="line">          ( <span class="xml"><span class="tag">&lt;<span class="title">ActivityIndicatorIOS</span></span><br><span class="line">            <span class="attribute">hidden</span>=<span class="value">'true'</span></span><br><span class="line">            <span class="attribute">size</span>=<span class="value">'large'</span>/&gt;</span> )</span> :</span><br><span class="line">          ( <span class="xml"><span class="tag">&lt;<span class="title">Card</span> <span class="attribute">cardData</span>=<span class="value">&#123;this.state.cardData&#125;</span>&gt;</span><span class="tag">&lt;/<span class="title">Card</span>&gt;</span>)</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">View</span> <span class="attribute">style</span>=<span class="value">&#123;styles.container&#125;</span>&gt;</span></span><br><span class="line">        &#123;spinner&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="title">View</span> <span class="attribute">style</span>=<span class="value">&#123;styles.row&#125;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">TouchableHighlight</span> </span><br><span class="line">            <span class="attribute">style</span>=<span class="value">&#123;[styles.button,</span> <span class="attribute">styles.buttonPrimary</span>]&#125;</span><br><span class="line">            <span class="attribute">underlayColor</span>=<span class="value">'#84EFC6'</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">Text</span> <span class="attribute">style</span>=<span class="value">&#123;styles.buttonText&#125;</span>&gt;</span>Got it!<span class="tag">&lt;/<span class="title">Text</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">TouchableHighlight</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">TouchableHighlight</span> </span><br><span class="line">            <span class="attribute">style</span>=<span class="value">&#123;[styles.button,</span> <span class="attribute">styles.buttonDanger</span>]&#125;</span><br><span class="line">            <span class="attribute">underlayColor</span>=<span class="value">'#D982EE'</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">Text</span> <span class="attribute">style</span>=<span class="value">&#123;styles.buttonText&#125;</span>&gt;</span>Not yet<span class="tag">&lt;/<span class="title">Text</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">TouchableHighlight</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">View</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">View</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后添加对应的样式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">card: &#123;</span><br><span class="line">  padding: <span class="number">20</span>,</span><br><span class="line">  flexDirection: <span class="string">'column'</span>,</span><br><span class="line">  justifyContent: <span class="string">'center'</span>,</span><br><span class="line">  alignItems: <span class="string">'center'</span>,</span><br><span class="line">  backgroundColor: <span class="string">'white'</span>,</span><br><span class="line">  shadowColor: <span class="string">"black"</span>,</span><br><span class="line">  shadowOpacity: <span class="number">0.3</span>,</span><br><span class="line">  shadowRadius: <span class="number">3</span>,</span><br><span class="line">  shadowOffset: &#123;</span><br><span class="line">    height: <span class="number">0</span>,</span><br><span class="line">    width: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  width: <span class="number">290</span>,</span><br><span class="line">  height: <span class="number">290</span>,</span><br><span class="line">&#125;,</span><br><span class="line">definition: &#123;</span><br><span class="line">  fontSize: <span class="number">30</span>,</span><br><span class="line">  textAlign: <span class="string">'center'</span>,</span><br><span class="line">  marginBottom: <span class="number">20</span></span><br><span class="line">&#125;,</span><br><span class="line">chinese: &#123;</span><br><span class="line">  flex: <span class="number">1</span>,</span><br><span class="line">  fontSize: <span class="number">80</span>,</span><br><span class="line">  fontFamily: <span class="string">'STHeitiTC-Light'</span></span><br><span class="line">&#125;,</span><br><span class="line">pinyin: &#123;</span><br><span class="line">  flex: <span class="number">1</span>,</span><br><span class="line">  fontSize: <span class="number">40</span>,</span><br><span class="line">&#125;,</span><br><span class="line">description: &#123;</span><br><span class="line">  marginBottom: <span class="number">20</span>,</span><br><span class="line">  fontSize: <span class="number">18</span>,</span><br><span class="line">  textAlign: <span class="string">'center'</span>,</span><br><span class="line">  color: <span class="string">'#656565'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">row : &#123;</span><br><span class="line">  margin:<span class="number">20</span>,</span><br><span class="line">  width: <span class="number">320</span>,</span><br><span class="line">  flexDirection: <span class="string">'row'</span>,</span><br><span class="line">  alignItems: <span class="string">'center'</span>,</span><br><span class="line">  alignSelf: <span class="string">'stretch'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">buttonText: &#123;</span><br><span class="line">  fontSize: <span class="number">18</span>,</span><br><span class="line">  color: <span class="string">'white'</span>,</span><br><span class="line">  alignSelf: <span class="string">'center'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">button: &#123;</span><br><span class="line">  height: <span class="number">36</span>,</span><br><span class="line">  flex: <span class="number">1</span>,</span><br><span class="line">  flexDirection: <span class="string">'row'</span>,</span><br><span class="line">  borderWidth: <span class="number">1</span>,</span><br><span class="line">  borderRadius: <span class="number">8</span>,</span><br><span class="line">  margin:<span class="number">20</span>,</span><br><span class="line">  marginBottom: <span class="number">10</span>,</span><br><span class="line">  alignSelf: <span class="string">'stretch'</span>,</span><br><span class="line">  justifyContent: <span class="string">'center'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">buttonDanger: &#123;</span><br><span class="line">  backgroundColor: <span class="string">'#BB27DD'</span>,</span><br><span class="line">  borderColor: <span class="string">'#BB27DD'</span>,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">buttonPrimary: &#123;</span><br><span class="line">  backgroundColor: <span class="string">'#29DF9A'</span>,</span><br><span class="line">  borderColor: <span class="string">'#29DF9A'</span>,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">nav: &#123;</span><br><span class="line">  flex: <span class="number">1</span>  </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>是不是觉得信手拈来，相当简单了？看下完成后的效果图。<br><img src="/assets/49.png" alt="genie.github.io"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/07/reactjs-prop-validation-and-default-values/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          React的属性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/30/building-a-flashcard-app-with-react-native-part-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用 JavaScript 构建原生应用实战篇（三）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
   </div>
 </body>
 </html>

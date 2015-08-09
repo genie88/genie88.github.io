@@ -1,15 +1,340 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常用meta整理 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##概要
+meta标签提供关于HTML文档的元数据的定义。元数据不会显示在页面上，但是对于机器是可读的。它可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他web服务，比如描述、针对搜索引擎的关键词以及刷新频率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用meta整理">
+<meta property="og:url" content="http://genie88.github.io/2015/06/30/meta-tags/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="##概要
+meta标签提供关于HTML文档的元数据的定义。元数据不会显示在页面上，但是对于机器是可读的。它可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他web服务，比如描述、针对搜索引擎的关键词以及刷新频率。">
+<meta property="og:image" content="http://genie88.github.io/assets/37.jpg">
+<meta property="og:image" content="http://genie88.github.io/assets/38.jpg">
+<meta property="og:image" content="http://genie88.github.io/assets/39.jpg">
+<meta property="og:image" content="http://genie88.github.io/assets/40.jpg">
+<meta property="og:updated_time" content="2015-08-03T05:44:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用meta整理">
+<meta name="twitter:description" content="##概要
+meta标签提供关于HTML文档的元数据的定义。元数据不会显示在页面上，但是对于机器是可读的。它可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他web服务，比如描述、针对搜索引擎的关键词以及刷新频率。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-meta-tags" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/30/meta-tags/" class="article-date">
+  	<time datetime="2015-06-30T02:29:30.000Z" itemprop="datePublished">2015-06-30</time>
+</a>
     </div>
-    <%- partial('_partial/after-footer') %>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常用meta整理
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meta/">meta</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##概要</p>
+<p>meta标签提供关于HTML文档的元数据的定义。元数据不会显示在页面上，但是对于机器是可读的。它可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他web服务，比如描述、针对搜索引擎的关键词以及刷新频率。<br><a id="more"></a> </p>
+<p>##必要属性<br>属性    |值    |描述<br>——-|———-<br>content    |some text    |定义与http-equiv或name属性相关的元信息</p>
+<p>##可选属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http-equiv</td>
+<td>content-type / expire / refresh / set-cookie</td>
+<td>把content属性关联到HTTP头部。</td>
+</tr>
+<tr>
+<td>name</td>
+<td>author / description / keywords / generator / revised / others</td>
+<td>把 content 属性关联到一个名称。</td>
+</tr>
+<tr>
+<td>content</td>
+<td>some text</td>
+<td>定义用于翻译 content 属性值的格式。</td>
+</tr>
+</tbody>
+</table>
+<p>##SEO优化</p>
+<p>页面关键词，每个网页应具有描述该网页内容的一组唯一的关键字。<br>使用人们可能会搜索，并准确描述网页上所提供信息的描述性和代表性关键字及短语。标记内容太短，则搜索引擎可能不会认为这些内容相关。另外标记不应超过 874 个字符。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"keywords"</span> <span class="attribute">content</span>=<span class="value">"your tags"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>页面描述，每个网页都应有一个不超过 150 个字符且能准确反映网页内容的描述标签。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"150 words"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>搜索引擎索引方式，robotterms是一组使用逗号(,)分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。确保正确使用nofollow和noindex属性值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"robots"</span> <span class="attribute">content</span>=<span class="value">"index,follow"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span><br><span class="line">    all：文件将被检索，且页面上的链接可以被查询；</span><br><span class="line">    none：文件将不被检索，且页面上的链接不可以被查询；</span><br><span class="line">    index：文件将被检索；</span><br><span class="line">    follow：页面上的链接可以被查询；</span><br><span class="line">    noindex：文件将不被检索；</span><br><span class="line">    nofollow：页面上的链接不可以被查询。</span><br><span class="line"> --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>页面重定向和刷新：content内的数字代表时间（秒），既多少时间后刷新。如果加url,则会重定向到指定网页（搜索引擎能够自动检测，也很容易被引擎视作误导而受到惩罚）。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"refresh"</span> <span class="attribute">content</span>=<span class="value">"0;url="</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其他<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"author"</span> <span class="attribute">content</span>=<span class="value">"author name"</span> /&gt;</span> <span class="comment">&lt;!-- 定义网页作者 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"google"</span> <span class="attribute">content</span>=<span class="value">"index,follow"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"googlebot"</span> <span class="attribute">content</span>=<span class="value">"index,follow"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"verify"</span> <span class="attribute">content</span>=<span class="value">"index,follow"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>##移动设备</p>
+<p>viewport：能优化移动浏览器的显示。如果不是响应式网站，不要使用initial-scale或者禁用缩放。<br>大部分4.7-5寸设备的viewport宽设为360px；5.5寸设备设为400px；iphone6设为375px；ipone6 plus设为414px。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- `width=device-width` 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边  --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>width：宽度（数值 / device-width）（范围从200 到10,000，默认为980 像素）<br>height：高度（数值 / device-height）（范围从223 到10,000）<br>initial-scale：初始的缩放比例 （范围从&gt;0 到10）<br>minimum-scale：允许用户缩放到的最小比例<br>maximum-scale：允许用户缩放到的最大比例<br>user-scalable：用户是否可以手动缩 (no,yes)<br>minimal-ui：可以在页面加载时最小化上下状态栏。（已弃用）<br>注意，很多人使用initial-scale=1到非响应式网站上，这会让网站以100%宽度渲染，用户需要手动移动页面或者缩放。如果和initial-scale=1同时使用user-scalable=no或maximum-scale=1，则用户将不能放大/缩小网页来看到全部的内容。</p>
+<p>WebApp全屏模式：伪装app，离线应用。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-capable"</span> <span class="attribute">content</span>=<span class="value">"yes"</span> /&gt;</span> <span class="comment">&lt;!-- 启用 WebApp 全屏模式 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>隐藏状态栏/设置状态栏颜色：只有在开启WebApp全屏模式时才生效。content的值为default | black | black-translucent 。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-status-bar-style"</span> <span class="attribute">content</span>=<span class="value">"black-translucent"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>添加到主屏后的标题<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-title"</span> <span class="attribute">content</span>=<span class="value">"标题"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>图片描述图片描述图片描述<br><img src="/assets/37.jpg" alt="genie.github.io"> <img src="/assets/38.jpg" alt="genie.github.io"> <img src="/assets/39.jpg" alt="genie.github.io"><br>忽略数字自动识别为电话号码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"telephone=no"</span> <span class="attribute">name</span>=<span class="value">"format-detection"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>忽略识别邮箱<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"email=no"</span> <span class="attribute">name</span>=<span class="value">"format-detection"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>添加智能 App 广告条 Smart App Banner：告诉浏览器这个网站对应的app，并在页面上显示下载banner(如下图)。参考文档<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-itunes-app"</span> <span class="attribute">content</span>=<span class="value">"app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/assets/40.jpg" alt="genie.github.io"></p>
+<p>其他<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"HandheldFriendly"</span> <span class="attribute">content</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 微软的老式浏览器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"MobileOptimized"</span> <span class="attribute">content</span>=<span class="value">"320"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- uc强制竖屏 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"screen-orientation"</span> <span class="attribute">content</span>=<span class="value">"portrait"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- QQ强制竖屏 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"x5-orientation"</span> <span class="attribute">content</span>=<span class="value">"portrait"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- UC强制全屏 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"full-screen"</span> <span class="attribute">content</span>=<span class="value">"yes"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- QQ强制全屏 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"x5-fullscreen"</span> <span class="attribute">content</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- UC应用模式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"browsermode"</span> <span class="attribute">content</span>=<span class="value">"application"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- QQ应用模式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"x5-page-mode"</span> <span class="attribute">content</span>=<span class="value">"app"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- windows phone 点击无高光 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"msapplication-tap-highlight"</span> <span class="attribute">content</span>=<span class="value">"no"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>##网页相关</p>
+<p>申明编码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">'utf-8'</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>优先使用 IE 最新版本和 Chrome<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=edge,chrome=1"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 关于X-UA-Compatible --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=6"</span> &gt;</span><span class="comment">&lt;!-- 使用IE6 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7"</span> &gt;</span><span class="comment">&lt;!-- 使用IE7 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=8"</span> &gt;</span><span class="comment">&lt;!-- 使用IE8 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>浏览器内核控制：国内浏览器很多都是双内核（webkit和Trident），webkit内核高速浏览，IE内核兼容网页和旧版网站。而添加meta标签的网站可以控制浏览器选择何种内核渲染。参考文档<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"renderer"</span> <span class="attribute">content</span>=<span class="value">"webkit|ie-comp|ie-stand"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>国内双核浏览器默认内核模式如下：</p>
+<ol>
+<li>搜狗高速浏览器、QQ浏览器：IE内核（兼容模式）</li>
+<li>360极速浏览器、遨游浏览器：Webkit内核（极速模式）</li>
+</ol>
+<p>禁止浏览器从本地计算机的缓存中访问页面内容：这样设定，访问者将无法脱机浏览。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Pragma"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Windows 8<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"msapplication-TileColor"</span> <span class="attribute">content</span>=<span class="value">"#000"</span>/&gt;</span> <span class="comment">&lt;!-- Windows 8 磁贴颜色 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"msapplication-TileImage"</span> <span class="attribute">content</span>=<span class="value">"icon.png"</span>/&gt;</span> <span class="comment">&lt;!-- Windows 8 磁贴图标 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>站点适配：主要用于PC-手机页的对应关系。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"mobile-agent"</span><span class="value">content="format=[wml|xhtml|html5];</span> <span class="attribute">url</span>=<span class="value">url"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span><br><span class="line">[wml|xhtml|html5]根据手机页的协议语言，选择其中一种；</span><br><span class="line">url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一一对应关系。</span><br><span class="line"> --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>转码申明：用百度打开网页可能会对其进行转码（比如贴广告），避免转码可添加如下meta<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Cache-Control"</span> <span class="attribute">content</span>=<span class="value">"no-siteapp"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/23/reactjs-native-ios-app/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          深入浅出 React Native：使用 JavaScript 构建原生应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/29/css-animation-skills/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多屏复杂动画CSS实现技巧</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
   </div>
 </body>
 </html>
