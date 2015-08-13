@@ -2,8 +2,14 @@ title: React的state 工作原理
 date: 2015-08-10 22:31:03
 tags: ReactJs
 ---
+![genie.github.io](/assets/50.png)
 React 把用户界面当作简单状态机。把用户界面想像成拥有不同状态然后渲染这些状态，可以轻松让用户界面和数据保持一致。React 里，只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。React 来决定如何最高效地更新 DOM。今天我们来探讨下React中的state机制和工作原理。
 <!--more--> 
+
+##什么是组件的State
+State时组件的基本状态，类似于AngularJs中的$scope变量，当我们在事件处理函数中改变和调整State的值时，React会自动调用render()方法实现视图的刷新，完成视图模型到视图的单向绑定和刷新。
+![genie.github.io](/assets/50.png)
+![genie.github.io](/assets/51.png)
 
 ##哪些组件应该有 State
 大部分组件的工作应该是从 props 里取数据并渲染出来。但是，有时需要对用户输入、服务器请求或者时间变化等作出响应，这时才需要使用 State。
