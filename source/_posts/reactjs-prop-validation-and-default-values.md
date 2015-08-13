@@ -261,3 +261,36 @@ React.render(
   document.getElementById('example')
 );
 ```
+
+
+##Prop属性使用的例子
+下面以一个实际的例子来说明属性的用法。这是一个简单的单条评论组件，可以用来显示评论的作者名字和评论内容。
+```js
+var Comment = React.createClass({
+  render: function() {
+    return (
+      <div className="comment">
+        <h2 className="commentAuthor">
+          {this.props.author}
+        </h2>
+        {this.props.children}
+      </div>
+    );
+  }
+});
+```
+
+调用组件时只需向组件传递和注入相关的属性，如下所示：
+```js
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      <div className="commentList">
+        <Comment author="Pete Hunt">This is one comment</Comment>
+        <Comment author="Jordan Walke">This is *another* comment</Comment>
+      </div>
+    );
+  }
+});
+```
+
