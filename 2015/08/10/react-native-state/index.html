@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://genie88.github.io/assets/50.png">
 <meta property="og:image" content="http://genie88.github.io/assets/50.png">
 <meta property="og:image" content="http://genie88.github.io/assets/51.png">
-<meta property="og:updated_time" content="2015-08-13T06:54:03.000Z">
+<meta property="og:updated_time" content="2015-08-18T12:08:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React的state 工作原理">
 <meta name="twitter:description" content="React 把用户界面当作简单状态机。把用户界面想像成拥有不同状态然后渲染这些状态，可以轻松让用户界面和数据保持一致。React 里，只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。React 来决定如何最高效地更新 DOM。今天我们来探讨下React中的state机制和工作原理。">
@@ -227,18 +227,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="/assets/50.png" alt="genie.github.io"><br>React 把用户界面当作简单状态机。把用户界面想像成拥有不同状态然后渲染这些状态，可以轻松让用户界面和数据保持一致。React 里，只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。React 来决定如何最高效地更新 DOM。今天我们来探讨下React中的state机制和工作原理。<br><a id="more"></a> </p>
-<h2 id="什么是组件的State">什么是组件的State</h2><p>State时组件的基本状态，类似于AngularJs中的$scope变量，当我们在事件处理函数中改变和调整State的值时，React会自动调用render()方法实现视图的刷新，完成视图模型到视图的单向绑定和刷新。<br><img src="/assets/50.png" alt="genie.github.io"><br><img src="/assets/51.png" alt="genie.github.io"></p>
-<h2 id="哪些组件应该有_State">哪些组件应该有 State</h2><p>大部分组件的工作应该是从 props 里取数据并渲染出来。但是，有时需要对用户输入、服务器请求或者时间变化等作出响应，这时才需要使用 State。</p>
+<p>##什么是组件的State<br>State时组件的基本状态，类似于AngularJs中的$scope变量，当我们在事件处理函数中改变和调整State的值时，React会自动调用render()方法实现视图的刷新，完成视图模型到视图的单向绑定和刷新。<br><img src="/assets/50.png" alt="genie.github.io"><br><img src="/assets/51.png" alt="genie.github.io"></p>
+<p>##哪些组件应该有 State<br>大部分组件的工作应该是从 props 里取数据并渲染出来。但是，有时需要对用户输入、服务器请求或者时间变化等作出响应，这时才需要使用 State。</p>
 <blockquote>
 <p>最佳实践： 尝试把尽可能多的组件无状态化。</p>
 </blockquote>
 <p>这样做能隔离state，把它放到最合理的地方，也能减少冗余，同时易于解释程序运作过程。</p>
 <p>常用的模式是创建多个只负责渲染数据的无状态（stateless）组件，在它们的上层创建一个有状态（stateful）组件并把它的状态通过 props 传给子级。这个有状态的组件封装了所有用户的交互逻辑，而这些无状态组件则负责声明式地渲染数据。</p>
-<h2 id="哪些应该作为_State">哪些应该作为 State</h2><blockquote>
+<p>##哪些应该作为 State</p>
+<blockquote>
 <p>如何区别State和Prop ？<br> State是组件可变的动态属性，而Prop是外部传入的静态属性</p>
 </blockquote>
 <p> State应该包括那些可能被组件的事件处理器改变并触发用户界面更新的数据。 真实的应用中这种数据一般都很小且能被 JSON 序列化。当创建一个状态化的组件时，想象一下表示它的状态最少需要哪些数据，并只把这些数据存入 this.state。在 render() 里再根据 state 来计算你需要的其它数据。你会发现以这种方式思考和开发程序最终往往是正确的，因为如果在 state 里添加冗余数据或计算所得数据，需要你经常手动保持数据同步，不能让 React 来帮你处理。</p>
-<h2 id="哪些不应该_作为_State？">哪些不应该 作为 State？</h2><p>state应该仅包括能表示用户界面状态所需的最少数据。因此，它不应该包括：</p>
+<p>##哪些不应该 作为 State？<br>state应该仅包括能表示用户界面状态所需的最少数据。因此，它不应该包括：</p>
 <ul>
 <li><p>计算所得数据<br>不要担心根据 state 来预先计算数据 —— 把所有的计算都放到 render() 里更容易保证用户界面和数据的一致性。例如，在 state 里有一个数组（listItems），我们要把数组长度渲染成字符串， 直接在 render() 里使用 this.state.listItems.length + ‘ list items’ 比把它放到 state 里好的多。</p>
 </li>
@@ -247,10 +248,10 @@
 <li><p>基于 props 的重复数据<br>尽可能使用 props 来作为惟一数据来源。把 props 保存到 state 的一个有效的场景是需要知道它以前值的时候，因为未来的 props 可能会变化。</p>
 </li>
 </ul>
-<h2 id="如何初始化state">如何初始化state</h2><p>可以采用<code>getInitialState()</code>方法来进行state状态的初始化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;liked: <span class="literal">false</span>&#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何改变state">如何改变state</h2><p>需要注意的是，state变量应该作为组件的私有属性，更新和改变state状态只能在组件内部进行。可以采用<code>this.setState()</code>方法来进行state状态的更新。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;liked: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##如何初始化state<br>可以采用<code>getInitialState()</code>方法来进行state状态的初始化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;liked: <span class="literal">false</span>&#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>##如何改变state<br>需要注意的是，state变量应该作为组件的私有属性，更新和改变state状态只能在组件内部进行。可以采用<code>this.setState()</code>方法来进行state状态的更新。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;liked: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>也可以采用<code>replaceState()</code>方法来进行状态的替换。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.replaceState(&#123;liked: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="完整的例子">完整的例子</h2><p>下面的代码是一个完整的例子。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> LikeButton = React.createClass(&#123;</span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;liked: <span class="literal">false</span>&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;liked: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'like'</span> : <span class="string">'haven\'t liked'</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">onClick</span>=<span class="value">&#123;this.handleClick&#125;</span>&gt;</span></span><br><span class="line">        You &#123;text&#125; this. Click to toggle.</span><br><span class="line">      <span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">React.render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">LikeButton</span> /&gt;</span>,</span><br><span class="line">  document.getElementById('example')</span><br><span class="line">);</span></span><br></pre></td></tr></table></figure></p>
+<p>##完整的例子<br>下面的代码是一个完整的例子。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> LikeButton = React.createClass(&#123;</span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;liked: <span class="literal">false</span>&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;liked: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'like'</span> : <span class="string">'haven\'t liked'</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">onClick</span>=<span class="value">&#123;this.handleClick&#125;</span>&gt;</span></span><br><span class="line">        You &#123;text&#125; this. Click to toggle.</span><br><span class="line">      <span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">React.render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">LikeButton</span> /&gt;</span>,</span><br><span class="line">  document.getElementById('example')</span><br><span class="line">);</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -275,7 +276,16 @@
 
 
 
-</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
