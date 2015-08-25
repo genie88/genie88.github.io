@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>如何利用Ajax初始化React组件的状态 | 盖聂的个人博客</title>
+  <title>如何在React中优雅的操作组件的ClassName | 盖聂的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果我们需要在初始化组件的状态，我们可以在组件完成加载后进行，也就是在方法 componentDidMount中进行。当响应返回后，首先通过this.isMounted()来判断组件的状态是否为Mounted，如果是则将数据存储在state中，这将会保证触发render函数并更新UI.">
+  <meta name="description" content="通常，我们经常需要根据组件的状态或者属性为组件指定不同的样式类名。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何利用Ajax初始化React组件的状态">
-<meta property="og:url" content="http://genie88.github.io/2015/08/25/react-initial-ajax/index.html">
+<meta property="og:title" content="如何在React中优雅的操作组件的ClassName">
+<meta property="og:url" content="http://genie88.github.io/2015/08/25/react-class-name-manipulation/index.html">
 <meta property="og:site_name" content="盖聂的个人博客">
-<meta property="og:description" content="如果我们需要在初始化组件的状态，我们可以在组件完成加载后进行，也就是在方法 componentDidMount中进行。当响应返回后，首先通过this.isMounted()来判断组件的状态是否为Mounted，如果是则将数据存储在state中，这将会保证触发render函数并更新UI.">
-<meta property="og:updated_time" content="2015-08-25T11:48:46.000Z">
+<meta property="og:description" content="通常，我们经常需要根据组件的状态或者属性为组件指定不同的样式类名。">
+<meta property="og:updated_time" content="2015-08-25T11:53:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何利用Ajax初始化React组件的状态">
-<meta name="twitter:description" content="如果我们需要在初始化组件的状态，我们可以在组件完成加载后进行，也就是在方法 componentDidMount中进行。当响应返回后，首先通过this.isMounted()来判断组件的状态是否为Mounted，如果是则将数据存储在state中，这将会保证触发render函数并更新UI.">
+<meta name="twitter:title" content="如何在React中优雅的操作组件的ClassName">
+<meta name="twitter:description" content="通常，我们经常需要根据组件的状态或者属性为组件指定不同的样式类名。">
   
     <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
   
@@ -186,11 +186,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-react-initial-ajax" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-react-class-name-manipulation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/25/react-initial-ajax/" class="article-date">
-  	<time datetime="2015-08-25T01:45:30.000Z" itemprop="datePublished">2015-08-25</time>
+      <a href="/2015/08/25/react-class-name-manipulation/" class="article-date">
+  	<time datetime="2015-08-25T01:48:59.000Z" itemprop="datePublished">2015-08-25</time>
 </a>
     </div>
   
@@ -203,7 +203,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何利用Ajax初始化React组件的状态
+      如何在React中优雅的操作组件的ClassName
     </h1>
   
 
@@ -223,7 +223,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果我们需要在初始化组件的状态，我们可以在组件完成加载后进行，也就是在方法 <code>componentDidMount</code>中进行。当响应返回后，首先通过<code>this.isMounted()</code>来判断组件的状态是否为Mounted，如果是则将数据存储在state中，这将会保证触发render函数并更新UI.<br><a id="more"></a><br>以下是一个完整的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> UserGist = React.createClass(&#123;</span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      username: <span class="string">''</span>,</span><br><span class="line">      lastGistUrl: <span class="string">''</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  componentDidMount: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $.get(<span class="keyword">this</span>.props.source, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> lastGist = result[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.isMounted()) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          username: lastGist.owner.login,</span><br><span class="line">          lastGistUrl: lastGist.html_url</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;.bind(<span class="keyword">this</span>));</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">        &#123;this.state.username&#125;'s last gist is</span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">&#123;this.state.lastGistUrl&#125;</span>&gt;</span>here<span class="tag">&lt;/<span class="title">a</span>&gt;</span>.</span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">React.render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">UserGist</span> <span class="attribute">source</span>=<span class="value">"https://api.github.com/users/octocat/gists"</span> /&gt;</span>,</span><br><span class="line">  mountNode</span><br><span class="line">);</span></span><br></pre></td></tr></table></figure></p>
+        <p>通常，我们经常需要根据组件的状态或者属性为组件指定不同的样式类名。<br><a id="more"></a><br>例如，以下的代码或许经常出现在我们的代码中：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// inside some `<span class="tag">&lt;<span class="title">Message</span> /&gt;</span>` React component</span><br><span class="line">render: function() &#123;</span><br><span class="line">  var classString = 'message';</span><br><span class="line">  if (this.props.isImportant) &#123;</span><br><span class="line">    classString += ' message-important';</span><br><span class="line">  &#125;</span><br><span class="line">  if (this.props.isRead) &#123;</span><br><span class="line">    classString += ' message-read';</span><br><span class="line">  &#125;</span><br><span class="line">  // 'message message-important message-read'</span><br><span class="line">  return <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;classString&#125;</span>&gt;</span>Great, I'll be there.<span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>咋一眼看，好像没有啥问题，但是如果状态或者属性个数变得异常多了呢？就非常难于阅读，容易让人一头雾水了，出错的概率也比较大。</p>
+<p>幸好，React已经为我们想到了这一点。在React的<code>addon</code>里面有一个<code>classSet()</code>方法能够为我们解决这一个难题：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">render: function() &#123;</span><br><span class="line">  var cx = React.addons.classSet;</span><br><span class="line">  var classes = cx(&#123;</span><br><span class="line">    'message': true,</span><br><span class="line">    'message-important': this.props.isImportant,</span><br><span class="line">    'message-read': this.props.isRead</span><br><span class="line">  &#125;);</span><br><span class="line">  // same final string, but much cleaner</span><br><span class="line">  return <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;classes&#125;</span>&gt;</span>Great, I'll be there.<span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而且，<code>classSet()</code>方法还能够为我们自动拼接类名：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render: function() &#123;</span><br><span class="line">  var cx = React.addons.classSet;</span><br><span class="line">  var importantModifier = 'message-important';</span><br><span class="line">  var readModifier = 'message-read';</span><br><span class="line">  var classes = cx('message', importantModifier, readModifier);</span><br><span class="line">  // Final string is 'message message-important message-read'</span><br><span class="line">  return <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;classes&#125;</span>&gt;</span>Great, I'll be there.<span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有了它，是不是感觉操作className的时候轻松多了？</p>
 
       
     </div>
@@ -233,18 +237,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/25/react-class-name-manipulation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          如何在React中优雅的操作组件的ClassName
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/10/react-native-state/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React的state 工作原理</div>
+    <a href="/2015/08/25/react-initial-ajax/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何利用Ajax初始化React组件的状态</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
