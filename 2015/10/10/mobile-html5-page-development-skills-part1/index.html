@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动H5页面开发系列——part1:移动H5页面特点、适用场合与开发技巧 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="时下手机悄然成为了我们日常生活必不可少的一部分。据统计，智能手机用户平均每6分钟看一次手机，移动端已然是当前最热门的媒介。移动设备上，一些高品质的品牌营销、产品推广运营活动页面也经常在我们的朋友圈、各种移动渠道刷屏。本文将对这些HTML5移动页面进行解构，以期窥探HTML5移动页面的开发设计技巧一二。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动H5页面开发系列——part1:移动H5页面特点、适用场合与开发技巧">
+<meta property="og:url" content="http://genie88.github.io/2015/10/10/mobile-html5-page-development-skills-part1/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="时下手机悄然成为了我们日常生活必不可少的一部分。据统计，智能手机用户平均每6分钟看一次手机，移动端已然是当前最热门的媒介。移动设备上，一些高品质的品牌营销、产品推广运营活动页面也经常在我们的朋友圈、各种移动渠道刷屏。本文将对这些HTML5移动页面进行解构，以期窥探HTML5移动页面的开发设计技巧一二。">
+<meta property="og:image" content="http://genie88.github.io/assets/57.png">
+<meta property="og:image" content="http://genie88.github.io/assets/52.png">
+<meta property="og:image" content="http://genie88.github.io/assets/53.png">
+<meta property="og:image" content="http://genie88.github.io/assets/54.png">
+<meta property="og:image" content="http://genie88.github.io/assets/55.png">
+<meta property="og:image" content="http://genie88.github.io/assets/56.png">
+<meta property="og:updated_time" content="2015-10-10T05:08:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动H5页面开发系列——part1:移动H5页面特点、适用场合与开发技巧">
+<meta name="twitter:description" content="时下手机悄然成为了我们日常生活必不可少的一部分。据统计，智能手机用户平均每6分钟看一次手机，移动端已然是当前最热门的媒介。移动设备上，一些高品质的品牌营销、产品推广运营活动页面也经常在我们的朋友圈、各种移动渠道刷屏。本文将对这些HTML5移动页面进行解构，以期窥探HTML5移动页面的开发设计技巧一二。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-mobile-html5-page-development-skills-part1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/10/mobile-html5-page-development-skills-part1/" class="article-date">
+  	<time datetime="2015-10-10T04:02:13.000Z" itemprop="datePublished">2015-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动H5页面开发系列——part1:移动H5页面特点、适用场合与开发技巧
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>时下手机悄然成为了我们日常生活必不可少的一部分。据统计，智能手机用户平均每6分钟看一次手机，移动端已然是当前最热门的媒介。移动设备上，一些高品质的品牌营销、产品推广运营活动页面也经常在我们的朋友圈、各种移动渠道刷屏。本文将对这些HTML5移动页面进行解构，以期窥探HTML5移动页面的开发设计技巧一二。<br><img src="/assets/57.png" alt="genie.github.io"><br><a id="more"></a> </p>
+<h3 id="移动H5页面特点">移动H5页面特点</h3><p>开发移动H5页面之前，我们首先要了解它有哪些特点，与PC页面相比有哪些区别。正所谓善用兵者，不以短击长，而以长击短。在开发H5移动页面的时候要充分发挥H5页面的优势，营造卓越的用户体验。也许有人要问了，PC端页面用的技术是javascript ＋ css ＋ html，移动端页面也不过是用这些技术，那到底有什么区别呢？它们之间最大的区别在于：</p>
+<p>承载这些页面的设备不同：一个是计算处理能力强大的PC，另外一个是计算能力有限的小型机。有人会说，现在手机CPU 主频配置这么高，有些都四核、八核，超过PC了，计算能力怎么会弱呢？这是因为CPU的性能不能只看核数和主频，而应该从架构、指令集、工艺等多个方面综合衡量。目前移动端CPU和PC端CPU的运算能力，运算能力相差仍然在几千到上万倍左右。</p>
+<p>另外一个明显的设备上的差异就是显示器的分辨率和屏幕大小，在PC端，显示器通常在13寸以上，能够展示给用户的可见区域宽。但是在移动端就不一样了，虽然手机屏幕越来越大，但主流屏幕尺寸仍然处于在5寸到6寸左右。可见区域小。另外，移动端设备上的传感器设备和输入设备丰富于PC端。例如触摸屏，GPS定位，重力陀螺仪等等。</p>
+<p>再次，二者所处的网络环境不一样。通常来说，在手机没有连接wifi的情况下，处于3G或者4G环境下，尤其是国内4G网络还不发达，不成熟，总体在这种弱网络环境下的下载速度还是比较慢的。</p>
+<p>最后一个明显的差异就是操作系统和浏览器上的差异。请看下面的图表，左边是PC端2015年国内市场上各操作系统所占的份额，win家族的操作系统呢仍然占据了绝大部分的江山。这意味着什么呢？意味着仍然有许许多多多用户在使用着古老的IE7、和IE8浏览器。在做PC端网站或者应用的时候不得不考虑IE7、8浏览器的兼容性。而在移动端这边，数据则相对好看许多。android 系统和ios系统占据了主流位置，而这两款操作系统自带的浏览器都是webkit内核，对于H5和CSS3具有天然的良好支持性。也就是说，在PC端使用起来战战兢兢的H5新特性呢，可以放心大胆的在移动端使用了。</p>
+<p><img src="/assets/52.png" alt="genie.github.io"></p>
+<p>我们总结一下，移动端和PC端在设备、网络和操作系统这种软硬件条件下的差异性(见下表)。<br>第一类是硬件差异：表现在CPU和内存上的计算能力，传感器设备和显示器设备上的差异<br>第二类是网络环境的差异：一个是弱网络，一个是强网络，两者在下载速度上有着质的区别。移动上还有着明显的流量限制，导致用户并不是在任何时间任何地点都有可能连接上互联网。<br>第三类是操作系统和浏览器软件的差异：总体来说，移动设备上的浏览器差异小，对H5和CSS3支持良好。</p>
+<h6 id="表1_移动端设备和PC端设备的比较">表1  移动端设备和PC端设备的比较</h6><p><img src="/assets/53.png" alt="genie.github.io"></p>
+<p>正是由于这些差异呢，导致了移动 web开发和PC web开发上的不同。</p>
+<h6 id="表2_移动端页面和PC端页面的比较">表2  移动端页面和PC端页面的比较</h6><p><img src="/assets/54.png" alt="genie.github.io"></p>
+<p>第一，从交互上来说，移动端设备具有非常多的交互选择，输入设备和数据采集设备非常丰富。例如摇一摇，滑动、摩擦，等等。还可以调用各种外设进行交互，例如摄像头，麦克风，GPS等等。但是受限于移动设备的屏幕大小，使得单个屏幕不能放置太多东西，防止丢失焦点和重心，通常呢采用分屏滚动的方式逐页呈现给用户。从性能上来说，由于移动设备先天的计算能力有限，特别是需要兼容一些低端设备时，移动端页面要非常注意页面到性能问题，特别是动画较多，频繁操作dom的时候。如果处理的不好，轻则导致页面动画不流畅，卡帧，严重则会导致页面卡死，浏览器异常关闭等现象，严重的伤害了用户体验。</p>
+<p>第二，从网络条件上来说，移动端弱网络的硬件条件，使得我们在开发H5页面时要非常注意下载带宽，减少页面的加载量，缩短页面的打开时间。</p>
+<p>第三，从浏览器环境上来说，以前在PC端不敢用的新技术，在移动端可以放心采用，较少关心浏览器的兼容性问题。</p>
+<h3 id="移动H5页面的适用场合">移动H5页面的适用场合</h3><p>那么，H5页面到底能够应用在哪些场合呢？一般来说，凡是需要进行移动引流，吸引用户关注，在特定人群快速传播分享，做到精准营销和病毒传播的场景，H5移动页面都有它施展拳脚的空间。概括来说，主要包括以下四种场景。<br>1） 总结报告型<br>自从支付宝的十年账单引发热议后，各大企业的年终总结现也热衷于用H5技术实现，优秀的互动体验令原本乏味的总结报告有趣生动了起来。</p>
+<p>2）第二种是活动运营和活动造势。比如说，作为北京国际马拉松比赛组委，作为一项全民参与健身活动，我希望能吸引许多到用户参与报名这项活动，那我可以通过一个简单H5的小游戏的形式，通过微信微博等渠道传播和扩散这项活动的赛事信息。这种形式可能比一张简单的海报更加影响力。</p>
+<p>3） 第三种是产品介绍，特别是新产品推广推介。动态的产品展示比静态的海报要承载的信息量大得多。例如屏幕下方中的两个案例。第一个是联想手机的皮质机身手机A805e的推广，采用故事情节和用户互动的方式巧妙的讲述了这款手机的精雕细琢的特点。</p>
+<p>4）H5移动页面还可以用来进行品牌宣传，H5页面形式也更接地气，让人更容易接受，甚至内化。品牌宣传型H5页面等同于一个品牌的微官网，更倾向于品牌形象塑造，向用户传达品牌的精神态度。如果巧妙运用感情营销等手段，让用户对品牌留下深刻印象。</p>
+<p>H5移动页面具有许多的表现形式。如何取舍还需根据推广目的，产品特点灵活选用，甚至可以结合多种方式。通常来说，有以下几个方式：</p>
+<p>1） 简单图文：<br>采用精美的图片配上相应的优秀文案的形式，以图片或文字引起用户的共鸣。</p>
+<p>2）图文动画<br>在图文的基础上配上精彩的动画展现，能够解决静态图片文字的沉闷感，增加页面到生动性。</p>
+<p>3）问答／测试 形式<br>常见各种心理测试、性格测试题</p>
+<p>4）用户互动<br>增加用户的互动参与，例如摇一摇得红包，刮奖得优惠券、摇一摇抽新年签，运气签等等。</p>
+<p>5）游戏<br>这一类借助H5小游戏进行快速传播，通常这类页面传播的范围更广，更快。</p>
+<h3 id="移动H5页面的开发技巧">移动H5页面的开发技巧</h3><p>我们接下来来看一组腾讯的统计数据。<br><img src="/assets/55.png" alt="genie.github.io"><br><img src="/assets/56.png" alt="genie.github.io"><br>从以上到统计数据可以得出以下的二十字设计要点：<strong>加载要快、动画为主、滑动优先、游戏先行、步步为营</strong>。我分别来解释一下这五个设计要点。</p>
+<p>首先，加载要快。对于一个H5页面来说，从用户打开页面，浏览器发起各种请求 到 浏览器解析响应、开始绘制页面、页面呈现内容给用户，只有黄金5s的时间。而在这5s钟内，网络延迟和传输摇占据绝大部分的时间，只剩下一丁点时间留给我们的页面进行脚本解析和运行。这意味着如果我们不做加载优化，可能页面还没有开始呈现内容给用户，用户已经默默点了右上角的关闭按钮。</p>
+<p>第二，动画为主。动画能够在短时间内传递大量的信息，远远超过了图片和文字。精美和流畅的动画也给人以视觉上的享受，让人心情愉悦。但是这也有个适度的问题。如果页面上动画元素太多，让人抓不住重点，或者动画元素太多，造成动画运行不流畅，反而会给人造成不好的印象。</p>
+<p>第三、滑动优先。大部分人习惯使用右手单手操作，然后部分人使用双手进行操作，极少部分人采用左手单手操作。而且点击操作的次数比滑动操作的次数要少很多。因此，有必要对页面元素进行合理布局，进行滑动操作优化。</p>
+<p>第四，游戏先行。以游戏作为主题的H5通常传播的最快，也具有更长的页面热度时间。在设计一个H5页面的时候，应该首先想想能否结合主题采用游戏的形式进行切入。</p>
+<p>第五，步步为营。通常，用户每打开一个页面之后，他是茫然的，如果没有合理的提示，他需要通过 自己的努力进行尝试和主动学习，如果次数过多，通常会增加用户的厌烦感。因此，为页面增加操作提示和步骤指引，带领用户一步一步进入下一个页面，减少用户的主动学习成本。</p>
+<p>以上，我们了解了H5移动页面的主要特点，适用场景和设计技巧。在下一篇文章中我们将欣赏一些经典的H5移动页面案例，向优秀的作品学习它们的设计诀窍。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/25/react-class-name-manipulation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何在React中优雅的操作组件的ClassName</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
