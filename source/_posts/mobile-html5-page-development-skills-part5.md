@@ -136,9 +136,10 @@ SVG中使用`<line>`元素来定义直线。示例如下：
 ```
 
 实际显示效果：
-<svg width="300px" height="300px">
-  <line x1="100" y1="200" x2="250" y2="50" stroke="#000" stroke-width="5" />
-</svg>
+
+<div><svg width="300px" height="300px"><line x1="100" y1="200" x2="250" y2="50" stroke="#000" stroke-width="5"/></svg></div>
+
+
 
 2. 矩形
 
@@ -157,9 +158,8 @@ SVG中使用`<rect>`元素来定义矩形。示例如下：
 ```
 
 实际显示效果：
-<svg width="300px" height="150px">
-  <rect x="20" y="20" width="250px" height="125px" rx="5" ry="5" fill="teal" />
-</svg>
+<div><svg width="300px" height="150px"><rect x="20" y="20" width="250px" height="125px" rx="5" ry="5" fill="teal"/></svg></div>
+
 
 
 3. 圆形
@@ -176,9 +176,8 @@ SVG中使用`<circle>`元素来定义圆形。示例如下：
 ```
 
 实际显示效果：
-<svg width="300px" height="300px">
-   <circle cx="50" cy="50" r="50" fill="teal"></circle>
-</svg>
+<div><svg width="300px" height="300px"><circle cx="50" cy="50" r="50" fill="teal"></circle></svg></div>
+
 
 
 4. 椭圆形
@@ -196,9 +195,8 @@ SVG中使用`<ellipse>`元素来定义椭圆形。示例如下：
 ```
 
 实际显示效果：
-<svg width="300px" height="300px">
-   <ellipse cx="150" cy="150" rx="100" ry="75" fill="blue" />
-</svg>
+<div><svg width="300px" height="300px"><ellipse cx="150" cy="150" rx="100" ry="75" fill="blue" /></svg></div>
+
 
 5. 多边形
 
@@ -211,9 +209,7 @@ SVG中使用`<polygon>`元素来定义多边形。示例如下：
 ```
 
 实际显示效果：
-<svg width="300px" height="150px">
-   <polygon points="0,50 50,0 150,0 200,50 150,100 50,100" fill="teal"></polygon>
-</svg>
+<div><svg width="300px" height="150px"><polygon points="0,50 50,0 150,0 200,50 150,100 50,100" fill="teal"></polygon></svg></div>
 
 6. 折线
 
@@ -225,9 +221,7 @@ SVG中使用`<polyline>`元素来定义多边形，定义方式与多边形类�
 ```
 
 实际显示效果：
-<svg width="300px" height="150px">
-   <polyline points="10 10, 50 50, 75 175, 175 150, 175 50, 225 75, 225 150, 300 150" fill="none" stroke="#000"/>
-</svg>
+<div><svg width="300px" height="150px"><polyline points="10 10, 50 50, 75 175, 175 150, 175 50, 225 75, 225 150, 300 150" fill="none" stroke="#000"/></svg></div>
 
 
 ### SVG 中的路径
@@ -240,9 +234,7 @@ SVG中使用`<polyline>`元素来定义多边形，定义方式与多边形类�
 </svg>
 ```
 
-<svg width="600" height="400">
-  <path d="M 50 50 l 0 300 l 200 0 l 0 -300 l -200 0" fill="none" stroke="#000" stroke-width="2px" />
-</svg>
+<div><svg width="600" height="400"><path d="M 50 50 l 0 300 l 200 0 l 0 -300 l -200 0" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
 
 路径(d)可以使用不同的指令，移动到一个新的点，然后绘制不同的直线和曲线。下面将重点介绍这些指令。
 1. 直线指令
@@ -286,6 +278,8 @@ C (or c) x1,y1 x2,y2 x,y
 </svg>
 ```
 
+<div><svg width="600" height="300"><path d="M100,200 C100,100  400,100  400,200" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
+
 #### 2.2 二次贝塞尔曲线指令
 
 二次贝塞尔曲线指令只需要一个控制点，同时作为起点控制点和终点控制点。
@@ -304,6 +298,8 @@ Q (or q) x1,y1 x,y
      fill="none" stroke="#000" stroke-width="2px" />
 </svg>
 ```
+
+<div><svg width="600" height="300"><path d="M100,200 Q250,100 400,200" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
 
 二次贝塞尔曲线指令也有一个快捷方法，(T 或 t)指令可以用来平滑多条曲线之间的连接。它和三次贝塞尔曲线指令中的快捷方式(S 或 s)是同样的效果，也有助于通过对称的控制点来平滑地开始绘制第二条曲线。
 
@@ -343,6 +339,8 @@ A (or a) rx ry  x-axis-rotation  large-arc-flag  sweep-flag  x y
 </svg>
 ```
 
+<div><svg width="600" height="300"><path d="M250,100  A120,80 0 0,0 250,200" fill="none" stroke="red" stroke-width="5" /><path d="M250,100  A120,80 0 1,1 250,200" fill="none" stroke="green" stroke-width="5"/><path d="M250,100  A120,80 0 1,0 250,200" fill="none" stroke="purple" stroke-width="5"/>
+<path d="M250,100  A120,80 0 0,1 250,200" fill="none" stroke="blue" stroke-width="5"/></svg></div>
 
 ### SVG 中的标记（Marker）
 SVG 连接标记（markers）用于标记一条线或路径的开始、中间个结束位置。你可以在路径的开始处使用圆形或方形表示，在路径的结束处使用一个三角箭头表示。
@@ -367,6 +365,8 @@ SVG 连接标记（markers）用于标记一条线或路径的开始、中间个
 </svg>        
 ```
 
+<div><svg xmlns="http://www.w3.org/2000/svg"><defs><marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5"><circle cx="5" cy="5" r="3" style="stroke: none; fill:#000000;"/></marker><marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;" /></marker></defs><path d="M100,10 L150,10 L150,60" style="stroke: #6666ff; stroke-width: 1px; fill: none;marker-start: url(#markerCircle);marker-end: url(#markerArrow);"/></svg></div>
+
 > `marker-start`, `marker-mid`, `marker-end` 这三个CSS属性会将标记分别放置在路径的开始、中间和结束位置。
 
 > 可以设置markerUnits="strokeWidth" 使得标记进行缩放来适应路径描边的大小
@@ -387,6 +387,9 @@ SVG剪裁路径是指根据指定的路径或形状来剪裁SVG图形。应用�
       style="fill: #0000ff; clip-path: url(#clipPath); " />   
 ```
 这个例子定义了一个矩形的剪裁路径（<clipPath>中的<rect>元素）。在后面的SVG圆形中，通过style属性的clip-path指向了这个剪裁路径。
+
+<div><svg><defs><clipPath id="clipPath"><rect x="15" y="15" width="40" height="40" /></clipPath></defs> <circle cx="25" cy="25" r="20" style="fill: #0000ff; clip-path: url(#clipPath); "/></svg></div>
+
 
 > 你可以使用任何图形来作为剪裁路径或者被剪裁的对象。可以是文字、圆形、椭圆、多边形或自定义路径。
 
@@ -628,9 +631,8 @@ http://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html
 </svg>
 ```
 实际的效果如下：
-<svg width="300" height="300">
-  <rect x="20" y="20" width="100" height="50" style="stroke: #f36; fill: rgba(123,123,23,.5);"/>
-</svg>
+
+<div><svg width="300" height="300"><rect x="20" y="20" width="100" height="50" style="stroke: #f36; fill: rgba(123,123,23,.5);"/></svg></div>
 
 到现在为止，我们还没有声明viewBox属性值。SVG画布的用户坐标系统和视窗坐标系统完全一样。
 
@@ -709,16 +711,9 @@ HTML和SVG的变换还是有一些不同，主要的不同在于SVG元素和HTML
 ```
 
 实际的现实效果如下：
-<svg width="600px" height="300px" viewBox="0 0 250 250">
-  <circle cx="35" cy="35" r="35" style="stroke: black; fill: none;"/>
-  <rect x="150" y="50" width="200" height="100" style="stroke: blue; 
-        fill: none;"/>
-  <svg x="150px" y="50px" width="200px" height="100px" viewBox="0 0 125 125" preserveAspectRatio="xMaxYMax meet">
-    <circle cx="35" cy="35" r="35" style="stroke: black; fill: rgba(0,0,0,.5);"/>
-  </svg>
-</svg>
+<svg width="600px" height="300px" viewBox="0 0 250 250"> <circle cx="35" cy="35" r="35" style="stroke: black; fill: none;"/> <rect x="150" y="50" width="200" height="100" style="stroke: blue; fill: none;"/> <svg x="150px" y="50px" width="200px" height="100px" viewBox="0 0 125 125" preserveAspectRatio="xMaxYMax meet"> <circle cx="35" cy="35" r="35" style="stroke: black; fill: rgba(0,0,0,.5);"/> </svg> </svg>
 
-如果你不声明子SVG的x和y属性，它们默认是0。如果你不声明height和width属性，<svg>会是父SVG宽度和高度的100%。
+如果你不声明子SVG的x和y属性，它们默认是0。如果你不声明height和width属性，`<svg>`会是父SVG宽度和高度的100%。
 
 除了可以通过嵌套`<svg>`外，也可以使用例如`<use>`, `<symbol>`的元素来建立新的viewport和用户坐标系: 
 ```
@@ -730,10 +725,6 @@ HTML和SVG的变换还是有一些不同，主要的不同在于SVG元素和HTML
     <use xlink:href="#my-symbol" x="?" y="?" width="?" height="?">
 </svg>
 ```
-
-### SVG 中的属性
-
-
 
 
 ### SVG 中的SMIL动画
@@ -776,6 +767,8 @@ set意思设置，此元素没有动画效果。可以实现基本的延迟功�
 </svg>
 ```
 
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="120" y="160" x="160"> 马 <set attributeName="x" attributeType="XML" to="60" begin="3s" /> </text> </g> </svg>
+
 2. `<animate>`
 
 基础动画元素。实现单属性的动画过渡效果。类似Snap.svg的animate()方法支持的动画效果。类似于CSS3中的transition属性
@@ -789,6 +782,8 @@ set意思设置，此元素没有动画效果。可以实现基本的延迟功�
   </g>
 </svg>
 ```
+
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="120" y="160" x="160"> 马 <animate attributeName="x" from="160" to="60" begin="0s" dur="3s" repeatCount="indefinite" /> </text> </g> </svg>
 
 3. `<animateColor>` (被废弃)
 
@@ -804,6 +799,8 @@ set意思设置，此元素没有动画效果。可以实现基本的延迟功�
 </svg>
 ```
 
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="80" y="100" x="100">马</text> <animateTransform attributeName="transform" begin="0s" dur="3s"  type="scale" from="1" to="1.5" repeatCount="indefinite"/> </g> </svg>
+
 5. `<animateMotion>`
 
 animateMotion元素可以让SVG图形沿着特定的`<path>`路径运动。
@@ -815,6 +812,8 @@ animateMotion元素可以让SVG图形沿着特定的`<path>`路径运动。
   <path d="M10,80 q100,120 120,20 q140,-50 160,0" stroke="#cd0000" stroke-width="2" fill="none" />
 </svg>
 ```
+
+<svg width="360" height="200" xmlns="http://www.w3.org/2000/svg"> <text font-family="microsoft yahei" font-size="40" x="0" y="0" fill="#cd0000">马 <animateMotion path="M10,80 q100,120 120,20 q140,-50 160,0" begin="0s" dur="3s" rotate="auto" repeatCount="indefinite"/> </text> <path d="M10,80 q100,120 120,20 q140,-50 160,0" stroke="#cd0000" stroke-width="2" fill="none" /> </svg>
 
 #### SVG animation参数详解
 参考文献：
@@ -887,6 +886,8 @@ OK，看完下面的例子一定会豁然开朗，对于上面的offset-value也
 </svg>
 ```
 
+<svg id="svg" width="320" height="200" xmlns="http://www.w3.org/2000/svg"> <circle id="circle" cx="100" cy="100" r="50"></circle> <text font-family="microsoft yahei" font-size="120" y="160" x="160">马 <animate attributeName="x" to="60" begin="circle.click+2s" dur="3s" /> </text> </svg>
+
 支持的事件类型包括：`load`, `focus`, `endEvent`, `repeat` 等
 
 > TIPS: 这类与事件关联的SVG需要内联在页面中。
@@ -900,6 +901,8 @@ OK，看完下面的例子一定会豁然开朗，对于上面的offset-value也
     </text>
 </svg>
 ```
+
+<svg width="320" height="200" xmlns="http://www.w3.org/2000/svg"> <text font-family="microsoft yahei" font-size="120" y="160" x="160">马 <animate id="x" attributeName="x" to="60" begin="0s" dur="3s" repeatCount="indefinite" /> <animate attributeName="y" to="100" begin="x.repeat(2)" dur="3s" fill="freeze" /> </text> </svg>
 
 6) `accessKey-value` 定义快捷键。即按下某个按键动画开始。语法为：`accessKey(character)`。 `character` 表示快捷键所在的字符，举个例子，按下 `s` 键动画开始执行。SVG 代码如下：
 ```html
@@ -945,6 +948,8 @@ if (animate) {
      </a>
 </svg>
 ```
+
+<svg width="320" height="200" font-family="microsoft yahei" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <text font-size="120" y="160" x="160">马 <animate id="animate" attributeName="x" to="60" begin="indefinite" dur="3s" repeatCount="indefinite" /> </text> <a xlink:href="#animate"> <text x="10" y="20" fill="#cd0000" font-size="30">点击我</text> </a> </svg>
 
 > 如果动画的begin属性未显式指明或者解析异常，那么将会使用默认的`0`值，即文档开始后立即执行动画。
 
@@ -1154,6 +1159,8 @@ svg.unpauseAnimations(); // 重启动
 ```
 
 
+<svg viewBox="0 0 100 100" width="500" height="150"> <path fill="#1EB287" d="M 5.15151 0 C 52.5758 2.57575 52.5758 2.57575 100 5.15151 C 97.4242 52.5758 97.4242 52.5758 94.8485 100 C 47.4242 97.4242 47.4242 97.4242 0 94.8485 C 2.57575 47.4242 2.57575 47.4242 5.15151 0 Z"> <animate attributeName="d" dur="1440ms" repeatCount="indefinite" keyTimes="0; .0625; .208333333; .3125; .395833333; .645833333; .833333333; 1" calcMode="spline" keySplines="0,0,1,1; .42,0,.58,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1" values="M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z; M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z; M 50,0 C 75,25 75,25 100,50 75,75 75,75 50,100 25,75 25,75 0,50 25,25 25,25 50,0 Z; M 25,50 C 37.5,25 37.5,25 50,0 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 Z; M 25,50 C 37.5,25 37.5,25 50,0 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 Z; M 50,0 C 77.6,0 100,22.4 100,50 100,77.6 77.6,100 50,100 22.4,100, 0,77.6, 0,50 0,22.4, 22.4,0, 50,0 Z; M 50,0 C 77.6,0 100,22.4 100,50 100,77.6 77.6,100 50,100 22.4,100, 0,77.6, 0,50 0,22.4, 22.4,0, 50,0 Z; M 100,0 C 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 50,0 50,0 100,0 Z;"></animate> <animate attributeName="fill" dur="1440ms" repeatCount="indefinite" keyTimes="0; .0625; .208333333; .3125; .395833333; .645833333; .833333333; 1" calcMode="spline" keySplines="0,0,1,1; .42,0,.58,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1" values="#1eb287; #1eb287; #1ca69e; #188fc2; #188fc2; #bb625e; #ca5f52; #1eb287;"></animate> </path> </svg>
+
 
 ### SVG与CSS3的关系
 1. 使用CSS属性变换SVG
@@ -1241,6 +1248,7 @@ http://isux.tencent.com/16292.html
 2) SVG高级动画
 用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节，
 - 基于SVG的path动画
+<iframe src="http://www.html5tricks.com/demo/html5-svg-shanche-animation/index2.html" width="100%" height="800"></iframe>
 
 - 基于线条的描绘动画： 线条的描绘动画，CSS3比较难实现，这里可以用SVG实现，主要代码如下：
 
