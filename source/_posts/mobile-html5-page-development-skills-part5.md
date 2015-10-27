@@ -1274,6 +1274,8 @@ http://isux.tencent.com/16292.html
 
 更多例子，请参考下面的链接：
 http://fang.youku.com/2014/timet
+http://codepen.io/ghepting/pen/xnezB
+http://codepen.io/TimPietrusky/pen/vKuja
 http://www.html5tricks.com/demo/html5-svg-smile-faces/index.html
 http://www.gbtags.com/gb/demoviewer/4001/9ca6f6cd-65cc-4d9a-8fed-613f9c0cba6c/svg-page-loading.html.htm
 http://www.html5tricks.com/demo/html5-svg-shanche-animation/index.html
