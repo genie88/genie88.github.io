@@ -1242,15 +1242,70 @@ function mouseOver() {
 
 
 ### SVG在移动页面的应用
-1) SVG图标，自适应屏幕无失真
+
+
+#### 使用SVG中的Symbol元素制作图标
+［参考文献］
 http://isux.tencent.com/16292.html
+http://io-meter.com/2014/07/20/replace-icon-fonts-with-svg/
+https://css-tricks.com/svg-symbol-good-choice-icons/
 
-2) SVG高级动画
-用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节，
-- 基于SVG的path动画
-<iframe src="http://www.html5tricks.com/demo/html5-svg-shanche-animation/index2.html" width="100%" height="800"></iframe>
+随着高清屏幕的普及，相比使用png等位图而言，使用SVG等矢量图形是一种全新的设计方式。更重要的是相比位图而言，SVG有着无可比拟的优势。总结来说，SVG具有以下优势：
 
-- 基于线条的描绘动画： 线条的描绘动画，CSS3比较难实现，这里可以用SVG实现，主要代码如下：
+- SVG是矢量图形文件，可以随意改变大小，而不影响图标质量
+- 可以用CSS样式来自由定义图标颜色，比如颜色/尺寸等效果（整体或者局部改变）
+- 所有的SVG可以全部在一个文件中，节省HTTP请求
+- 使用SMIL、CSS3或者是javascript可以制作充满灵性的交互动画效果
+- 由于SVG也是一种XML节点的文件，可以使用gzip的方式把文件压缩到很小
+
+> 字体图标也是一种基于矢量图形的技术封装
+
+网站icomoon提供免费的svg图标下载。访问 https://icomoon.io 点击你需要下载的图形，选中它，然后点击下载按钮。
+
+每个图标都以symbol的方式进行定义
+```html
+<symbol id="icon-image" viewBox="0 0 1024 1024">
+  <title>image</title>
+  <path class="path1" d="M959.884 128c0.040 0.034 0.082 0.076 0.116 0.116v767.77c-0.034 0.040-0.076 0.082-0.116 0.116h-895.77c-0.040-0.034-0.082-0.076-0.114-0.116v-767.772c0.034-0.040 0.076-0.082 0.114-0.114h895.77zM960 64h-896c-35.2 0-64 28.8-64 64v768c0 35.2 28.8 64 64 64h896c35.2 0 64-28.8 64-64v-768c0-35.2-28.8-64-64-64v0z"></path>
+  <path class="path2" d="M832 288c0 53.020-42.98 96-96 96s-96-42.98-96-96 42.98-96 96-96 96 42.98 96 96z"></path>
+  <path class="path3" d="M896 832h-768v-128l224-384 256 320h64l224-192z"></path>
+</symbol>
+```
+
+使用图标的时候只需
+```html
+<svg class="icon icon-image"><use xlink:href="#icon-image"></use></svg>
+```
+
+
+#### 利用SVG特性制作高级动画
+由于SVG是一种类似DOM节点组成的文本文档，所以我们可以很精细的控制SVG图形的每一个部分，并且可以使用SMIL动画、CSS3动画或者是javascript来制作动画效果，可用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节。
+
+##### 基于SVG的path动画
+利用SVG的Path，可以制作生成许多复杂的动画，其中之一便是Path的变形动画。在《移动H5页面开发系列——part2:移动H5页面优秀案例赏析》一文中，新百伦的运动鞋宣传页面案例《青春是一种什么颜色？》的背景颜色动画就可以使用Path变形动画进行实现。
+
+```
+<svg viewBox="0 0 320 480 " width="320" height="480">
+  <path fill="tomato" d="M0 100 L0 480 L320 480 L320 100 Q250,80 100,110 T0,0">
+    <animate attributeName="d" dur="4440ms" repeatCount="indefinite" keyTimes="0;0.3;0.6;1"  calcMode="spline" 
+    keySplines="0,0,1,1;0,0,1,1;0,0,1,1;" 
+    values="M0 400 L0 480 L320 480 L320 400 Q500,350 300,380 T0,400;
+            M0 300 L0 480 L320 480 L320 300 Q400,250 300,280 T0,300;
+            M0 200 L0 480 L320 480 L320 200 Q450,250 200,210 T0,200;
+            M0 100 L0 480 L320 480 L320 100 Q250,80  100,110 T0,0"></animate>
+  </path>
+</svg>
+```
+
+实际效果可以刷查看下面的案例：
+<iframe src="http://sandbox.runjs.cn/show/lk7nbykz" width="100%" height="500"></iframe>
+
+##### 基于线条的描绘动画： 
+
+另外一种动画是利用SVG特性实现线条的描绘动画和图像的上色动画。
+
+
+线条的描绘动画，CSS3比较难实现，这里可以用SVG实现，主要代码如下：
 
 ```css
 .path {
@@ -1269,7 +1324,9 @@ http://isux.tencent.com/16292.html
 实际效果可以刷新页面查看：
 <iframe src="http://sandbox.runjs.cn/show/7hujlkjt" width="100%" height="500"></iframe>
 
-- 细节动画
+参考文献：https://jakearchibald.com/2013/animated-line-drawing-svg/
+
+##### 细节动画
 <iframe src="http://sandbox.runjs.cn/show/anzvpikn" width="100%" height="320"></iframe>
 
 更多例子，请参考下面的链接：
@@ -1278,10 +1335,10 @@ http://codepen.io/ghepting/pen/xnezB
 http://codepen.io/TimPietrusky/pen/vKuja
 http://www.html5tricks.com/demo/html5-svg-smile-faces/index.html
 http://www.gbtags.com/gb/demoviewer/4001/9ca6f6cd-65cc-4d9a-8fed-613f9c0cba6c/svg-page-loading.html.htm
-http://www.html5tricks.com/demo/html5-svg-shanche-animation/index.html
+http://www.html5tricks.com/demo/html5-svg-shanche-animation/index2.html
 
 
-### SVG 的缺点
+#### SVG 的缺点
 1) 渲染成本
 理论上讲，SVG的效率可能会不如PNG好，这是因为它需要运行时的计算和对应平台的渲染绘制。而且对于PNG来说的另一优势是在开启硬件加速的设备上，绘制Bitmap一个非常快速的过程。
 
@@ -1296,7 +1353,7 @@ SVG虽然有很多很好的特性，但是无论是web的ie8-还是mobile上的A
 
 ### 结语
 
-(未完，待续)
+没有结语。
 以上，轻拍。
 (EOF)
 
