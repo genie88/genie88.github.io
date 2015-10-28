@@ -1,4 +1,4 @@
-title: "移动H5页面开发系列——part5:Canvas元素在移动H5页面动画的应用"
+title: "移动H5页面开发系列——part6:Canvas元素在移动H5页面动画的应用"
 date: 2015-10-23 09:18:09
 tags: "html5"
 ---

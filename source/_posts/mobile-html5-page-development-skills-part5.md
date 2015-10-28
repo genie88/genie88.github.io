@@ -1279,7 +1279,7 @@ https://css-tricks.com/svg-symbol-good-choice-icons/
 
 
 #### 利用SVG特性制作高级动画
-由于SVG是一种类似DOM节点组成的文本文档，所以我们可以很精细的控制SVG图形的每一个部分，并且可以使用SMIL动画、CSS3动画或者是javascript来制作动画效果，可用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节。
+
 
 ##### 基于SVG的path动画
 利用SVG的Path，可以制作生成许多复杂的动画，其中之一便是Path的变形动画。在《移动H5页面开发系列——part2:移动H5页面优秀案例赏析》一文中，新百伦的运动鞋宣传页面案例《青春是一种什么颜色？》的背景颜色动画就可以使用Path变形动画进行实现。
@@ -1327,6 +1327,7 @@ https://css-tricks.com/svg-symbol-good-choice-icons/
 参考文献：https://jakearchibald.com/2013/animated-line-drawing-svg/
 
 ##### 细节动画
+由于SVG是一种类似DOM节点组成的文本文档，所以我们可以很精细的控制SVG图形的每一个部分，并且可以使用SMIL动画、CSS3动画或者是javascript来制作动画效果，可用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节。
 <iframe src="http://sandbox.runjs.cn/show/anzvpikn" width="100%" height="320"></iframe>
 
 更多例子，请参考下面的链接：
