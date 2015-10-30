@@ -2,38 +2,71 @@ title: "CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性
 date: 2015-10-29 17:04:44
 tags: "CSS"
 ---
-在前面的帖子中，我们已经讲了可视化模型中布局的两大方面：1. 常规流  2. 浮动，布局3大部分只剩下了绝对定位。前面的帖子中也零星的提到过关于绝对定位的某些特性，但都不够细致系统。
+浮动带给我们一个不属于常规流的世界: 它不能超出它的包含块，它的位置跟在它之前的元素生成的框有关系(详见前面的浮动规则)…… 那么，它对处于它后面的元素有什么关系呢？对于块框，会认为它不存在，行框会绕着它排列！有没有方法使块框也可以在它后面排列，而不再当它不存在呢？答案是肯定的。W3C总是透着一种非常人性化的味道。`clear` 特性就是做的这件事。从某种意义上来说，clear 是对浮动框和常规流中框的一种关系上的平衡。
+<!--more-->
 
-### 绝对定位（Absolute positioning）
+### clear特性
 
-1) **相对包含块偏移定位**
-在绝对定位模型中，一个框明确地基于它的包含块偏移。不是父元素，这点需注意。所以，绝对定位元素的定位，关键是确定其包含块。
+该特性表明一个元素框的哪一边不可以和先前的浮动框相邻。`clear`特性不考虑它自身包含的浮动子元素和不处于同一个Block formatting context中的浮动元素。
 
-2) **完全脱离常规流**
-它完全脱离了常规流（对后继的兄弟节点没有影响）。这一点又与浮动元素不同，浮动元素会对后继的行框产生影响，而且，后面声明的绝对定位元素也不会受前面定义的绝对元素的影响。可以这么理解，**常规流中的元素，都在同一个层上，浮动是处于常规流之上的一个特殊层，可能会对常规流中的元素有影响。但是绝对定位的元素不会，可以把每个绝对定位的框看做一个单独的图层，独来独往**。所以，说它完全脱离了常规流也不无道理。
-注意一点，绝对元素定位的 top 和 left 值跟绝对元素未脱离常规流之前在常规流中位置有关。
+**1) clear 特性值的作用**
 
-看这个例子：
+left/right/both：生成框的间隙，是指设置足够的(空白区)，以使元素的`顶边框边界`(top border edge)放置到由源文档中较早元素生成的任何左浮动框/右浮动框/左右浮动框的`底外边`(bottom outer edge，即底margin边)之下。
+none：对考虑到浮动后的框的位置没有约束。
+
+简单点儿说，就是设置了clear的元素的`顶边框边界`要放在相关的浮动元素的`底外边`之下。注意这两种元素接触边界的区别。一个是borer，一个是margin。
+
+一个直观的例子：
+
 ```html
-<div style="position:absolute; width:100px; height:100px; background-color:red;">absolute</div>
-<div style="height:50px; border:1px solid blue; width:200px;">DIV 中的普通文本元素</div>
-<div style="position:absolute; left:60px; width:100px; height:100px; background-color:green;">absolute</div>
+<div style="height:200px;">
+    <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red;">
+        float
+    </div>
+    <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow; margin-top:50px;">
+        clearance
+    </div>
+</div>
 ```
 
-<div style="position:absolute; width:100px; height:100px; background-color:red;">absolute</div> <div style="height:50px; border:1px solid blue; width:200px;">DIV 中的普通文本元素</div> <div style="position:absolute; left:60px; width:100px; height:100px; background-color:green;">absolute</div>
 
-以上例子中，两个绝对定位元素都未声明其 top 特性，那么top就会取它在常规流中的位置。
-中间的DIV在常规流中，影响了后面的绝对定位元素的位置，但是没有受到前面的绝对定位元素的影响。
+<div style="height:200px;"> <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red;"> float </div> <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow; margin-top:50px;"> clearance </div> </div>
+
+设置了clear的元素的margin-top是50px，没起作用，为什么呢？注意，应该是设置了clear的元素的top border edge对齐，不是margin edge。
+如果想让它们之间有50px的间距，怎么办？只需将设置浮动元素的margin-bottom为50px即可。
+
+```html
+<div style="height:200px;">
+    <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red; margin-bottom:50px;">
+        float
+    </div>
+    <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow;">
+        clearance
+    </div>
+</div>
+```
 
 
-3) **绝对定位元素生成的包含块**
-一个绝对定位框会为它的常规流子元素和定位派生元素(不包含 fiexed 定位的元素)生成一个新的包含块。不过，绝对定位元素的内容不会在其它框的周围排列。
-注意，绝对定位框还会创建 block formatting contexts。
+<div style="height:200px;"> <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red; margin-bottom:50px;"> float </div> <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow;"> clearance </div> </div>
 
-4) **堆叠层次**
-它们可能会掩盖另一个框的内容，或者被另外一个框掩盖，这取决于互相重合的框的`堆叠层次(Stact Level)`。 也就是我们前面说的三维的可视化模型，除了X轴，Y轴，还有Z轴。
+> 此处仅为示例，实际情况下我们经常将clear框设置为0px高的不可见div
+
+**2)浮动元素上的 clear**
+
+为 clear 特性被赋予浮动元素时，它将导致浮动框定位规则的修正，另外一条限制（第10条）被追加：
+
+> 浮动框区的上外边界（top margin edge）必须低于前面所有左浮框的下外边界（在clear:left时），或者右浮框区（clear:right），或者两个框区(clear:both)。
+
+例子：
+```html
+<div id="Container" style="width:300px; height:100px; border:1px solid gold; ">
+    <div id="DIV1" style="float:right; width:150px; height: 50px; background-color:green; ">float:right;</div>
+    <div id="DIV2" style="float:left; width:100px; height: 50px; background-color:red; clear:right;">clear:right float:left;</div>
+</div>
+```
+
+应该是这种效果：
 
 
-### 固定定位（Fixed positioning）
+> 在IE6、IE7和IE8(Q)中，这个规则没有被遵守。请大家注意这个兼容性问题。尽量少在浮动元素上设置clear属性。
 
-**固定定位是绝对定位的一个子类**。唯一的区别是，对于固定定位框，它的`包含块`由可是窗口(viewport)创建。对于连续媒介，固定定位框并不随着文档的滚动而移动。从这个意义上说，它们类似于固定的背景图形。对于页面媒介，固定定位框在每页里重复。对于需要在每一页底部放置一个签名时，这个方法非常有用。
