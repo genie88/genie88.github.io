@@ -24,6 +24,10 @@ tags: 'css'
 
 如果元素是绝对定位（`position: absolute`）元素，包含块由离它最近的 position 属性为 `absolute`、`relative` 或者 `fixed` 的祖先元素创建。
 
+> 在CSS3规范中，tansform属性会改变绝对定位元素的包含块。这种情况下包含块由离它最近的 tansform 属性不为 `none`的祖先元素创建。须注意的是，固定定位也是绝对定位的一种。
+
+
+
 4.1) 如果其祖先元素是行内元素，则包含块取决于其祖先元素的 `direction` 特性
 
 - 如果 'direction'  是 'ltr'，包含块的顶、左边是祖先元素生成的第一个框的顶、左内边距边界(padding edges) ，右、下边是祖先元素生成的最后一个框的右、下内边距边界(padding edges) 。
