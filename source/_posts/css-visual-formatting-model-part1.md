@@ -80,6 +80,7 @@ tags: "css"
 
 
 ### 参考文献
-1. http://www.w3.org/TR/CSS2/visuren.html#box-gen
-2. http://bbs.csdn.net/topics/340209795
+1. http://www.w3.org/html/ig/zh/wiki/CSS2/visuren#viewport
+2. http://www.w3.org/TR/CSS2/visuren.html#box-gen
+3. http://bbs.csdn.net/topics/340209795
 

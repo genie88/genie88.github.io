@@ -10,7 +10,7 @@ tags: "CSS"
 ### 块格式化上下文(Block formatting contexts)
 
 **如何触发**
-浮动元素，绝对定位元素，inline-blocks，table-cells，table-captions，以及 'overflow'不是 'visible'的元素，会创建新的block formatting context。
+有这几种框会为其内容创建新的块格式化上下文：浮动元素，绝对定位元素，inline-blocks，table-cells，table-captions，以及 'overflow'不是 'visible'的元素，会创建新的block formatting context。
 
 
 > 在CSS3中，对这个概念做了改动：http://www.w3.org/TR/css3-box/#block-level0 CSS3中，将Block formatting context 叫做 flow root。对于触发方式也做了修改：The value of ‘position’ is neither ‘static’ nor ‘relative’ (见[CSS3]).从上下文（context）变成了根（root），这个概念确实挺费解的。可见，CSS3中的描述更加准确，position在 ‘fixed’ 的时候也会创建 flow root。这并不是CSS2.1的疏忽，因为 position:fixed 本身就是 position:absolute 的一个子类。
@@ -22,7 +22,7 @@ tags: "CSS"
 
 块格式化内容是个重要的概念，它对宽高的计算，margin折叠，定位等都有一定的影响。后续会有详细的说明。
 
-在块格式化上下文中，框会一个接一个地被垂直放置，它们的起点是一个`包含块`的顶部。两个兄弟框之间的垂直距离取决于'margin'属性。在block formatting context中相邻的块级元素的垂直边距会折叠(collapse)。
+在块格式化上下文中，框会从`包含块`的顶部开始，一个接一个地，垂直向下地摆放。两个兄弟框之间的垂直距离取决于'margin'属性。在同一个块格式化上下文中，相邻的块级框之间的垂直外边距会出现折叠。
 
 在块格式化上下文中，每一个`元素左外边`与`包含块`的左边相接触（对于从右到左的格式化，右外边接触右边），即使存在浮动也是如此（尽管一个元素的内容区域会由于浮动而压缩），除非这个元素也创建了一个新的block formatting context。
 
@@ -36,7 +36,8 @@ Block formatting context 表现的很像普通的块框，那么它比较特殊�
 ### 行内格式化上下文（inline formatting contexts）
 
 **什么是行框**
-与块格式化上下文不同，在行内格式化上下文中，框(boxes)一个接一个地水平排列，起点是包含块的顶部。水平方向上的 margin，border 和 padding 在框之间得到保留。框在垂直方向上可以以不同的方式对齐：它们的顶部或底部对齐，或根据其中文字的基线对齐(vertical-align属性控制)。包含那些框的长方形区域，会形成一行，叫做`行框(line box)`。
+
+在行格式化上下文中，框会从包含块的顶部开始，一个接一个地水平摆放。摆放这些框的时候，它们在水平方向上的外边距(margin)、边框(border)、内边距(padding)所占用的空间都会被考虑在内。在垂直方向上，这些框可能会以不同形式来对齐：它们可能会把底部或顶部对齐，也可能把其内部的文本基线对齐(vertical-align属性控制)。能把在一行上的框都完全包含进去的一个矩形区域，被称为该行的`行框(line box)`。
 
 ```html
 <p style="background-color:silver; font-size:30px;">TEXT1<span style="border:3px solid blue;">text in span</span>great1<em style="border:3px solid red;">thx a lot</em>bee<strong style="border:3px solid green;">give me 5!</strong>Aloha!</p>
@@ -58,10 +59,13 @@ Block formatting context 表现的很像普通的块框，那么它比较特殊�
 
 <p style="background-color:silver; width:500px; "> <span style="border:1px solid blue; font-size:50px;">text in span</span> <em style="border:1px solid yellow; font-size:30px; vertical-align:top;">great1</em> </p>
 
-EM所形成的行内框内容的顶端与行中最高元素的顶外边界对齐。
+EM所形成的行内框内容的顶端与行中最高元素的顶外边界对齐(vertical-align:top)。
+
+
 
 **行内框可能被分割**
-如果几个行内框在水平方向无法放入一个行框内，它们可以分配在两个或多个垂直堆叠的行框中。因此，一个段落就是行框在垂直方向上的堆叠。行框在堆叠时没有垂直方向上的分割且永不重叠。
+当几个行级框在水平方向上无法塞得进同一个行框时，它们会被分布在两个或多个垂直堆放的行框中。行框会以既没有垂直间距,也没有重叠的方式被垂直堆放起来。
+
 如果一个行内框超出包含它的行框的宽度，它会被分割成几个框，并且这些框会被分布到几个行框内。如果一个行框不能被分割（例如，行内框只包含单个字符，或者语言特殊的断字规则不允许在行内框里换行，或者行内框受到带有nowrap或pre值的 ‘white-space’ 特性的影响），这时，行内框会溢出行框。
 如果一个行内框被分割，margin、padding 和 border 在所有分割处没有视觉效果。
 行内框还可能由于双向文本处理（bidirectional text processing）而在同一个行框内被分割为好几个框。
