@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS核心可视化格式模型: 概念和简介 part-1 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="可视化格式模型是CSS核心中非常重要的概念。众所周知，盒模型规定了元素本身的行为，而可视化格式模型规定了用户代理（通常指用户浏览器）在媒介（通常是指显示器）中如何处理文档树，通俗地说，就是把这些元素盒子，按照规则摆放到页面上，也就是通常所说的布局。换句话说，可视化格式模型是整个页面的模型，这个模型规定了怎么在页面里摆放box，box相互作用等等。属于CSS的最为核心的概念之一。可视化格式模型的概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS核心可视化格式模型: 概念和简介 part-1">
+<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part1/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="可视化格式模型是CSS核心中非常重要的概念。众所周知，盒模型规定了元素本身的行为，而可视化格式模型规定了用户代理（通常指用户浏览器）在媒介（通常是指显示器）中如何处理文档树，通俗地说，就是把这些元素盒子，按照规则摆放到页面上，也就是通常所说的布局。换句话说，可视化格式模型是整个页面的模型，这个模型规定了怎么在页面里摆放box，box相互作用等等。属于CSS的最为核心的概念之一。可视化格式模型的概念">
+<meta property="og:image" content="http://genie88.github.io/assets/57.png">
+<meta property="og:updated_time" content="2015-10-30T02:04:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS核心可视化格式模型: 概念和简介 part-1">
+<meta name="twitter:description" content="可视化格式模型是CSS核心中非常重要的概念。众所周知，盒模型规定了元素本身的行为，而可视化格式模型规定了用户代理（通常指用户浏览器）在媒介（通常是指显示器）中如何处理文档树，通俗地说，就是把这些元素盒子，按照规则摆放到页面上，也就是通常所说的布局。换句话说，可视化格式模型是整个页面的模型，这个模型规定了怎么在页面里摆放box，box相互作用等等。属于CSS的最为核心的概念之一。可视化格式模型的概念">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-css-visual-formatting-model-part1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/css-visual-formatting-model-part1/" class="article-date">
+  	<time datetime="2015-10-29T02:17:20.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS核心可视化格式模型: 概念和简介 part-1
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>可视化格式模型是CSS核心中非常重要的概念。众所周知，盒模型规定了元素本身的行为，而可视化格式模型规定了用户代理（通常指用户浏览器）在媒介（通常是指显示器）中如何处理文档树，通俗地说，就是把这些元素盒子，按照规则摆放到页面上，也就是通常所说的布局。换句话说，可视化格式模型是整个页面的模型，这个模型规定了怎么在页面里摆放box，box相互作用等等。属于CSS的最为核心的概念之一。<br>可视化格式模型的概念非常多，我会分多次说明，我也会在我的能力范围内，尽量说的很细。<br><img src="/assets/57.png" alt="genie.github.io"><br><a id="more"></a> </p>
+<h4 id="可视化格式模型基础">可视化格式模型基础</h4><p>官方的说法是，它规定了<code>用户端</code>在<code>媒介</code>中如何处理<code>文档树</code>(document tree)。</p>
+<ul>
+<li><p>用户端(user agent)<br>对我们来说一般指浏览器。</p>
+</li>
+<li><p>媒介(media)<br>相当于我们展现页面的介质。如，纸媒介，听觉浏览器和显示器等。感兴趣的可以看一下CSS2.1 的第7章：<a href="http://www.w3.org/TR/CSS2/media.html" target="_blank" rel="external">http://www.w3.org/TR/CSS2/media.html</a></p>
+</li>
+<li><p>文档树(document tree)<br>是指源文档中元素树的编码。树中，每一个元素恰好由一个父元素。根元素是例外，它没有父元素。就是document和页面上的元素所构成的类似树形的结构。</p>
+</li>
+</ul>
+<p>在可视化格式模型中，每一个元素都会根据盒子模型产生0个或多个盒子（box），这些盒子的布局受以下因素的影响：<br>1）盒子尺寸和类型(box dimensions &amp; type)<br>类型是指 display 特性所决定的元素类型，如：DIV 是块级元素，SPAN 是行内元素等</p>
+<p>2）定位体系（position scheme）<br>元素在布局时，根据3种定位体系定位。分别是，常规流、浮动和绝对定位。这3种定位体系的详细内容会在后面讲到。</p>
+<p>3）在文档树中，元素之间的关系。<br>比如，一个块元素包含两个互为兄弟节点的浮动元素，后面那个浮动元素的布局，会受前面元素以及它包含块的影响。</p>
+<p>4）外部信息(external information)<br>比如，可视窗口的大小，图片的固有尺寸等等。</p>
+<blockquote>
+<p>TIPS:可视化格式模型，不会规定所有格式的细节（比如，它并不是指字间距）。在处理本规范未包含的格式化情形时，不同类型的客户端表现可能有所不同。</p>
+</blockquote>
+<p>在这部分，会涉及到很多新的概念，包含块，元素的类型，定位体系，块级格式化上下文，行内格式化上下文，浮动，绝对定位，z-index ，以及，可视化格式模型的细节部分，自动宽度高度的计算。</p>
+<p>还有两个概念需要说明。</p>
+<p>1) 视口（viewport）</p>
+<p>视口，即可视窗口。当可视窗口的尺寸大小改变时，浏览器应该改变文档的布局。比如，有些值是依赖于可视窗口的大小的，DIV width的auto值，等等。</p>
+<p>当可视窗口的尺寸小于文档渲染的画布（也就是页面）的大小时，浏览器应该提供滚动机制。每个画布最多有一个可视窗口。但是，浏览器可以同时渲染多个画布。也就是说，浏览器可以打开多个页面，但是每个页面最多只有一个可视窗口。</p>
+<p>2) 包含块(containing block)</p>
+<p>在CSS2.1中，很多box的定位和尺寸的计算，都取决于一个矩形的边界，这个矩形，就被称作是 <code>包含块(containing block)</code>。一般来说，(元素)生成的盒子（generated box） 会扮演它子孙元素包含块的角色；我们称之为：一个(元素的)box为它的子孙节点建造了包含块。</p>
+<blockquote>
+<p>包含块是一个相对的概念。</p>
+</blockquote>
+<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">td</span>&gt;</span>hi<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上面的代码做例子，DIV 和 TABLE 都是包含块。DIV 是 TABLE 的包含块，同时TABLE又是 TD 的包含块，不是绝对的。</p>
+<p>未避免混淆，我们讲”一个盒子的包含块”通常是指这个盒子所处的包含块，而不是指它所创建的包含块。比如，上述代码中，TABLE 的包含块，说的是 DIV 建造的包含块，而不是TABLE自身建造的包含块。TABLE 建造的包含块，可以称作 TD 的包含块。</p>
+<p>每个box关于它的包含块都有一个位置，但是它不会被包含块限制；它可以溢出(包含块)。包含块上可以通过设置 overflow 特性达到处理溢出的子孙元素的目的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">”A”</span> <span class="attribute">style</span>=<span class="value">"width:100px; heigh:100px; border:1px solid red;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">“B”</span> <span class="attribute">style</span>=<span class="value">"width:200px; heigh:200px; background-color:gold;"</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如上代码中，A 是 B的包含块，B 的定位跟 A 有关，B的大小大于A的大小，这时候，B 会溢出，而 A 不能限制 B 的大小。</p>
+<h3 id="参考文献">参考文献</h3><ol>
+<li><a href="http://www.w3.org/html/ig/zh/wiki/CSS2/visuren#viewport" target="_blank" rel="external">http://www.w3.org/html/ig/zh/wiki/CSS2/visuren#viewport</a></li>
+<li><a href="http://www.w3.org/TR/CSS2/visuren.html#box-gen" target="_blank" rel="external">http://www.w3.org/TR/CSS2/visuren.html#box-gen</a></li>
+<li><a href="http://bbs.csdn.net/topics/340209795" target="_blank" rel="external">http://bbs.csdn.net/topics/340209795</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 包含块(containing block) part2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/23/mobile-html5-page-development-skills-part4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

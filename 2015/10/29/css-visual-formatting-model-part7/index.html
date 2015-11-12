@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性 part7 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="浮动带给我们一个不属于常规流的世界: 它不能超出它的包含块，它的位置跟在它之前的元素生成的框有关系(详见前面的浮动规则)…… 那么，它对处于它后面的元素有什么关系呢？对于块框，会认为它不存在，行框会绕着它排列！有没有方法使块框也可以在它后面排列，而不再当它不存在呢？答案是肯定的。W3C总是透着一种非常人性化的味道。clear 特性就是做的这件事。从某种意义上来说，clear 是对浮动框和常规流中框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性 part7">
+<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part7/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="浮动带给我们一个不属于常规流的世界: 它不能超出它的包含块，它的位置跟在它之前的元素生成的框有关系(详见前面的浮动规则)…… 那么，它对处于它后面的元素有什么关系呢？对于块框，会认为它不存在，行框会绕着它排列！有没有方法使块框也可以在它后面排列，而不再当它不存在呢？答案是肯定的。W3C总是透着一种非常人性化的味道。clear 特性就是做的这件事。从某种意义上来说，clear 是对浮动框和常规流中框">
+<meta property="og:updated_time" content="2015-10-30T01:56:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性 part7">
+<meta name="twitter:description" content="浮动带给我们一个不属于常规流的世界: 它不能超出它的包含块，它的位置跟在它之前的元素生成的框有关系(详见前面的浮动规则)…… 那么，它对处于它后面的元素有什么关系呢？对于块框，会认为它不存在，行框会绕着它排列！有没有方法使块框也可以在它后面排列，而不再当它不存在呢？答案是肯定的。W3C总是透着一种非常人性化的味道。clear 特性就是做的这件事。从某种意义上来说，clear 是对浮动框和常规流中框">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-css-visual-formatting-model-part7" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/css-visual-formatting-model-part7/" class="article-date">
+  	<time datetime="2015-10-29T09:04:44.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性 part7
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>浮动带给我们一个不属于常规流的世界: 它不能超出它的包含块，它的位置跟在它之前的元素生成的框有关系(详见前面的浮动规则)…… 那么，它对处于它后面的元素有什么关系呢？对于块框，会认为它不存在，行框会绕着它排列！有没有方法使块框也可以在它后面排列，而不再当它不存在呢？答案是肯定的。W3C总是透着一种非常人性化的味道。<code>clear</code> 特性就是做的这件事。从某种意义上来说，clear 是对浮动框和常规流中框的一种关系上的平衡。<br><a id="more"></a></p>
+<h3 id="clear特性">clear特性</h3><p>该特性表明一个元素框的哪一边不可以和先前的浮动框相邻。<code>clear</code>特性不考虑它自身包含的浮动子元素和不处于同一个Block formatting context中的浮动元素。</p>
+<p><strong>1) clear 特性值的作用</strong></p>
+<p>left/right/both：生成框的间隙，是指设置足够的(空白区)，以使元素的<code>顶边框边界</code>(top border edge)放置到由源文档中较早元素生成的任何左浮动框/右浮动框/左右浮动框的<code>底外边</code>(bottom outer edge，即底margin边)之下。<br>none：对考虑到浮动后的框的位置没有约束。</p>
+<p>简单点儿说，就是设置了clear的元素的<code>顶边框边界</code>要放在相关的浮动元素的<code>底外边</code>之下。注意这两种元素接触边界的区别。一个是borer，一个是margin。</p>
+<p>一个直观的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"height:200px;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:300px; height:100px; background-color:green; float:left; border:5px solid red;"</span>&gt;</span></span><br><span class="line">        float</span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow; margin-top:50px;"</span>&gt;</span></span><br><span class="line">        clearance</span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div style="height:200px;"> <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red;"> float </div> <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow; margin-top:50px;"> clearance </div> </div>
+
+<p>设置了clear的元素的margin-top是50px，没起作用，为什么呢？注意，应该是设置了clear的元素的top border edge对齐，不是margin edge。<br>如果想让它们之间有50px的间距，怎么办？只需将设置浮动元素的margin-bottom为50px即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"height:200px;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:300px; height:100px; background-color:green; float:left; border:5px solid red; margin-bottom:50px;"</span>&gt;</span></span><br><span class="line">        float</span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow;"</span>&gt;</span></span><br><span class="line">        clearance</span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div style="height:200px;"> <div style="width:300px; height:100px; background-color:green; float:left; border:5px solid red; margin-bottom:50px;"> float </div> <div style="clear:left; width:300px; height:50px; background-color:green; border:5px solid yellow;"> clearance </div> </div>
+
+<blockquote>
+<p>此处仅为示例，实际情况下我们经常将clear框设置为0px高的不可见div</p>
+</blockquote>
+<p><strong>2)浮动元素上的 clear</strong></p>
+<p>为 clear 特性被赋予浮动元素时，它将导致浮动框定位规则的修正，另外一条限制（第10条）被追加：</p>
+<blockquote>
+<p>浮动框区的上外边界（top margin edge）必须低于前面所有左浮框的下外边界（在clear:left时），或者右浮框区（clear:right），或者两个框区(clear:both)。</p>
+</blockquote>
+<p>例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"Container"</span> <span class="attribute">style</span>=<span class="value">"width:300px; height:100px; border:1px solid gold; "</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"DIV1"</span> <span class="attribute">style</span>=<span class="value">"float:right; width:150px; height: 50px; background-color:green; "</span>&gt;</span>float:right;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"DIV2"</span> <span class="attribute">style</span>=<span class="value">"float:left; width:100px; height: 50px; background-color:red; clear:right;"</span>&gt;</span>clear:right float:left;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>应该是这种效果：</p>
+<blockquote>
+<p>在IE6、IE7和IE8(Q)中，这个规则没有被遵守。请大家注意这个兼容性问题。尽量少在浮动元素上设置clear属性。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 绝对定位（Absolute positioning） part8
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS核心可视化格式模型: 浮动(Float) part6</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

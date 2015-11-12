@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS核心可视化格式模型: 包含块(containing block) part2 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上文说到，一个元素box的定位和尺寸，有时候会跟某一矩形框有关，这个矩形框，就被称作元素的包含块。包含块（Containing Block）是视觉格式化模型的一个重要概念，它也可以理解为一个矩形，而这个矩形的作用是为它里面包含的元素提供一个参考，元素的尺寸和位置的计算往往是由该元素所在的包含块决定的。而元素会为它的子孙元素创建包含块，那么是不是说，元素的包含块就是它的父元素呢？答案是否定的。一个元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS核心可视化格式模型: 包含块(containing block) part2">
+<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part2/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="上文说到，一个元素box的定位和尺寸，有时候会跟某一矩形框有关，这个矩形框，就被称作元素的包含块。包含块（Containing Block）是视觉格式化模型的一个重要概念，它也可以理解为一个矩形，而这个矩形的作用是为它里面包含的元素提供一个参考，元素的尺寸和位置的计算往往是由该元素所在的包含块决定的。而元素会为它的子孙元素创建包含块，那么是不是说，元素的包含块就是它的父元素呢？答案是否定的。一个元">
+<meta property="og:updated_time" content="2015-10-30T04:13:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS核心可视化格式模型: 包含块(containing block) part2">
+<meta name="twitter:description" content="上文说到，一个元素box的定位和尺寸，有时候会跟某一矩形框有关，这个矩形框，就被称作元素的包含块。包含块（Containing Block）是视觉格式化模型的一个重要概念，它也可以理解为一个矩形，而这个矩形的作用是为它里面包含的元素提供一个参考，元素的尺寸和位置的计算往往是由该元素所在的包含块决定的。而元素会为它的子孙元素创建包含块，那么是不是说，元素的包含块就是它的父元素呢？答案是否定的。一个元">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-css-visual-formatting-model-part2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/css-visual-formatting-model-part2/" class="article-date">
+  	<time datetime="2015-10-29T03:34:59.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS核心可视化格式模型: 包含块(containing block) part2
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上文说到，一个元素box的定位和尺寸，有时候会跟某一矩形框有关，这个矩形框，就被称作元素的<code>包含块</code>。<code>包含块（Containing Block）</code>是视觉格式化模型的一个重要概念，它也可以理解为一个矩形，而这个矩形的作用是为它里面包含的元素提供一个参考，元素的尺寸和位置的计算往往是由该元素所在的<code>包含块</code>决定的。而元素会为它的子孙元素创建包含块，那么是不是说，元素的包含块就是它的父元素呢？答案是否定的。一个元素包含块的确定，跟元素自身和它的祖先元素的样式等有关系。<br><a id="more"></a></p>
+<p>1) 根元素的包含块<br>根元素，就是处于文档树最顶端的元素，它没有父节点。根元素存在的包含块，被叫做<code>初始包含块</code> (initial containing block)。具体跟用户端有关。</p>
+<ul>
+<li>在(X)HTML中，根元素是html元素（尽管有的浏览器会不正确地使用body元素）</li>
+<li>而初始包含块的direction属性与根元素相同。</li>
+</ul>
+<p>2) <code>static</code>和<code>relative</code>定位的元素</p>
+<p>对于其它元素：如果该元素的定位（position）为 <code>relative</code> （相对定位）或者 <code>static</code>（静态定位），它的包含块由它最近的块级、单元格 （table cell）或者行内块（inline-block）祖先元素的<code>内容框(Content Box)</code>创建。</p>
+<p>3) <code>position:fixed</code> 定位的元素</p>
+<p>如果元素是固定定位 (“position:fixed”) 元素，那么它的包含块是当前可视窗口。</p>
+<p>4) <code>position: absolute</code> 定位的元素</p>
+<p>如果元素是绝对定位（<code>position: absolute</code>）元素，包含块由离它最近的 position 属性为 <code>absolute</code>、<code>relative</code> 或者 <code>fixed</code> 的祖先元素创建。</p>
+<blockquote>
+<p>在CSS3规范中，tansform属性会改变绝对定位元素的包含块。这种情况下包含块由离它最近的 tansform 属性不为 <code>none</code>的祖先元素创建。须注意的是，固定定位也是绝对定位的一种。</p>
+</blockquote>
+<p>4.1) 如果其祖先元素是行内元素，则包含块取决于其祖先元素的 <code>direction</code> 特性</p>
+<ul>
+<li>如果 ‘direction’  是 ‘ltr’，包含块的顶、左边是祖先元素生成的第一个框的顶、左内边距边界(padding edges) ，右、下边是祖先元素生成的最后一个框的右、下内边距边界(padding edges) 。</li>
+</ul>
+<p>举例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"border:1px solid red; width:200px; padding:20px;"</span>&gt;</span></span><br><span class="line">    T</span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"background-color:#C0C0C0; position:relative;"</span>&gt;</span></span><br><span class="line">      这段文字从左向右排列，红 XX 和 蓝 XX 和黄 XX 都是绝对定位元素，它的包含块是相对定位的SPAN。</span><br><span class="line">      可以通过它们绝对定位的位置来判断它们包含块的边缘。</span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:red; top:0; left:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:yellow; top:20px; left:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:blue; bottom:0; right:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际效果如下：</p>
+<p style="border:1px solid red; width:200px; padding:20px;"> T <span style="background-color:#C0C0C0; position:relative;"> 这段文字从左向右排列，红 XX 和 蓝 XX 和黄 XX 都是绝对定位元素，它的包含块是相对定位的SPAN。 可以通过它们绝对定位的位置来判断它们包含块的边缘。 <em style="position:absolute; color:red; top:0; left:0;">XX</em> <em style="position:absolute; color:yellow; top:20px; left:0;">XX</em> <em style="position:absolute; color:blue; bottom:0; right:0;">XX</em> </span> </p>
+
+<p>以上代码中，文字采取默认从左到右的方式排列。红 XX 和 蓝 XX 和黄 XX 都是绝对定位元素，它的包含块是相对定位的SPAN。它们定位需要参照包含块，按照标准来说，它们包含块的左顶边是 SPAN形成的第一个框（即第一行的灰色部分）的顶、左内边距边，包含块的右、下边是SPAN 生成的最后一个框（最后一行灰色的部分）的右、下内边距边界。</p>
+<ul>
+<li>如果 ‘direction’  是 ‘rtl’，包含块的顶、右边是祖先元素生成的第一个框的顶、右内边距边界(padding edges) ，左、下边是祖先元素生成的最后一个框的左、下内边距边界(padding edges) 。<br>例如：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"border:1px solid red; width:200px; padding:20px; direction:rtl;"</span>&gt;</span></span><br><span class="line">    T</span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"background-color:#C0C0C0; position:relative;"</span>&gt;</span></span><br><span class="line">     这段文字从右向左排列，红 XX 和 蓝 XX 和黄 XX 都是绝对定位元素，它的包含块是相对定位的SPAN。</span><br><span class="line">     可以通过它们绝对定位的位置来判断它们……</span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:red; top:0; left:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:yellow; top:20px; left:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">em</span> <span class="attribute">style</span>=<span class="value">"position:absolute; color:blue; bottom:0; right:0;"</span>&gt;</span>XX<span class="tag">&lt;/<span class="title">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p style="border:1px solid red; width:200px; padding:20px; direction:rtl;"> T <span style="background-color:#C0C0C0; position:relative;"> 这段文字从右向左排列，红 XX 和 蓝 XX 和黄 XX 都是绝对定位元素，它的包含块是相对定位的SPAN。 可以通过它们绝对定位的位置来判断它们…… <em style="position:absolute; color:red; top:0; left:0;">XX</em> <em style="position:absolute; color:yellow; top:20px; left:0;">XX</em> <em style="position:absolute; color:blue; bottom:0; right:0;">XX</em> </span> </p>
+
+
+<p>4.2) 其他情况下，如果祖先元素不是行内元素，那么包含块的区域应该是祖先元素的内边距边界。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">”container”</span> <span class="attribute">style</span>=<span class="value">"padding:50px; background-color:#c0c0c0; position:relative; width:200px; height:200px;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">”div1”</span> <span class="attribute">style</span>=<span class="value">"width:100%;height:100%;border:2px solid blue;"</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">”content”</span> <span class="attribute">style</span>=<span class="value">"border:1px solid red; position:absolute; left:0; top:0;"</span>&gt;</span>absolute element<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div id="”container”" style="padding:50px; background-color:#c0c0c0; position:relative; width:200px; height:200px;"> <div id="”div1”" style="width:100%;height:100%;border:2px solid blue;"> <div id="”content”" style="border:1px solid red; position:absolute; left:0; top:0;">absolute element</div> </div> </div>
+
+
+<p>如上代码中，content的父元素虽是 div1，但，按照标准它的包含块应该是 container。</p>
+<p>如果不存在这样的祖先元素，那么它的包含块就是初始包含块。</p>
+<blockquote>
+<p>这个概念比较复杂，但最重要的是弄清楚，包含块是由哪个祖先元素创建的，以及创建的包含块区域。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 框的生成 part3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS核心可视化格式模型: 概念和简介 part-1</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

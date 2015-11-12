@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CDN缓存那些事儿 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="8年前，还没有火车票代售点一说，12306.cn更是无从说起。那时候火车票还只能在火车站的售票大厅购买，而我所住的小县城并不通火车，火车票都要去市里的火车站购买，而从县城到市里，来回就是4个小时车程，简直就是浪费生命。后来就好了，小县城里出现了火车票代售点，可以直接在代售点购买火车，方便了不少，全市人民再也不用在一个点苦逼的排队买票了。
+CDN就可以理解为分布在每个县城的火车票代售点，用户在浏览网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDN缓存那些事儿">
+<meta property="og:url" content="http://genie88.github.io/2015/11/03/talk-about-content-delivery-network-and-caches/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="8年前，还没有火车票代售点一说，12306.cn更是无从说起。那时候火车票还只能在火车站的售票大厅购买，而我所住的小县城并不通火车，火车票都要去市里的火车站购买，而从县城到市里，来回就是4个小时车程，简直就是浪费生命。后来就好了，小县城里出现了火车票代售点，可以直接在代售点购买火车，方便了不少，全市人民再也不用在一个点苦逼的排队买票了。
+CDN就可以理解为分布在每个县城的火车票代售点，用户在浏览网">
+<meta property="og:updated_time" content="2015-11-12T01:05:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CDN缓存那些事儿">
+<meta name="twitter:description" content="8年前，还没有火车票代售点一说，12306.cn更是无从说起。那时候火车票还只能在火车站的售票大厅购买，而我所住的小县城并不通火车，火车票都要去市里的火车站购买，而从县城到市里，来回就是4个小时车程，简直就是浪费生命。后来就好了，小县城里出现了火车票代售点，可以直接在代售点购买火车，方便了不少，全市人民再也不用在一个点苦逼的排队买票了。
+CDN就可以理解为分布在每个县城的火车票代售点，用户在浏览网">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-talk-about-content-delivery-network-and-caches" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/03/talk-about-content-delivery-network-and-caches/" class="article-date">
+  	<time datetime="2015-11-03T01:26:26.000Z" itemprop="datePublished">2015-11-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CDN缓存那些事儿
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cdn/">cdn</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>8年前，还没有火车票代售点一说，12306.cn更是无从说起。那时候火车票还只能在火车站的售票大厅购买，而我所住的小县城并不通火车，火车票都要去市里的火车站购买，而从县城到市里，来回就是4个小时车程，简直就是浪费生命。后来就好了，小县城里出现了火车票代售点，可以直接在代售点购买火车，方便了不少，全市人民再也不用在一个点苦逼的排队买票了。</p>
+<p>CDN就可以理解为分布在每个县城的火车票代售点，用户在浏览网站的时候，CDN会选择一个离用户最近的CDN边缘节点来响应用户的请求，这样海南移动用户的请求就不会千里迢迢跑到北京电信机房的服务器（假设源站部署在北京电信机房）上了。</p>
+<a id="more"></a>
+<h2 id="CDN的背景与概念">CDN的背景与概念</h2><p>从网络层面看，一个网站的体验好坏主要以下几个方面（这里只单独介绍网络环境对网站的体验好坏，一个网站的体验好坏除了网络层面还有很多的影响因素）：</p>
+<p>（1）网站服务器接入互联网的链路所能提供的带宽（出口带宽），这个带宽决定了用户的并发量和访问时延，用户越多，对出口带宽的要求就越高，当用户的并发量超过了带宽，就会导致出口网络拥塞，严重的影响用户的体验。</p>
+<p>（2）不同运营商之间的互联问题，一般来说两个运营商之间只有两三个点是互通的，所有跨运营商之间的交互都要经过这几个点，可以想象一个使用电信的用户去访问部署在联通的网站，速度是有多么慢。</p>
+<p>（3）长途骨干传输问题，从网站服务器到用户之间要经过网站所在的IDC、骨干网、用户所在城域网、用户所在的接入网等，物理距离非常远，导致传输时延非常高。</p>
+<p><code>CDN（Content Delivery Network，内容分发网络）</code>就是为了解决上述的问题而生的，其目的是通过在现有的Internet中增加一层新的网络架构，将网站的内容发布到最接近用户的网络”边缘”，使用户可以就近取得所需的内容，解决Internet网络拥塞状况，提高用户访问网站的响应速度。从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均等原因，解决用户访问网站的响应速度慢的根本原因。</p>
+<p>CDN的优势很明显：<br>（1）CDN节点解决了跨运营商和跨地域访问的问题，访问延时大大降低；<br>（2）大部分请求在CDN边缘节点完成，CDN起到了分流作用，减轻了源站的负载。</p>
+<h2 id="CDN工作原理">CDN工作原理</h2><p><strong>1、传统访问过程（未使用CDN）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#65339;RootDNS&#65341; &#60;&#65293;&#65293;&#65293;&#65293;&#65293;&#62; [LocalDNS] &#60;--------&#62; [&#25480;&#26435;DNS]&#10;                           &#65372;&#10;                           &#65372;&#10;                           &#65372;&#10;                      &#65339;&#29992;&#25143;&#23458;&#25143;&#31471;&#65341;&#60;--------&#62; [&#31449;&#28857;&#26381;&#21153;&#22120;]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>1) 用户输入访问的域名,操作系统向 LocalDns 查询域名的ip地址.</li>
+<li>2) LocalDns向 ROOT DNS 查询域名的授权服务器(这里假设LocalDns缓存过期)</li>
+<li>3) ROOT DNS将域名授权dns记录回应给 LocalDns</li>
+<li>4) LocalDns得到域名的授权dns记录后,继续向域名授权dns查询域名的ip地址</li>
+<li>5) 域名授权dns 查询域名记录后，回应给 LocalDns</li>
+<li>6) LocalDns 将得到的域名ip地址，回应给 用户端</li>
+<li>7) 用户得到域名ip地址后，访问站点服务器</li>
+<li>8) 站点服务器应答请求，将内容返回给客户端</li>
+</ul>
+<p><strong>2、使用CDN后的访问过程</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#65339;RootDNS&#65341; &#60;&#65293;&#65293;&#65293;&#65293;&#65293;&#62; [LocalDNS] &#60;--------&#62; [&#25480;&#26435;DNS]&#10;                           &#65372;   \&#10;                           &#65372;    \---\&#10;                           &#65372;         \ &#10;                           &#65372;          \---\      &#10;                           &#65372;               \[CDN&#26234;&#33021;DNS]&#10;                      &#65339;&#29992;&#25143;&#23458;&#25143;&#31471;&#65341;&#60;----------&#62;[CDN&#33410;&#28857;]&#60;--------&#62;[&#31449;&#28857;&#26381;&#21153;&#22120;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1)  用户输入访问的域名,操作系统向 LocalDns 查询域名的ip地址.</li>
+<li>2)  LocalDns向 ROOT DNS 查询域名的授权服务器(这里假设LocalDns缓存过期)</li>
+<li>3)  ROOT DNS将域名授权dns记录回应给 LocalDns</li>
+<li>4)  LocalDns得到域名的授权dns记录后,继续向域名授权dns查询域名的ip地址</li>
+<li>5)  域名授权dns 查询域名记录后(一般是CNAME)，回应给 LocalDns</li>
+<li>6)  LocalDns 得到域名记录后,向CDN智能DNS查询域名的ip地址</li>
+<li>7)  CDN智能DNS 根据一定的算法和策略(比如静态拓扑，容量等),将最适合的CDN节点ip地址回应给 LocalDns</li>
+<li>8)  LocalDns 将得到的域名ip地址，回应给 用户端</li>
+<li>9)  用户得到域名ip地址后，访问CDN节点服务器</li>
+<li>10) CDN节点服务器判断本地缓存是否失效，如果缓存失效则访问站点服务器，重新拉去内容，并缓存在本地备用</li>
+<li>11) CDN节点服务器应答请求，将内容返回给客户端</li>
+</ul>
+<h2 id="CDN关键技术">CDN关键技术</h2><p>对比可以看出，CDN将用户的请求路由到CDN节点上；将源站点的数据拉取到CDN节点上，并做缓存等，实现了对用户站点的加速，那么CDN如何实现这些功能点，CDN主要利用了四大关键技术（内容路由技术、内容分发技术、内容存储技术、内容管理技术）来实现。</p>
+<p><strong>1、内容路由</strong><br>内容路由功能是由CDN负载均衡系统来实现的。它的作用是将用户的请求导向整个CDN网络中的最佳节点，最佳节点可以是最近节点，延时最低节点等等，负载均衡的准确性和效率直接决定了整个CDN的效率和性能。<br>通常负载均衡可以分为两个层次：<code>全局负载均衡（GSLB）</code>和<code>本地负载均衡（SLB）</code>。全局负载均衡（GSLB）主要的目的是在整个网络范围内将用户的请求定向到最近的节点（或者区域）。本地负载均衡（SLB）一般局限于一定的区域范围内，其目标是在特定的区域范围内寻找一台最适合的节点提供服务，因此，CDN节点的健康性、负载情况、支持的媒体格式等运行状态是本地负载均衡进行决策的主要依据。</p>
+<p><strong>2、内容分发</strong><br>内容分发是指将内容从源站发送到CDN边缘的Cache的过程。目前主要有两种主流的内容分发技术：PUSH（分发）、PULL（回源）</p>
+<p><code>PUSH（分发）</code>是一种 <strong>主动</strong> 分发的技术。通常，PUSH 由<code>内容管理系统</code>发起，将内容从源或者中心媒体资源库分发到各边缘的Cache节点。分发的协议可以采用 HTTP/FTP等。通过PUSH分发的内容一般是比较热点的内容，这些内容通过PUSH方式预分发（Preload）到边缘Cache，可以实现有针对的内容提供。对于PUSH分发需要考虑的主要问题是分发策略，即在什么时候分发什么内容。一般来说，内容分发可以由CP（内容提供商）或者CDN内容管理员人工确定，也可以通过智能的方式决定，即所谓的智能分发。它根据用户访问的统计信息，以及预定义的内容分发的规则，确定内容分发的过程。</p>
+<p><code>PULL（回源）</code>是一种 <strong>被动</strong> 的分发技术，PULL分发通常由用户请求驱动。当用户请求的内容在本地的边缘Cache上不存在（未命中）时，Cache启动PULL方法从内容源或者其他CDN节点实时获取内容。在PULL方式下，内容的分发是按需的。</p>
+<p><strong>3、内容存储</strong></p>
+<p>对于CDN系统而言，需要考虑两个方面的内容存储问题。一个是内容源的存储，一个是内容在Cache节点中的存储。</p>
+<p>对于内容源的存储，由于内容的规模比较大（通常可以达到几个甚至几十个TB），而且内容的吞吐量较大，因此，通常采用海量存储架构。</p>
+<p>对于在Cache节点中的存储，是Cache设计的一个关键问题。需要考虑的因素包括功能和性能两个方面：在功能上包括对各种内容格式的支持、对部分缓存的支持，在性能上包括支持的容量、多文件吞吐率、可靠性、稳定性。</p>
+<p><strong>4、内容管理</strong></p>
+<p>内容管理在广义上涵盖了从内容的发布、注入、分发、调整、传递等一系列过程。在这里，内容管理重点强调内容进入Cache点后的内容管理，我们称为本地内容管理。</p>
+<p>本地内容管理主要针对一个CDN节点（由多个CDN Cache设备和一个SLB设备构成）进行。本地内容管理的主要目标是提高内容服务的效率，提高本地节点的存储利用率。通过本地内容管理，可以在CDN节点实现基于内容感知的调度，通过内容感知的调度，可以避免将用户重定向到没有该内容的Cache设备上，从而提高负载均衡的效率。通过本地内容管理还可以有效地实现在CDN节点内容的存储共享，提高存储空间的利用率。</p>
+<h2 id="CDN的使用">CDN的使用</h2><p>目前CDN技术的使用主要是在静态加速、动态加速、流媒体等几个方面：</p>
+<p>（1）<code>静态加速</code>：最传统的CDN加速服务，加速的对象一般是静态文件，如html、flash动画、css、js文件等，加速就是将静态文件放到CDN节点（PULL或PUSH），并缓存；用户通过CDN访问就近或最快的CDN节点获取文件。</p>
+<p>（2）<code>动态加速</code>：动态加速的对象是动态声称的网页，动态加速一般是对针对内容（如数据库信息等）在用户与源站之间建立高速通道，通过路由优化、TCP加速等技术手段对动态内容进行加速，降低节点到源站之间的时延，从而大大降低了用户访问动态网页的延迟。</p>
+<p>（3）<code>流媒体加速</code>：流媒体加速的对象主要是点播、直播类的服务，主要是利用CDN与P2P技术以及TCP协议优化技术来完成</p>
+<h2 id="缓存是什么？">缓存是什么？</h2><p>有了CDN后，数据是如何被缓存的呢？缓存是一个到处都存在的用空间换时间的例子。通过使用多余的空间，我们能够获取更快的速度。</p>
+<p>首先，看看没有网站没有接入CDN时，用户浏览器与服务器是如何交互的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29992;&#25143;&#22312;&#27983;&#35272;&#32593;&#31449;&#30340;&#26102;&#20505;&#65292;&#27983;&#35272;&#22120;&#33021;&#22815;&#22312;&#26412;&#22320;&#20445;&#23384;&#32593;&#31449;&#20013;&#30340;&#22270;&#29255;&#25110;&#32773;&#20854;&#20182;&#25991;&#20214;&#30340;&#21103;&#26412;&#65292;&#36825;&#26679;&#29992;&#25143;&#20877;&#27425;&#35775;&#38382;&#35813;&#32593;&#31449;&#30340;&#26102;&#20505;&#65292;&#27983;&#35272;&#22120;&#23601;&#19981;&#29992;&#20877;&#19979;&#36733;&#20840;&#37096;&#30340;&#25991;&#20214;&#65292;&#20943;&#23569;&#20102;&#19979;&#36733;&#37327;&#24847;&#21619;&#30528;&#25552;&#39640;&#20102;&#39029;&#38754;&#21152;&#36733;&#30340;&#36895;&#24230;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>如果中间加上一层CDN，那么用户浏览器与服务器的交互如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#23458;&#25143;&#31471;&#27983;&#35272;&#22120;&#20808;&#26816;&#26597;&#26159;&#21542;&#26377;&#26412;&#22320;&#32531;&#23384;&#26159;&#21542;&#36807;&#26399;&#65292;&#22914;&#26524;&#36807;&#26399;&#65292;&#21017;&#21521;CDN&#36793;&#32536;&#33410;&#28857;&#21457;&#36215;&#35831;&#27714;&#65292;CDN&#36793;&#32536;&#33410;&#28857;&#20250;&#26816;&#27979;&#29992;&#25143;&#35831;&#27714;&#25968;&#25454;&#30340;&#32531;&#23384;&#26159;&#21542;&#36807;&#26399;&#65292;&#22914;&#26524;&#27809;&#26377;&#36807;&#26399;&#65292;&#21017;&#30452;&#25509;&#21709;&#24212;&#29992;&#25143;&#35831;&#27714;&#65292;&#27492;&#26102;&#19968;&#20010;&#23436;&#25104;http&#35831;&#27714;&#32467;&#26463;&#65307;&#22914;&#26524;&#25968;&#25454;&#24050;&#32463;&#36807;&#26399;&#65292;&#37027;&#20040;CDN&#36824;&#38656;&#35201;&#21521;&#28304;&#31449;&#21457;&#20986;&#22238;&#28304;&#35831;&#27714;&#65288;back to the source request&#65289;,&#26469;&#25289;&#21462;&#26368;&#26032;&#30340;&#25968;&#25454;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，在存在CDN的场景下，数据经历了<code>客户端（浏览器）缓存</code>和<code>CDN边缘节点缓存</code>两个阶段，下面分别对这两个阶段的缓存进行详细的剖析。</p>
+<h3 id="浏览器缓存策略">浏览器缓存策略</h3><p>客户端缓存减少了的服务器请求，避免了文件重复加载，显著地提升了用户地方。但是当网站发生了更新的时候（如替换了css、js以及图片文件），浏览器本地仍保存着旧版本的文件，从而导致无法预料后果。</p>
+<p>浏览器如何来确定使用本地文件还是使用服务器上的新文件？下面来介绍几种判断的方法。</p>
+<p><strong>1) Expires</strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Response Headers</span><br><span class="line">Expires:Sat, <span class="number">24</span> Jan <span class="number">2015</span> <span class="number">20</span>:<span class="number">30</span>:<span class="number">54</span> GMT</span><br></pre></td></tr></table></figure></p>
+<p>如果http响应报文中设置了Expires，在Expires过期之前，我们就避免了和服务器之间的连接。此时，浏览器无需向浏览器发出请求，只需要自己判断手中的材料是否过期就可以了，完全不需要增加服务器的负担。</p>
+<p><strong>2) Cache-control: max-age</strong><br>Expires的方法很好，但是我们每次都得算一个精确的时间。max-age 标签可以让我们更加容易的处理过期时间。我们只需要说，这份资料你只能用一个星期就可以了。</p>
+<p>Max-age 使用秒来计量，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control:max-age=645672</span><br></pre></td></tr></table></figure></p>
+<p>指定页面645672秒（7.47天）后过期。</p>
+<p><strong>3)Last-Modified</strong></p>
+<p>服务器为了通知浏览器当前文件的版本，会发送一个上次修改时间的标签，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Last-Modified:Tue, 06 Jan 2015 08:26:32 GMT</span><br></pre></td></tr></table></figure></p>
+<p>这样浏览器就知道他收到的这个文件创建时间，在后续的请求中，浏览器会按照下面的规则进行验证：</p>
+<ol>
+<li>浏览器：Hey，我需要jquery.min.js这个文件，如果是在 Tue, 06 Jan 2015 08:26:32 GMT 之后修改过的，请发给我。</li>
+<li>服务器：（检查文件的修改时间）</li>
+<li>服务器：Hey，这个文件在那个时间之后没有被修改过，你已经有最新的版本了。</li>
+<li>浏览器：太好了，那我就显示给用户了。</li>
+</ol>
+<p>在这种情况下，服务器仅仅返回了一个304的响应头，减少了响应的数据量，提高了响应的速度。关于304响应，请参考：<br><a href="http://www.cnblogs.com/ziyunfei/archive/2012/11/17/2772729.html" target="_blank" rel="external">http://www.cnblogs.com/ziyunfei/archive/2012/11/17/2772729.html</a><br>下图是按F5刷新页面后，页面返回304响应头。</p>
+<p><strong>4)ETag</strong> </p>
+<p>通常情况下，通过修改时间来比较文件是可行的。但是在一些特殊情况，例如服务器的时钟发生了错误，服务器时钟进行修改，夏时制DST到来后服务器时间没有及时更新，这些都会引起通过修改时间比较文件版本的问题。</p>
+<p>ETag可以用来解决这种问题。ETag是一个文件的唯一标志符。就像一个哈希或者指纹，每个文件都有一个单独的标志，只要这个文件发生了改变，这个标志就会发生变化。</p>
+<p>服务器返回ETag标签：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ETag:&#34;39001d-1762a-50bf790757e00&#34;</span><br></pre></td></tr></table></figure></p>
+<p>接下来的访问顺序如下所示：</p>
+<ol>
+<li>浏览器：Hey，我需要jquery.min.js这个文件，有没有不匹配”39001d-1762a-50bf790757e00”这个串的</li>
+<li>服务器：（检查ETag…）</li>
+<li>服务器：Hey，我这里的版本也是”39001d-1762a-50bf790757e00”，你已经是最新的版本了</li>
+<li>浏览器：好，那就可以使用本地缓存了</li>
+</ol>
+<p>如同 Last-modified 一样，ETag 解决了文件版本比较的问题。只不过 ETag 的级别比 Last-Modified 高一些。</p>
+<p><strong>5) 额外的标签</strong></p>
+<p>缓存标签永远不会停止工作，但是有时候我们需要对已经缓存的内容进行一些控制。</p>
+<ul>
+<li>Cache-control: public 表示缓存的版本可以被代理服务器或者其他中间服务器识别。</li>
+<li>Cache-control: private 意味着这个文件对不同的用户是不同的。只有用户自己的浏览器能够进行缓存，公共的代理服务器不允许缓存。</li>
+<li>Cache-control: no-cache 意味着文件的内容不应当被缓存。这在搜索或者翻页结果中非常有用，因为同样的URL，对应的内容会发生变化。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-control:private,max-age=0,no-cache</span><br></pre></td></tr></table></figure>
+<h3 id="浏览器缓存刷新">浏览器缓存刷新</h3><p>1.（重新加载）在地址栏中输入网址后按回车或点击转到按钮</p>
+<p>浏览器以最少的请求来获取网页的数据，浏览器会对所有没有过期的内容直接使用本地缓存，从而减少了对浏览器的请求。所以，Expires，max-age标记只对这种方式有效。</p>
+<p>2.(普通刷新)按F5或浏览器刷新按钮</p>
+<p>浏览器会在请求中附加必要的缓存协商，但不允许浏览器直接使用本地缓存，它能够让 Last-Modified、ETag发挥效果，但是对Expires无效。</p>
+<p>3.（强制刷新）按Ctrl+F5或按Ctrl并点击刷新按钮</p>
+<p>这种方式就是强制刷新，总会发起一个全新的请求，不使用任何缓存。</p>
+<h3 id="CDN缓存">CDN缓存</h3><p>浏览器本地缓存失效后，浏览器会向CDN边缘节点发起请求。类似浏览器缓存，CDN边缘节点也存在着一套缓存机制。</p>
+<p><strong>CDN缓存的缺点</strong><br>CDN的分流作用不仅减少了用户的访问延时，也减少的源站的负载。但其缺点也很明显：当网站更新时，如果CDN节点上数据没有及时更新，即便用户再浏览器使用Ctrl +F5的方式使浏览器端的缓存失效，也会因为CDN边缘节点没有同步最新数据而导致用户访问异常。</p>
+<h3 id="CDN缓存策略">CDN缓存策略</h3><p>CDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。</p>
+<p>当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。</p>
+<p>CDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。</p>
+<p>CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。</p>
+<h3 id="CDN缓存刷新">CDN缓存刷新</h3><p>CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/30/css-visual-formatting-model-part9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS核心可视化格式模型: 分层的呈现 (Layered presentation) part-9</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

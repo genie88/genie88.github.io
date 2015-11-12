@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文包括SVG的概要知识介绍，以及SVG在H5移动页面的应用介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用">
+<meta property="og:url" content="http://genie88.github.io/2015/10/23/mobile-html5-page-development-skills-part5/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="本文包括SVG的概要知识介绍，以及SVG在H5移动页面的应用介绍。">
+<meta property="og:image" content="http://genie88.github.io/assets/57.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/12219371/10684851/bcd051c8-7984-11e5-9fb1-9885856090ad.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/12219371/10748383/917f302a-7c9a-11e5-9506-1c3787bd6c0c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/12219371/10686536/a9fc6ad8-7997-11e5-8ddc-02edc3ed0b82.jpg">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/12219371/10689792/4ce89eca-79b0-11e5-9ea7-753edab25d03.png">
+<meta property="og:updated_time" content="2015-10-28T03:19:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用">
+<meta name="twitter:description" content="本文包括SVG的概要知识介绍，以及SVG在H5移动页面的应用介绍。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-mobile-html5-page-development-skills-part5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/23/mobile-html5-page-development-skills-part5/" class="article-date">
+  	<time datetime="2015-10-23T01:18:09.000Z" itemprop="datePublished">2015-10-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文包括SVG的概要知识介绍，以及SVG在H5移动页面的应用介绍。<br><img src="/assets/57.png" alt="genie.github.io"><br><a id="more"></a> </p>
+<h3 id="什么是SVG">什么是SVG</h3><p>SVG是”Scalable Vector Graphics”的简称。中文可以理解成“可缩放矢量图形”。SVG是可缩放矢量图形，1999年由万维网联盟发布,于2013年成为W3C推荐标准。</p>
+<ul>
+<li>SVG是指可伸缩矢量图形</li>
+<li>SVG用来定义用于网络的基于矢量的图形</li>
+<li>SVG使用XML格式定义图形</li>
+<li>SVG图像在放大或缩小（改变尺寸）的情况下，其图形质量不会受受损失</li>
+<li>SVG是W3C的一个标准</li>
+</ul>
+<h3 id="SVG有哪些优势">SVG有哪些优势</h3><p>SVG也是用来图形化的技术，那么它与位图相比有什么优势呢？(随着屏幕多样化的出现，特别是Retina的出现，对于图形在Web中的应用更具挑战性。) 先来看一张示例图：<br><img src="https://cloud.githubusercontent.com/assets/12219371/10684851/bcd051c8-7984-11e5-9fb1-9885856090ad.png" alt="svg-1"><br>从图中可以明显看出，位图与SVG图PK出来的结果。</p>
+<p>与其他图像格式相比，使用SVG的优势在于：</p>
+<ul>
+<li>SVG可被非常多的工具读取和修改（比如记事本）</li>
+<li>SVG与JPEG和GIF图像比起来，尺寸更小，且可压缩性更强。</li>
+<li>SVG是可伸缩的</li>
+<li>SVG图像可在任何的分辨率下被高质量地打印</li>
+<li>SVG可在图像质量不下降的情况下被放大</li>
+<li>SVG图像中的文本是可选的，同时也是可搜索的（很适合制作地图）</li>
+<li>SVG可以与Java技术一起运行</li>
+<li>SVG是开放的标准</li>
+<li>SVG文件是纯粹的XML</li>
+</ul>
+<h3 id="浏览器中如何使用SVG元素">浏览器中如何使用SVG元素</h3><p>要在浏览器中显示（前提是浏览器支持），可以通过几种方法来实现：</p>
+<ul>
+<li>指向SVG文件地址</li>
+<li>将SVG直接嵌套在HTML中</li>
+</ul>
+<p>而将SVG图像嵌入到HTML文件有多种方法：</p>
+<ol>
+<li>使用<code>&lt;iframe&gt;</code>元素来嵌入SVG图像</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">src</span>=<span class="value">"path/to/demo.svg"</span> <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"200"</span> &gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用<code>&lt;img&gt;</code>元素来嵌入SVG图像</li>
+</ol>
+<p>嵌入SVG图像还可以使用<code>&lt;img&gt;</code>元素加载图像一样。只需要将src的属性值更换成SVG图像对应的url，如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"path/to/demo.svg"</span>  <span class="attribute">width</span>=<span class="value">"300"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>将SVG图像作为背景图像嵌入</li>
+</ol>
+<p>可以通过background-image属性将SVG图像当做背景图片一样嵌入到HTML页面中。如下面的例子所示：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url</span>(<span class="string">'http://www.w3cplus.com/sites/default/files/blogs/2014/1411/girls.svg'</span>) no-repeat center</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-size </span>:<span class="value"> <span class="number">200px</span> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>直接使用<code>&lt;svg&gt;</code>元素</li>
+</ol>
+<p>还可以直接使用<code>&lt;svg&gt;</code>元素，通过代码将SVG图像嵌入到HTML代码中。如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">enable-background</span>=<span class="value">"new 0 0 145 145"</span> <span class="attribute">id</span>=<span class="value">"Layer_1"</span> <span class="attribute">version</span>=<span class="value">"1.1"</span> <span class="attribute">viewBox</span>=<span class="value">"0 0 145 145"</span> <span class="attribute">xml:space</span>=<span class="value">"preserve"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span> <span class="attribute">xmlns:xlink</span>=<span class="value">"http://www.w3.org/1999/xlink"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">g</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M49.823,71.043c0.97,0.317,1.875,0.565,2.726,0.76c0.576-0.435,1.197-0.869,1.86-1.301   C51.934,70.79,49.823,71.043,49.823,71.043z"</span> <span class="attribute">fill</span>=<span class="value">"#FFFFFF"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>TIPS: 使用<code>&lt;svg&gt;</code>元素嵌入SVG图像，还可以通过CSS给其定义一些样式，实现一些样式效果。</p>
+</blockquote>
+<ol>
+<li><p>使用<code>&lt;embed&gt;</code>元素来嵌入SVG图像<br>(不推荐使用)<br>早期将SVG图像嵌入到HTML页面中都是通过<code>&lt;embed&gt;</code>元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">embed</span> <span class="attribute">src</span>=<span class="value">"http://www.w3cplus.com/sites/default/files/blogs/2014/1411/girls.svg"</span> <span class="attribute">width</span>=<span class="value">"300"</span> <span class="attribute">height</span>=<span class="value">"220"</span> <span class="attribute">type</span>=<span class="value">"image/svg+xml"</span> <span class="attribute">pluginspage</span>=<span class="value">"http://www.adobe.com/svg/viewer/install/"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>&lt;object&gt;</code>元素来嵌入SVG图像<br>(不推荐使用)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">object</span> <span class="attribute">data</span>=<span class="value">"http://www.w3cplus.com/sites/default/files/blogs/2014/1411/girls.svg"</span> <span class="attribute">width</span>=<span class="value">"300"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">type</span>=<span class="value">"image/svg+xml"</span> <span class="attribute">codebase</span>=<span class="value">"http://www.adobe.com/svg/viewer/install/"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>TIPS: 建议使用<code>&lt;img&gt;</code>和<code>&lt;svg&gt;</code>这两种方式。当SVG图像是给元素做背景图时，可以使用background-image方式引入。</p>
+</blockquote>
+<h3 id="SVG的跨浏览器兼容性">SVG的跨浏览器兼容性</h3><iframe src="http://caniuse.com/svg/embed" width="100%" height="320"></iframe>
+
+<h3 id="SVG文件的组成">SVG文件的组成</h3><p>一个独立的SVG文件，也就是平时看到的以扩展名.svg结尾的文件，主要包括：</p>
+<ul>
+<li>XML声明</li>
+<li><code>&lt;svg&gt;</code>根元素包括一个用来描述SVG的XML声明空间。</li>
+</ul>
+<ol>
+<li>XML声明</li>
+</ol>
+<p>XML声明其实和HTML文档的DTD声明是类似的，示例如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!---类似于HTML文档的DTD声明 &lt;!DOCTYPE html&gt; --&gt;</span></span><br><span class="line"><span class="pi">&lt;?xml version="1.0"?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>SVG的XML声明空间<br>第二部分是SVG的XML声明空间，这一部分类似于HTML中的命名空间声明，示例如下：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!---类似于HTML文档的HTML中的命名空间声明 &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="SVG_中的基本组成元素">SVG 中的基本组成元素</h3><p>SVG 中包含几种预定义的基本几何元素。包括直线、矩形、圆形、椭圆、折线、多边形等。下面的链接给出SVG所有元素的列表。</p>
+<p>!(<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/SVG/Element</a>)</p>
+<ol>
+<li>直线</li>
+</ol>
+<ul>
+<li>x1 起点x坐标 </li>
+<li>y1 起点y坐标</li>
+<li>x2 终点x坐标 </li>
+<li>y2 终点y坐标 </li>
+</ul>
+<p>SVG中使用<code>&lt;line&gt;</code>元素来定义直线。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"300px"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">line</span> <span class="attribute">x1</span>=<span class="value">"100"</span> <span class="attribute">y1</span>=<span class="value">"200"</span> <span class="attribute">x2</span>=<span class="value">"250"</span> <span class="attribute">y2</span>=<span class="value">"50"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span> <span class="attribute">stroke-width</span>=<span class="value">"5"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="300px"><line x1="100" y1="200" x2="250" y2="50" stroke="#000" stroke-width="5"/></svg></div>
+
+
+
+<ol>
+<li>矩形</li>
+</ol>
+<ul>
+<li>x 左上角x坐标 </li>
+<li>y 左上角y坐标</li>
+<li>rx x方向的圆角半径</li>
+<li>ry y方向的圆角半径</li>
+<li>width 宽度</li>
+<li>height 高度</li>
+</ul>
+<p>SVG中使用<code>&lt;rect&gt;</code>元素来定义矩形。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"150px"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"20"</span> <span class="attribute">y</span>=<span class="value">"20"</span> <span class="attribute">width</span>=<span class="value">"250px"</span> <span class="attribute">height</span>=<span class="value">"125px"</span> <span class="attribute">rx</span>=<span class="value">"5"</span> <span class="attribute">ry</span>=<span class="value">"5"</span> <span class="attribute">fill</span>=<span class="value">"teal"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="150px"><rect x="20" y="20" width="250px" height="125px" rx="5" ry="5" fill="teal"/></svg></div>
+
+
+
+<ol>
+<li>圆形</li>
+</ol>
+<ul>
+<li>cx 圆心x坐标 </li>
+<li>xy 圆心y坐标</li>
+<li>r 半径</li>
+</ul>
+<p>SVG中使用<code>&lt;circle&gt;</code>元素来定义圆形。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"300px"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"50"</span> <span class="attribute">cy</span>=<span class="value">"50"</span> <span class="attribute">r</span>=<span class="value">"50"</span> <span class="attribute">fill</span>=<span class="value">"teal"</span>&gt;</span><span class="tag">&lt;/<span class="title">circle</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="300px"><circle cx="50" cy="50" r="50" fill="teal"/></svg></div>
+
+
+
+<ol>
+<li>椭圆形</li>
+</ol>
+<ul>
+<li>cx 圆心x坐标 </li>
+<li>xy 圆心y坐标</li>
+<li>rx x方向半径</li>
+<li>ry y方向半径</li>
+</ul>
+<p>SVG中使用<code>&lt;ellipse&gt;</code>元素来定义椭圆形。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"300px"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">ellipse</span> <span class="attribute">cx</span>=<span class="value">"150"</span> <span class="attribute">cy</span>=<span class="value">"150"</span> <span class="attribute">rx</span>=<span class="value">"100"</span> <span class="attribute">ry</span>=<span class="value">"75"</span> <span class="attribute">fill</span>=<span class="value">"blue"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="300px"><ellipse cx="150" cy="150" rx="100" ry="75" fill="blue"/></svg></div>
+
+
+<ol>
+<li>多边形</li>
+</ol>
+<p>我们可以通过在points属性上的多组 x-y 坐标点来定义我们的多边形元素。这些坐标点通过直线线段来连接<br>SVG中使用<code>&lt;polygon&gt;</code>元素来定义多边形。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"150px"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">polygon</span> <span class="attribute">points</span>=<span class="value">"0,50 50,0 150,0 200,50 150,100 50,100"</span> <span class="attribute">fill</span>=<span class="value">"teal"</span>&gt;</span><span class="tag">&lt;/<span class="title">polygon</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="150px"><polygon points="0,50 50,0 150,0 200,50 150,100 50,100" fill="teal"/></svg></div>
+
+<ol>
+<li>折线</li>
+</ol>
+<p>SVG中使用<code>&lt;polyline&gt;</code>元素来定义多边形，定义方式与多边形类似。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300px"</span> <span class="attribute">height</span>=<span class="value">"150px"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">polyline</span> <span class="attribute">points</span>=<span class="value">"10 10, 50 50, 75 175, 175 150, 175 50, 225 75, 225 150, 300 150"</span> <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际显示效果：</p>
+<div><svg width="300px" height="150px"><polyline points="10 10, 50 50, 75 175, 175 150, 175 50, 225 75, 225 150, 300 150" fill="none" stroke="#000"/></svg></div>
+
+
+<h3 id="SVG_中的路径">SVG 中的路径</h3><p>路径( Path )比基本图形更强大和灵活，可以用来创建任何一个基本图形。使用路径你可以创建直线和曲线，也可以把它们连接起来，组成其它的形状。你可以结合两者来创建复杂的路径和子路径。路径可以被填充、描边或者用于剪裁其他元素。它们可以同时做这三种效果甚至更多。</p>
+<p>以下是一个路径的使用示例，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600"</span> <span class="attribute">height</span>=<span class="value">"400"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M 50 50 l 0 300 l 200 0 l 0 -300 l -200 0"</span> <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span> <span class="attribute">stroke-width</span>=<span class="value">"2px"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div><svg width="600" height="400"><path d="M 50 50 l 0 300 l 200 0 l 0 -300 l -200 0" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
+
+<p>路径(d)可以使用不同的指令，移动到一个新的点，然后绘制不同的直线和曲线。下面将重点介绍这些指令。</p>
+<ol>
+<li>直线指令</li>
+</ol>
+<p>这里有五种不同的直线指令，你可以使用它们来创建路径。</p>
+<ul>
+<li>moveto(M 或 m):移动到新的位置</li>
+<li>lineto(L 或 l):从当前坐标画一条直线到一个新坐标</li>
+<li>horizontal lineto(H 或 h):画一条水平线到新坐标</li>
+<li>vertical lineto(V 或 v):画一条垂直线到新坐标</li>
+<li>closepath(Z 或 z):关闭当前路径</li>
+</ul>
+<blockquote>
+<p>TIPS:  实际应用中使用指令字母即可。指令字母大写表示坐标位置是绝对位置，指令字母小写表示坐标位置时相对位置。</p>
+</blockquote>
+<ol>
+<li>曲线指令</li>
+</ol>
+<p>曲线指令一共有三组，和直线指令一样，指令字母大写表示坐标位置是绝对坐标，指令字母小写表示坐标位置是相对坐标。</p>
+<ul>
+<li>三次贝塞尔曲线指令 (C, c, S, s)</li>
+<li>二次贝塞尔曲线指令 (Q, q, T, t)</li>
+<li>椭圆弧线 (A, a)</li>
+</ul>
+<h4 id="2-1_三次贝塞尔曲线指令">2.1 三次贝塞尔曲线指令</h4><p>三次贝塞尔曲线指令的格式为：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C (or c) x1,y1 x2,y2 x,y</span><br></pre></td></tr></table></figure></p>
+<p>这里,<br><code>x1</code>,<code>y1</code> 是曲线起点的控制点坐标<br><code>x2</code>,<code>y2</code> 是曲线终点的控制点坐标<br><code>x</code>,<code>y</code> 是曲线的终点坐标</p>
+<p>曲线的起点是上一条指令的终点，所以我们不需要再次设置。示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M100,200</span><br><span class="line">           C100,100  400,100  400,200"</span></span><br><span class="line">   <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span> <span class="attribute">stroke-width</span>=<span class="value">"2px"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div><svg width="600" height="300"><path d="M100,200 C100,100  400,100  400,200" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
+
+<h4 id="2-2_二次贝塞尔曲线指令">2.2 二次贝塞尔曲线指令</h4><p>二次贝塞尔曲线指令只需要一个控制点，同时作为起点控制点和终点控制点。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q (or q) x1,y1 x,y</span><br></pre></td></tr></table></figure></p>
+<p>这里,<br><code>x1</code>,<code>y1</code> 是曲线起点和终点的控制点坐标<br><code>x</code>,<code>y</code> 是曲线的终点坐标</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M100,200</span><br><span class="line">             Q250,100 400,200"</span></span><br><span class="line">     <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span> <span class="attribute">stroke-width</span>=<span class="value">"2px"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div><svg width="600" height="300"><path d="M100,200 Q250,100 400,200" fill="none" stroke="#000" stroke-width="2px"/></svg></div>
+
+<p>二次贝塞尔曲线指令也有一个快捷方法，(T 或 t)指令可以用来平滑多条曲线之间的连接。它和三次贝塞尔曲线指令中的快捷方式(S 或 s)是同样的效果，也有助于通过对称的控制点来平滑地开始绘制第二条曲线。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M100,200</span><br><span class="line">           Q250,100 400,200</span><br><span class="line">           T600 200"</span></span><br><span class="line">    <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"#000"</span> <span class="attribute">stroke-width</span>=<span class="value">"2px"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-3_椭圆弧线">2.3 椭圆弧线</h4><p>椭圆弧线指令用于绘制一段椭圆片段。若rx和ry的值相同，则绘制出圆。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A (or a) rx ry  x-axis-rotation  large-arc-flag  sweep-flag  x y</span><br></pre></td></tr></table></figure></p>
+<p>这里,<br><code>x</code>,<code>y</code> 是弧线的终点<br><code>rx</code> 是弧线在x轴方向的半径<br><code>ry</code> 是弧线在y轴方向的半径<br><code>x-axis-rotation</code> 是与x轴夹角的度数</p>
+<p>在下面这个示例中，看起来好像有两个相同尺寸的彩色椭圆，但是这其实是四段不同的弧线：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M250,100  A120,80 0 0,0 250,200"</span></span><br><span class="line">    <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"red"</span> <span class="attribute">stroke-width</span>=<span class="value">"5"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M250,100  A120,80 0 1,1 250,200"</span></span><br><span class="line">    <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"green"</span> <span class="attribute">stroke-width</span>=<span class="value">"5"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M250,100  A120,80 0 1,0 250,200"</span></span><br><span class="line">    <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"purple"</span> <span class="attribute">stroke-width</span>=<span class="value">"5"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M250,100  A120,80 0 0,1 250,200"</span></span><br><span class="line">    <span class="attribute">fill</span>=<span class="value">"none"</span> <span class="attribute">stroke</span>=<span class="value">"blue"</span> <span class="attribute">stroke-width</span>=<span class="value">"5"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div><svg width="600" height="300"><path d="M250,100  A120,80 0 0,0 250,200" fill="none" stroke="red" stroke-width="5"/><path d="M250,100  A120,80 0 1,1 250,200" fill="none" stroke="green" stroke-width="5"/><path d="M250,100  A120,80 0 1,0 250,200" fill="none" stroke="purple" stroke-width="5"/><br/><path d="M250,100  A120,80 0 0,1 250,200" fill="none" stroke="blue" stroke-width="5"/></svg></div>
+
+<h3 id="SVG_中的标记（Marker）">SVG 中的标记（Marker）</h3><p>SVG 连接标记（markers）用于标记一条线或路径的开始、中间个结束位置。你可以在路径的开始处使用圆形或方形表示，在路径的结束处使用一个三角箭头表示。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">defs</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 定义一个圆形标记 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">marker</span> <span class="attribute">id</span>=<span class="value">"markerCircle"</span> <span class="attribute">markerWidth</span>=<span class="value">"8"</span> <span class="attribute">markerHeight</span>=<span class="value">"8"</span> <span class="attribute">refX</span>=<span class="value">"5"</span> <span class="attribute">refY</span>=<span class="value">"5"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"5"</span> <span class="attribute">cy</span>=<span class="value">"5"</span> <span class="attribute">r</span>=<span class="value">"3"</span> <span class="attribute">style</span>=<span class="value">"stroke: none; fill:#000000;"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">marker</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 定义一个箭头（三角形）标记 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">marker</span> <span class="attribute">id</span>=<span class="value">"markerArrow"</span> <span class="attribute">markerWidth</span>=<span class="value">"13"</span> <span class="attribute">markerHeight</span>=<span class="value">"13"</span> <span class="attribute">refX</span>=<span class="value">"2"</span> <span class="attribute">refY</span>=<span class="value">"6"</span></span><br><span class="line">             <span class="attribute">orient</span>=<span class="value">"auto"</span> <span class="attribute">markerUnits</span>=<span class="value">"strokeWidth"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M2,2 L2,11 L10,6 L2,2"</span> <span class="attribute">style</span>=<span class="value">"fill: #000000;"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">marker</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">defs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">d</span>=<span class="value">"M100,10 L150,10 L150,60"</span></span><br><span class="line">        <span class="attribute">style</span>=<span class="value">"stroke: #6666ff; stroke-width: 1px; fill: none;</span><br><span class="line">                     marker-start: url(#markerCircle);  &lt;!-- 在Path路径中使用标记 --&gt;</span><br><span class="line">                     marker-end: url(#markerArrow);</span><br><span class="line">                   "</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div><svg xmlns="http://www.w3.org/2000/svg"><defs><marker id="markerCircle" markerwidth="8" markerheight="8" refx="5" refy="5"><circle cx="5" cy="5" r="3" style="stroke: none; fill:#000000;"/></marker><marker id="markerArrow" markerwidth="13" markerheight="13" refx="2" refy="6" orient="auto" markerunits="strokeWidth"><path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;"/></marker></defs><path d="M100,10 L150,10 L150,60" style="stroke: #6666ff; stroke-width: 1px; fill: none;marker-start: url(#markerCircle);marker-end: url(#markerArrow);"/></svg></div>
+
+<blockquote>
+<p><code>marker-start</code>, <code>marker-mid</code>, <code>marker-end</code> 这三个CSS属性会将标记分别放置在路径的开始、中间和结束位置。</p>
+<p>可以设置markerUnits=”strokeWidth” 使得标记进行缩放来适应路径描边的大小</p>
+</blockquote>
+<h3 id="SVG_中的clipPath">SVG 中的clipPath</h3><p>SVG剪裁路径是指根据指定的路径或形状来剪裁SVG图形。应用了剪裁路径的图形，在剪裁路径内部的图形可以被显示出来，在剪裁路径之外的图形会被隐藏。</p>
+<p>来看一个简单例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">defs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">clipPath</span> <span class="attribute">id</span>=<span class="value">"clipPath"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"15"</span> <span class="attribute">y</span>=<span class="value">"15"</span> <span class="attribute">width</span>=<span class="value">"40"</span> <span class="attribute">height</span>=<span class="value">"40"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">clipPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"25"</span> <span class="attribute">cy</span>=<span class="value">"25"</span> <span class="attribute">r</span>=<span class="value">"20"</span></span><br><span class="line">      <span class="attribute">style</span>=<span class="value">"fill: #0000ff; clip-path: url(#clipPath); "</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这个例子定义了一个矩形的剪裁路径（<clippath>中的<rect></rect>元素）。在后面的SVG圆形中，通过style属性的clip-path指向了这个剪裁路径。</clippath></p>
+<div><svg><defs><clippath id="clipPath"><rect x="15" y="15" width="40" height="40"/></clippath></defs> <circle cx="25" cy="25" r="20" style="fill: #0000ff; clip-path: url(#clipPath); "/></svg></div>
+
+
+<blockquote>
+<p>你可以使用任何图形来作为剪裁路径或者被剪裁的对象。可以是文字、圆形、椭圆、多边形或自定义路径。</p>
+</blockquote>
+<h3 id="SVG_DEFS元素、SYMBOL元素和USE元素">SVG DEFS元素、SYMBOL元素和USE元素</h3><p>1) DEFS元素<br>SVG的 <code>&lt;defs&gt;</code> 元素用于预定义一个元素使其能够在SVG图像中重复使用。例如你可以将一些图形制作为一个组，并用 <code>&lt;defs&gt;</code> 元素来定义它，然后你就可以在SVG图像中将它当做简单图形来重复使用。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">defs</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">g</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"100"</span> <span class="attribute">y</span>=<span class="value">"100"</span> <span class="attribute">width</span>=<span class="value">"100"</span> <span class="attribute">height</span>=<span class="value">"100"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"100"</span> <span class="attribute">cy</span>=<span class="value">"100"</span> <span class="attribute">r</span>=<span class="value">"100"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>哪些元素可以被定义为defs中的元素呢？<br>  1) 任何图形元素，如：rect，line等<br>  2) g元素<br>  3) symbol元素</p>
+</blockquote>
+<p>2) SYMBOL元素<br>SVG <code>&lt;symbol&gt;</code>元素用于定义可重复使用的符号。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span> <span class="attribute">width</span>=<span class="value">"500"</span> <span class="attribute">height</span>=<span class="value">"100"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">symbol</span> <span class="attribute">id</span>=<span class="value">"shape2"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"25"</span> <span class="attribute">cy</span>=<span class="value">"25"</span> <span class="attribute">r</span>=<span class="value">"25"</span> <span class="attribute">style</span>=<span class="value">"fill:#bf55ec;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">symbol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">use</span> <span class="attribute">xlink:href</span>=<span class="value">"#shape2"</span> <span class="attribute">x</span>=<span class="value">"50"</span> <span class="attribute">y</span>=<span class="value">"25"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3) USE 元素</p>
+<p>在<code>&lt;defs&gt;</code>元素中定义的图形不会直接显示在SVG图像上。要显示它们需要使用<code>&lt;use&gt;</code>元素来引入它们。SVG <code>&lt;use&gt;</code>元素可以在SVG图像中多次重用一个预定义的SVG图形，包括 <code>&lt;g&gt;</code> 元素和<code>&lt;symbol&gt;</code>元素。</p>
+<p><code>&lt;use&gt;</code>元素通过 <code>xlink:href</code> 属性来引入<code>&lt;g&gt;</code>元素。注意在ID前面要添加一个#。在 <code>&lt;use&gt;</code> 元素中，通过x和y属性来指定重用图形的显示位置， 通过style属性来重新定义样式。注意在 <code>&lt;g&gt;</code> 元素中的图形的定位点都是0,0，在使用 <code>&lt;use&gt;</code> 元素来引用它的时候，它的定位点被转换为 <code>&lt;use&gt;</code> 元素x和y属性指定的位置。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="title">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">g</span> <span class="attribute">id</span>=<span class="value">"shape"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"50"</span> <span class="attribute">y</span>=<span class="value">"50"</span> <span class="attribute">width</span>=<span class="value">"50"</span> <span class="attribute">height</span>=<span class="value">"50"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"50"</span> <span class="attribute">cy</span>=<span class="value">"50"</span> <span class="attribute">r</span>=<span class="value">"50"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">defs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">use</span> <span class="attribute">xlink:href</span>=<span class="value">"#shape"</span> <span class="attribute">x</span>=<span class="value">"50"</span> <span class="attribute">y</span>=<span class="value">"50"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">use</span> <span class="attribute">xlink:href</span>=<span class="value">"#shape"</span> <span class="attribute">x</span>=<span class="value">"200"</span> <span class="attribute">y</span>=<span class="value">"50"</span> <span class="attribute">style</span>=<span class="value">"stroke: #00ff00; fill: none;"</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="SVG元素的样式属性">SVG元素的样式属性</h3><p>SVG元素不同于普通的HTML元素，具有特殊的一些样式属性。这些属性的声明可以通过SVG元素属性的方式直接声明，也可以通过CSS样式表中进行声明。下面的链接中给出了所有的可用属性列表：<br>[官方文档]：<a href="http://www.w3.org/TR/SVG11/styling.html" target="_blank" rel="external">http://www.w3.org/TR/SVG11/styling.html</a></p>
+<p>以下是一些CSS2规范之中未定义的，SVG独有的部分样式属性：<br>fill: 元素的填充颜色<br>fill-opacity: 元素的填充颜色透明度<br>stroke: 元素的笔画颜色<br>stroke-width: 元素的笔画宽度<br>stroke-linecap: 定义元素顶点样式<br>stroke-dasharray: 虚线样式虚线长度<br>stroke-dashoffset: 虚线样式的偏移长度<br>stroke-linejoin: 定义元素之间的连接点的形状<br>stroke-opacity: 元素的笔画颜色透明度</p>
+<p>可以使用CSS来为SVG图形添加样式。给SVG图形添加样式就是改变它们的外观，可以修改描边颜色和宽度，填充颜色，透明度等等。</p>
+<blockquote>
+<p>TIPS: SVG图形可以使用的CSS属性和HTML元素可以使用CSS属性稍微有一些不同，但是绝大部分的属性还是相同的。</p>
+</blockquote>
+<p>1) 使用属性来添加CSS样式，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">circle</span> <span class="attribute">stroke</span>=<span class="value">"#000000"</span> <span class="attribute">fill</span>=<span class="value">"#00ff00"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2) 使用STYLE属性，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">circle</span> <span class="attribute">style</span>=<span class="value">"stroke: #000000; fill:#00ff00;"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>3) 使用内联样式表，例如：<br>这种使用内联样式表的工作方式和在HTML元素上使用内联样式表是完全相同的。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> &gt;</span><span class="css"></span><br><span class="line">      &lt;!<span class="attr_selector">[CDATA[        circle &#123;           stroke: #006600;           fill:   #00cc00;        &#125;      ]</span>]&gt;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">circle</span>  <span class="attribute">cx</span>=<span class="value">"40"</span> <span class="attribute">cy</span>=<span class="value">"40"</span> <span class="attribute">r</span>=<span class="value">"24"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>4) 使用CLASS样式来添加CSS样式，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> &gt;</span><span class="css"></span><br><span class="line">      &lt;!<span class="attr_selector">[CDATA[        circle.myGreen &#123;           stroke: #006600;           fill:   #00cc00;        &#125;       circle.myRed &#123;       stroke: #660000;       fill:   #cc0000;    &#125;      ]</span>]&gt;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">circle</span>  <span class="attribute">class</span>=<span class="value">"myGreen"</span> <span class="attribute">cx</span>=<span class="value">"40"</span> <span class="attribute">cy</span>=<span class="value">"40"</span>  <span class="attribute">r</span>=<span class="value">"24"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">circle</span>  <span class="attribute">class</span>=<span class="value">"myRed"</span>   <span class="attribute">cx</span>=<span class="value">"40"</span> <span class="attribute">cy</span>=<span class="value">"100"</span> <span class="attribute">r</span>=<span class="value">"24"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>5) 使用外部样式表来添加CSS样式。当你在使用外部样式表的时候，样式表是一个单独的文件，这和CSS外部样式表是相同的。你需要使用下面的语法来将外部样式表引入。例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml-stylesheet type="text/css" href="svg-stylesheet.css" ?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>6) 在 HTML 页面中使用 STYLE 标签。如果你将一个 SVG 嵌入到一个 HTML 页面中，你可以在 HTML 页面中使用 style 标签来为 SVG 图形设置样式。这和在HTML页面中对DOM元素设置样式的方式是完全相同的。例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">  <span class="tag">circle</span> <span class="rules">&#123;</span><br><span class="line">     <span class="rule"><span class="attribute">stroke</span>:<span class="value"> <span class="hexcolor">#006600</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">fill  </span>:<span class="value"> <span class="hexcolor">#00cc00</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">svg</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"40"</span> <span class="attribute">cy</span>=<span class="value">"40"</span> <span class="attribute">r</span>=<span class="value">"24"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="几个重要的_SVG_概念">几个重要的 SVG 概念</h3><p>［参考链接： <a href="http://www.zhangxinxu.com/wordpress/2014/08/svg-viewport-viewbox-preserveaspectratio/］" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2014/08/svg-viewport-viewbox-preserveaspectratio/］</a><br><code>viewport</code>、<code>viewBox</code>和<code>preserveAspectRatio</code>是SVG中基础而且必须了解的几个部分。</p>
+<ol>
+<li>viewport</li>
+</ol>
+<p>表示SVG可见区域的大小，或者可以想象成舞台大小，画布大小。SVG中超出视窗边界的区域会被裁切并且隐藏。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;svg width=&#34;500&#34; height=&#34;300&#34;&#62;&#60;/svg&#62;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>viewBox属性<br>viewBox顾名思意是“视区盒子”的意思, 直观的解释就是我们拿一个放大倍数为1.0的方形放大镜来观察svg的一部分视野，然后讲这个视野 铺满整个viewport。</li>
+</ol>
+<p>viewBox属性接收四个参数值，包括：<code>&lt;min-x&gt;</code>, <code>&lt;min-y&gt;</code>, <code>width</code> 和 <code>height</code>。<br><code>&lt;min-x&gt;</code> 和 <code>&lt;min-y&gt;</code> 值决定viewBox的左上角，width和height决定视窗的宽高。这里要注意视窗的宽高不一定和父<code>&lt;svg&gt;</code>元素的宽高一样。<code>&lt;width&gt;</code>和<code>&lt;height&gt;</code>值为负数是不合法的。值为0的话会禁止元素的渲染。</p>
+<blockquote>
+<p>TIPS: 注意视窗的宽度也可以在CSS中设置为任何值。例如：设置width:100%会让SVG视窗在文档中自适应。无论viewBox的值是多少，它会映射为外层SVG元素计算出的宽度值。</p>
+</blockquote>
+<p>示例如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"400"</span> <span class="attribute">height</span>=<span class="value">"300"</span> <span class="attribute">viewBox</span>=<span class="value">"0,0,40,30"</span> <span class="attribute">style</span>=<span class="value">"border:1px solid #cd0000;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"10"</span> <span class="attribute">y</span>=<span class="value">"5"</span> <span class="attribute">width</span>=<span class="value">"20"</span> <span class="attribute">height</span>=<span class="value">"15"</span> <span class="attribute">fill</span>=<span class="value">"#cd0000"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>preserveAspectRatio<br>preserveAspectRatio属性的值为空格分隔的两个值组合而成。例如 ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preserveAspectRatio=<span class="string">"xMidYMid meet"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>第1个值表示，viewBox如何与Viewport对齐；<br>|—|—|<br>| 值 | 含义|<br>|xMin|viewport和viewBox左边对齐|<br>|xMid|viewport和viewBox x轴中心对齐|<br>|xMax|viewport和viewBox右边对齐|<br>|YMin|viewport和viewBox上边缘对齐。注意Y是大写。|<br>|YMid|viewport和viewBox y轴中心点对齐。注意Y是大写。|<br>|YMax|viewport和viewBox下边缘对齐。注意Y是大写。|</p>
+<p>第2个值表示，如何维持高宽比（如果有）。<br>|—|—|<br>| 值 | 含义|<br>|meet|保持纵横比缩放viewBox适应viewport|<br>|slice|保持纵横比同时比例小的方向放大填满viewport|<br>|none|扭曲纵横比以充分适应viewport|</p>
+<p>可以观察不同取值的变化：<br><img src="https://cloud.githubusercontent.com/assets/12219371/10748383/917f302a-7c9a-11e5-9506-1c3787bd6c0c.png" alt="preserveaspectratio"></p>
+<p>为了更形象化，可以观看互动演示案例<br><a href="http://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html" target="_blank" rel="external">http://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html</a></p>
+<h3 id="SVG_中的坐标系统">SVG 中的坐标系统</h3><p>［前方高能，注意警戒!!］<br>［前方高能，注意警戒!!］<br>［前方高能，注意警戒!!］</p>
+<p>[官方文档说明]：<a href="http://www.w3.org/TR/SVG11/coords.html" target="_blank" rel="external">http://www.w3.org/TR/SVG11/coords.html</a></p>
+<p>理解了SVG的viewport等概念之后，我们来深入了解SVG的从标系统。SVG的坐标系统分为三种类型：</p>
+<ul>
+<li>初始坐标系统</li>
+<li>转换坐标系统</li>
+<li>嵌套坐标系统</li>
+</ul>
+<ol>
+<li>初始坐标系统</li>
+</ol>
+<p><strong>初始视窗坐标系</strong> 是一个建立在视窗(VIEWPORT)上的坐标系。原点(0,0)在视窗的左上角，X轴正向指向右，Y轴正向指向下，初始坐标系中的一个单位等于视窗中的一个”像素”（更确切的说是一个单位）。这个坐标系统类似于通过CSS盒模型在HTML元素上建立的坐标系。</p>
+<p><strong>初始用户坐标系</strong> 是通过VIEWBOX建立在SVG画布上的坐标系。这个坐标系一开始和初始视窗坐标系完全一样-它自己的原点位于视窗左上角，x轴正向指向右，y轴正向指向下。使用viewBox属性，初始用户坐标系统-也称当前坐标系，或使用中的用户空间-可以变成与视窗坐标系不一样的坐标系。如下图所示：</p>
+<blockquote>
+<p>初始用户坐标系统-也称当前坐标系，或使用中的用户空间-可以变成与视窗坐标系不一样的坐标系。</p>
+</blockquote>
+<p>假设有一个SVG:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>那么这个SVG的大小是300*300，其是由坐标(0,0)、(300，0)、(300,300)和(0,300)组成的一个矩形画布：</p>
+<blockquote>
+<p>TIPS: 这里没有设置具体的单位值，表示的就是SVG画布大小是300*300个单位，默认情况下就是px。</p>
+</blockquote>
+<p>为了让大家更好理解SVG最初坐标，来看个示例。示例中，创建了一个300*300像素(px)的SVG，然后使用<rect></rect>在<svg>中绘制了一个矩形，这个矩形的起始点是(20,20)，其宽度是100px，高度是50px。如下：<br/><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"300"</span> <span class="attribute">height</span>=<span class="value">"300"</span>&gt;</span></span><br/><span class="line">  <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"20"</span> <span class="attribute">y</span>=<span class="value">"20"</span> <span class="attribute">width</span>=<span class="value">"100"</span> <span class="attribute">height</span>=<span class="value">"50"</span> <span class="attribute">style</span>=<span class="value">"stroke: #f36; fill: rgba(123,123,23,.5);"</span>/&gt;</span></span><br/><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br/></pre></td></tr></table></figure></svg></p>
+<p>实际的效果如下：</p>
+<div><svg width="300" height="300"><rect x="20" y="20" width="100" height="50" style="stroke: #f36; fill: rgba(123,123,23,.5);"/></svg></div>
+
+<p>到现在为止，我们还没有声明viewBox属性值。SVG画布的用户坐标系统和视窗坐标系统完全一样。</p>
+<p>下图中，视窗坐标系的”标尺”是灰色的，用户坐标系（viewBox）的是蓝色的。由于它们在这个时候完全相同，所以两个坐标系统重合了。<br><img src="https://cloud.githubusercontent.com/assets/12219371/10686536/a9fc6ad8-7997-11e5-8ddc-02edc3ed0b82.jpg" alt="initial-coordinate-systems"></p>
+<p>上面SVG中的鹦鹉的外框边界是200个单位（这个例子中是200个像素）宽和300个单位高。鹦鹉基于初始坐标系在画布中绘制。</p>
+<blockquote>
+<p><strong>新用户空间</strong>（即，新当前坐标系）也可以通过在容器元素或图形元素上使用transform属性来声明变换。</p>
+</blockquote>
+<p>可以使用viewBox属性声明自己的用户坐标系。如果你选择的用户坐标系统和视窗坐标系统宽高比（高比宽）相同，它会延伸来适应整个视窗区域。然而，如果你的用户坐标系宽高比不同，你可以用preserveAspectRatio属性来声明整个系统在视窗内是否可见，你也可以用它来声明在视窗中如何定位。</p>
+<p>回顾之前所讲的ViewBox四个参数：<code>&lt;min-x&gt;</code>, <code>&lt;min-y&gt;</code>, <code>width</code> 和 <code>height</code> 。其中设置width和height可以分别改变X方向和Y方向的坐标系比例，<code>&lt;min-x&gt;</code>和<code>&lt;min-y&gt;</code>则可以讲用户坐标系进行X方向和Y方向进行平移变换(类似于css3中点tanslate变换)</p>
+<ol>
+<li>转换坐标系统</li>
+</ol>
+<p>可以使用transform属性来对元素的坐标系统进行变换。transform属性中使用的变换函数类似于CSS中transform属性使用的CSS变换函数。可用的SVG变换有：矩阵(Matrix), 旋转(Rotate), 缩放(Scale), 移动(Translate), 和倾斜(Skew)。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">matrix(<span class="tag">&lt;<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">b</span>&gt;</span> <span class="tag">&lt;<span class="title">c</span>&gt;</span> <span class="tag">&lt;<span class="title">d</span>&gt;</span> <span class="tag">&lt;<span class="title">e</span>&gt;</span> <span class="tag">&lt;<span class="title">f</span>&gt;</span>)</span><br><span class="line"></span><br><span class="line">translate(<span class="tag">&lt;<span class="title">tx</span>&gt;</span> [<span class="tag">&lt;<span class="title">ty</span>&gt;</span>]) // 可用空格或逗号分隔，默认使用用户坐标系单位</span><br><span class="line"></span><br><span class="line">scale(<span class="tag">&lt;<span class="title">sx</span>&gt;</span> [<span class="tag">&lt;<span class="title">sy</span>&gt;</span>]) //用空格或者逗号分隔，它们是无单位值。</span><br><span class="line"></span><br><span class="line">skewX(<span class="tag">&lt;<span class="title">skew-angle</span>&gt;</span>)  skewY(<span class="tag">&lt;<span class="title">skew-angle</span>&gt;</span>) //默认单位是度</span><br><span class="line"></span><br><span class="line">//可选的cx和cy值代表无单位的旋转中心点。如果没有设置cx和cy，旋转点是当前用户坐标系的原点</span><br><span class="line">rotate(<span class="tag">&lt;<span class="title">rotate-angle</span>&gt;</span> [<span class="tag">&lt;<span class="title">cx</span>&gt;</span> <span class="tag">&lt;<span class="title">cy</span>&gt;</span>])</span><br></pre></td></tr></table></figure>
+<p>要注意的是，transform属性的作用对象是元素所在的坐标系统，而不是元素本身。在SVG规范中，transform属性的作用是 <strong>在被添加的元素上建立新用户空间坐标系（当前坐标系）</strong> (效果与viewBox类似)</p>
+<p>实际上，在HTML元素上应用CSS3变换时，也是对HTML元素坐标系发生了变换，当你把变换组合使用时最明显。</p>
+<p>HTML和SVG的变换还是有一些不同，主要的不同在于SVG元素和HTML元素的坐标系不同。HTML元素的坐标系建立在元素自身上。而在SVG中，元素的坐标系是 <strong>初始坐标系</strong> 或 <strong>当前用户空间坐标系</strong> 。</p>
+<p>也就是说，当你在一个SVG元素上添加transform属性，元素获取当前使用的用户坐标系的一个“副本”。你可以当做给发生变换的元素创建一个新“层”，新层实际上是当前用户坐标系的副本（the viewBox）。然后，元素新的当前坐标系被在transform属性中声明的变换函数改变，因此导致元素自身的变换。这看起来好像是元素在变换后的坐标系中重新绘制。</p>
+<p>只有正确理解这一点，才能理解SVG变换的一些特点。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/12219371/10689792/4ce89eca-79b0-11e5-9ea7-753edab25d03.png" alt="svg-transforms-fig2"></p>
+<p>请注意，某个变换元素上的当前用户坐标系变换是独立于其他同级变换元素的，也就是说，一个元素的变换并不会改变其他同级元素的当前坐标系。</p>
+<blockquote>
+<p>TIPS: 组合变换<br>很多时候你可能想要在一个元素上添加多个变换。添加多个变换意味着“组合”变换。<br>当变换组合时，最重要的是意识到，和HTML元素变换一样，当这个系统发生了之前的变换后在添加下一个变换到坐标系中。<br>例如，如果你要在一个元素上添加旋转，接下来移动，移动变换会根据新的坐标系统，而不是初始的没有旋转时的系统。</p>
+<p>TIPS: 嵌套变换和变换的继承性<br>当变换元素的子元素也需要变换时会发生变换嵌套。添加到子元素上的变换会累积父元素上添加的变换和它本身的变换。<br>也就是说，子元素自动从父元素上获得变换，最后执行添加在它自身的变换。</p>
+</blockquote>
+<ol>
+<li>嵌套坐标系统</li>
+</ol>
+<p>在<code>&lt;svg&gt;</code>元素中可以嵌套<code>&lt;svg&gt;</code>元素。外面的<code>&lt;svg&gt;</code>创建一个Viewport和坐标系统，而且嵌套在里面的<code>&lt;svg&gt;</code>也可以创建一个Viewport和坐标系统。这种方式就是在大的画布中绘制一个小的画布，我们就可以使用这种技术实现下面的效果：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"300px"</span> <span class="attribute">viewBox</span>=<span class="value">"0 0 250 250"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"35"</span> <span class="attribute">cy</span>=<span class="value">"35"</span> <span class="attribute">r</span>=<span class="value">"35"</span> <span class="attribute">style</span>=<span class="value">"stroke: black; fill: none;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"150"</span> <span class="attribute">y</span>=<span class="value">"50"</span> <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"100"</span> <span class="attribute">style</span>=<span class="value">"stroke: blue; </span><br><span class="line">        fill: none;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">svg</span> <span class="attribute">x</span>=<span class="value">"150px"</span> <span class="attribute">y</span>=<span class="value">"50px"</span> <span class="attribute">width</span>=<span class="value">"200px"</span> <span class="attribute">height</span>=<span class="value">"100px"</span> <span class="attribute">viewBox</span>=<span class="value">"0 0 125 125"</span> <span class="attribute">preserveAspectRatio</span>=<span class="value">"xMaxYMax meet"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">cx</span>=<span class="value">"35"</span> <span class="attribute">cy</span>=<span class="value">"35"</span> <span class="attribute">r</span>=<span class="value">"35"</span> <span class="attribute">style</span>=<span class="value">"stroke: black; fill: rgba(0,0,0,.5);"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>实际的现实效果如下：</p>
+<svg width="600px" height="300px" viewbox="0 0 250 250"> <circle cx="35" cy="35" r="35" style="stroke: black; fill: none;"/> <rect x="150" y="50" width="200" height="100" style="stroke: blue; fill: none;"/> <svg x="150px" y="50px" width="200px" height="100px" viewbox="0 0 125 125" preserveaspectratio="xMaxYMax meet"> <circle cx="35" cy="35" r="35" style="stroke: black; fill: rgba(0,0,0,.5);"/> </svg> </svg>
+
+<p>如果你不声明子SVG的x和y属性，它们默认是0。如果你不声明height和width属性，<code>&lt;svg&gt;</code>会是父SVG宽度和高度的100%。</p>
+<p>除了可以通过嵌套<code>&lt;svg&gt;</code>外，也可以使用例如<code>&lt;use&gt;</code>, <code>&lt;symbol&gt;</code>的元素来建立新的viewport和用户坐标系:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;svg&#62;&#10;    &#60;symbol id=&#34;my-symbol&#34; viewBox=&#34;0 0 300 200&#34;&#62;&#10;        &#60;!-- contents of the symbol --&#62;&#10;        &#60;!-- this content is only rendered when `use`d --&#62;&#10;    &#60;/symbol&#62;&#10;    &#60;use xlink:href=&#34;#my-symbol&#34; x=&#34;?&#34; y=&#34;?&#34; width=&#34;?&#34; height=&#34;?&#34;&#62;&#10;&#60;/svg&#62;</span><br></pre></td></tr></table></figure></p>
+<h3 id="SVG_中的SMIL动画">SVG 中的SMIL动画</h3><p>SMIL是Synchronized Multimedia Integration Language（同步多媒体集成语言）的首字母缩写简称。SMIL开发组和SVG开发组合作开发了SMIL动画规范，在规范中制定了一个基本的XML动画特征集合。SVG吸收了SMIL动画规范当中的动画优点，并提供了一些SVG继承实现。</p>
+<p>SMIL允许你做下面这些事情：</p>
+<ul>
+<li>动画元素的数值属性（X, Y, …）</li>
+<li>动画属性变换（平移或旋转）</li>
+<li>动画颜色属性</li>
+<li>沿着运动路径运动</li>
+</ul>
+<blockquote>
+<p>浏览器对SMIL动画的支持非常的好，它可以在除了IE浏览器和Opera Mini 浏览器之外的所有现代浏览器中工作。完整的支持列表可以查看 Can I Use 网站。如果你需要为 SMIL 动画提供一个回退方法，你可以使用 Modernizr 。如果浏览器不支持 SMIL ，你可以为它们提供一些回退方法。</p>
+</blockquote>
+<h4 id="通过XLINK:HREF指定动画目标">通过XLINK:HREF指定动画目标</h4><p>不论使用4个动画元素中的哪一个，你都需要为它指定一个动画目标。可以使用xlink:href属性来指定动画目标。这个属性指向将要执行动画的元素。这个元素必须在当前的SVG文档中。动画元素也可以嵌套在SVG元素中。如果没有为动画元素指定xlink:href属性，那么动画的目标元素就是当前动画元素的直接父元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">rect</span> <span class="attribute">id</span>=<span class="value">"cool_shape"</span> <span class="attribute">...</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">xlink:href</span>=<span class="value">"#cool_shape"</span> <span class="attribute">...</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="SVG_animation元素及效果概览">SVG animation元素及效果概览</h4><p>SVG animation包含五大元素</p>
+<ol>
+<li><code>&lt;set&gt;</code></li>
+</ol>
+<p>set意思设置，此元素没有动画效果。可以实现基本的延迟功能。即，可以在特定时间之后修改某个属性值（也可以是CSS属性值）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"320"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">g</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span></span><br><span class="line">      马</span><br><span class="line">      <span class="tag">&lt;<span class="title">set</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">attributeType</span>=<span class="value">"XML"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"3s"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="120" y="160" x="160"> 马 <set attributename="x" attributetype="XML" to="60" begin="3s"> </set></text> </g> </svg>
+
+<ol>
+<li><code>&lt;animate&gt;</code></li>
+</ol>
+<p>基础动画元素。实现单属性的动画过渡效果。类似Snap.svg的animate()方法支持的动画效果。类似于CSS3中的transition属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"320"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">g</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span></span><br><span class="line">    马</span><br><span class="line">      <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">from</span>=<span class="value">"160"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"0s"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="120" y="160" x="160"> 马 <animate attributename="x" from="160" to="60" begin="0s" dur="3s" repeatcount="indefinite"> </animate></text> </g> </svg>
+
+<ol>
+<li><p><code>&lt;animateColor&gt;</code> (被废弃)</p>
+</li>
+<li><p><code>&lt;animateTransform&gt;</code></p>
+</li>
+</ol>
+<p>实现transform变换动画效果的。与CSS3的transform变换及Snap.svg.js中的transform()方法都是一个路数。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"320"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">g</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"80"</span> <span class="attribute">y</span>=<span class="value">"100"</span> <span class="attribute">x</span>=<span class="value">"100"</span>&gt;</span>马<span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">animateTransform</span> <span class="attribute">attributeName</span>=<span class="value">"transform"</span> <span class="attribute">begin</span>=<span class="value">"0s"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span>  <span class="attribute">type</span>=<span class="value">"scale"</span> <span class="attribute">from</span>=<span class="value">"1"</span> <span class="attribute">to</span>=<span class="value">"1.5"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"> <g> <text font-family="microsoft yahei" font-size="80" y="100" x="100">马</text> <animatetransform attributename="transform" begin="0s" dur="3s" type="scale" from="1" to="1.5" repeatcount="indefinite"> </animatetransform></g> </svg>
+
+<ol>
+<li><code>&lt;animateMotion&gt;</code></li>
+</ol>
+<p>animateMotion元素可以让SVG图形沿着特定的<code>&lt;path&gt;</code>路径运动。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;svg width=&#34;360&#34; height=&#34;200&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;&#10;  &#60;text font-family=&#34;microsoft yahei&#34; font-size=&#34;40&#34; x=&#34;0&#34; y=&#34;0&#34; fill=&#34;#cd0000&#34;&#62;&#39532;&#10;    &#60;animateMotion path=&#34;M10,80 q100,120 120,20 q140,-50 160,0&#34; begin=&#34;0s&#34; dur=&#34;3s&#34; rotate=&#34;auto&#34; repeatCount=&#34;indefinite&#34;/&#62;&#10;  &#60;/text&#62;&#10;  &#60;path d=&#34;M10,80 q100,120 120,20 q140,-50 160,0&#34; stroke=&#34;#cd0000&#34; stroke-width=&#34;2&#34; fill=&#34;none&#34; /&#62;&#10;&#60;/svg&#62;</span><br></pre></td></tr></table></figure></p>
+<svg width="360" height="200" xmlns="http://www.w3.org/2000/svg"> <text font-family="microsoft yahei" font-size="40" x="0" y="0" fill="#cd0000">马 <animatemotion path="M10,80 q100,120 120,20 q140,-50 160,0" begin="0s" dur="3s" rotate="auto" repeatcount="indefinite"> </animatemotion></text> <path d="M10,80 q100,120 120,20 q140,-50 160,0" stroke="#cd0000" stroke-width="2" fill="none"/> </svg>
+
+<h4 id="SVG_animation参数详解">SVG animation参数详解</h4><p>参考文献：<br><a href="http://www.zhangxinxu.com/wordpress/2014/08/so-powerful-svg-smil-animation/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2014/08/so-powerful-svg-smil-animation/</a><br><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201506222088.html" target="_blank" rel="external">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201506222088.html</a><br><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201506242101.html" target="_blank" rel="external">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201506242101.html</a></p>
+<ol>
+<li>attributeName = 动画属性的名称</li>
+</ol>
+<p>① 可以是元素直接暴露的属性，例如，对于本文反复出现的「马」对应的text元素上的x, y或者font-size;<br>② 可以是CSS属性。例如，透明度opacity。</p>
+<ol>
+<li>attributeType 动画属性的类型</li>
+</ol>
+<p><code>可选值: “CSS | XML | auto”</code></p>
+<p>attributeType支持三个固定参数，CSS/XML/auto。用来表明attributeName属性值的列表。x,y以及transform就属于XML, opacity就属于CSS。 auto为默认值，自动判别的意思。</p>
+<ol>
+<li>from, to, by, values</li>
+</ol>
+<p>类似于CSS3中的关键帧定义。<br>from = <code>&lt;value&gt;</code> :  动画的起始值,缺省默认值。<br>to = <code>&lt;value&gt;</code> : 指定动画的结束值。<br>by = <code>&lt;value&gt;</code> : 动画的相对变化值。<br>values = <code>&lt;list&gt;</code> : 用分号分隔的一个或多个值，可以看出是动画的多个关键值点。</p>
+<p>也就是from-to动画、from-by动画、to动画、by动画以及values动画。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"150"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span></span><br><span class="line">        马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">values</span>=<span class="value">"160;40;160"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>begin, end</li>
+</ol>
+<p>begin指动画开始的时间。</p>
+<p>可选值包括:<br><code>time-value| offset-value | syncbase-value | event-value | repeat-value | accessKey-value | media-marker-value | wallclock-sync-value | indefinite</code></p>
+<p>1) <code>time-value</code>: 表示具体的时间值，常见单位有 “h”|”min”|”s”|”ms”，默认单位为s 。时间值还支持 hh:mm:ss 这种写法，因此，<code>90s</code> 我们也可以使用 <code>01:30</code> 表示。</p>
+<p>2) <code>offset-value</code>: 表示偏移值，数值前面有<code>+</code>或<code>-</code>. 应该指相对于 <code>document</code> 的 <code>begin</code> 值而言。</p>
+<p>3) <code>syncbase-value</code>: 基于同步确定的值。语法为：<code>[元素的id].begin/end +/-</code> 时间值。 就是说借用其他元素的begin值再加加减减，这个可以准确实现两个独立元素的动画级联效果。</p>
+<p>OK，看完下面的例子一定会豁然开朗，对于上面的offset-value也会有一定的认知。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">id</span>=<span class="value">"x"</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"0s"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"y"</span> <span class="attribute">to</span>=<span class="value">"100"</span> <span class="attribute">begin</span>=<span class="value">"x.end"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到，后面 <code>attributeName</code> 为 <code>y</code> 的元素的 <code>begin</code> 值是 <code>x.end</code>。 <code>x.end</code> 中的 <code>x</code> 就是上面一个 <code>animate</code> 元素的 <code>id</code> 值，而 <code>end</code> 是动画元素都有的一个属性，动画结束的时间。因此，<code>begin=&quot;x.end&quot;</code> 意思就是，当 <code>id</code> 为 <code>x</code> 的元素动画结束的时候，我执行动画。非常类似于PowerPoint动画的“上一个动画之后”的选项。<br>当然，我们还可以增加一些偏移值，例如 <code>begin=&quot;x.end-1s&quot;</code>, 就表示 <code>id</code> 为 <code>x</code> 的元素动画结束前一秒开始纵向移动。</p>
+<p>4) <code>event-value</code>: 这个表示与事件相关联的值。类似于PowerPoint动画的“点击执行该动画”。语法是：  <code>[元素的id].[事件类型] +/- 时间值</code>。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">id</span>=<span class="value">"svg"</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">circle</span> <span class="attribute">id</span>=<span class="value">"circle"</span> <span class="attribute">cx</span>=<span class="value">"100"</span> <span class="attribute">cy</span>=<span class="value">"100"</span> <span class="attribute">r</span>=<span class="value">"50"</span>&gt;</span><span class="tag">&lt;/<span class="title">circle</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"circle.click+2s"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg id="svg" width="320" height="200" xmlns="http://www.w3.org/2000/svg"> <circle id="circle" cx="100" cy="100" r="50"/> <text font-family="microsoft yahei" font-size="120" y="160" x="160">马 <animate attributename="x" to="60" begin="circle.click+2s" dur="3s"> </animate></text> </svg>
+
+<p>支持的事件类型包括：<code>load</code>, <code>focus</code>, <code>endEvent</code>, <code>repeat</code> 等</p>
+<blockquote>
+<p>TIPS: 这类与事件关联的SVG需要内联在页面中。</p>
+</blockquote>
+<p>5) <code>repeat-value</code> 指某动画重复多少次结束之后开始执行动画。语法为： <code>[元素的id].repeat(整数) +/- 时间值</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">id</span>=<span class="value">"x"</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"0s"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"y"</span> <span class="attribute">to</span>=<span class="value">"100"</span> <span class="attribute">begin</span>=<span class="value">"x.repeat(2)"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg width="320" height="200" xmlns="http://www.w3.org/2000/svg"> <text font-family="microsoft yahei" font-size="120" y="160" x="160">马 <animate id="x" attributename="x" to="60" begin="0s" dur="3s" repeatcount="indefinite"> <animate attributename="y" to="100" begin="x.repeat(2)" dur="3s" fill="freeze"> </animate></animate></text> </svg>
+
+<p>6) <code>accessKey-value</code> 定义快捷键。即按下某个按键动画开始。语法为：<code>accessKey(character)</code>。 <code>character</code> 表示快捷键所在的字符，举个例子，按下 <code>s</code> 键动画开始执行。SVG 代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"accessKey(s)"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>7) <code>wallclock-sync-value</code>: 指真实世界的时钟时间定义。时间语法是基于在ISO8601中定义的语法。</p>
+<p>8) <code>indefinite</code>: 表示“无限等待”。需要 <code>beginElement()</code>方法触发或者指向该动画元素的超链接(SVG中的a元素)。<br>下面代码是 <code>beginElement()</code> 方法触发的例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">id</span>=<span class="value">"svg"</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">        <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"indefinite"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>对应的js代码触发动画:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animate = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"animate"</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">if</span> (animate) &#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"svg"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        animate.beginElement();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>超链接触发的例子参见下面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"200"</span> <span class="attribute">font-family</span>=<span class="value">"microsoft yahei"</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/2000/svg"</span> <span class="attribute">xmlns:xlink</span>=<span class="value">"http://www.w3.org/1999/xlink"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">text</span> <span class="attribute">font-size</span>=<span class="value">"120"</span> <span class="attribute">y</span>=<span class="value">"160"</span> <span class="attribute">x</span>=<span class="value">"160"</span>&gt;</span>马</span><br><span class="line">          <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">id</span>=<span class="value">"animate"</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">begin</span>=<span class="value">"indefinite"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">xlink:href</span>=<span class="value">"#animate"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">text</span> <span class="attribute">x</span>=<span class="value">"10"</span> <span class="attribute">y</span>=<span class="value">"20"</span> <span class="attribute">fill</span>=<span class="value">"#cd0000"</span> <span class="attribute">font-size</span>=<span class="value">"30"</span>&gt;</span>点击我<span class="tag">&lt;/<span class="title">text</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<svg width="320" height="200" font-family="microsoft yahei" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <text font-size="120" y="160" x="160">马 <animate id="animate" attributename="x" to="60" begin="indefinite" dur="3s" repeatcount="indefinite"> </animate></text> <a xlink:href="#animate"> <text x="10" y="20" fill="#cd0000" font-size="30">点击我</text> </a> </svg>
+
+<blockquote>
+<p>如果动画的begin属性未显式指明或者解析异常，那么将会使用默认的<code>0</code>值，即文档开始后立即执行动画。</p>
+</blockquote>
+<ol>
+<li>dur</li>
+</ol>
+<p>dur属性值比较简单：常规时间值 | “indefinite”。</p>
+<ol>
+<li>calcMode, keyTimes, keySplines</li>
+</ol>
+<p>这几个参数是控制动画执行速度，类似CSS3动画中的<code>timing-function</code>。<br>1) calcMode 属性支持4个值：<code>discrete | linear | paced | spline</code>。</p>
+<ul>
+<li>discrete: from值直接跳到to值。类似于step(1, end)</li>
+<li>linear: animateMotion元素以外元素的calcMode默认值。动画从头到尾的速率都是一致的。</li>
+<li>paced: 通过插值让动画的变化步调平稳均匀。仅支持线性数值区域内的属性，这样点之间“距离”的概念才能被计算（如 position, width, height等）。如果<code>paced</code>指定，任何 <code>keyTimes</code> 或 <code>keySplines</code>值将会失效。</li>
+<li>spline: 插值定义贝塞尔曲线。spline点的定义在keyTimes属性中，每个时间间隔控制点由keySplines定义。</li>
+</ul>
+<p>2) keyTimes = “<list>”<br>   跟上面提到的<list>类似，都是分号分隔一组值。keyTimes 是关键时间点的意思。前面提到过 values 也是多值，这里有一些约定的规则：首先，keyTimes 值的数目要和 values 一致，如果是 from/to/by 动画，keyTimes 就必须有两个值。然后对于 linear 和 spline 动画，第一个数字要是0, 最后一个是1。 </list></list></p>
+<p>   最后，每个连续的时间值必须比它前面的值大或者相等。</p>
+<blockquote>
+<p>paced模式下，keyTimes会被忽略；keyTimes定义错误，也会被忽略；dur为indefinite也会被忽略。</p>
+</blockquote>
+<p>3) keySplines = “<list>”<br>   keySplines表示的是与keyTimes相关联的一组贝塞尔控制点（默认0 0 1 1）。每个控制点使用4个浮点值表示：x1 y1 x2 y2. 只有模式是spline时候这个参数才有用，也是分号分隔，值范围0~1，总是比keyTimes少一个值。</list></p>
+<blockquote>
+<p>如果keySplines值不合法或个数不对，是没有动画效果的。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">values</span>=<span class="value">"0; 20; 160"</span> <span class="attribute">calcMode</span>=<span class="value">"linear"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">values</span>=<span class="value">"0; 20; 160"</span> <span class="attribute">calcMode</span>=<span class="value">"paced"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">values</span>=<span class="value">"0; 80; 160"</span> <span class="attribute">keyTimes</span>=<span class="value">"0; .8; 1"</span> <span class="attribute">calcMode</span>=<span class="value">"linear"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">values</span>=<span class="value">"0; 80; 160"</span> <span class="attribute">keyTimes</span>=<span class="value">"0; .8; 1"</span> <span class="attribute">calcMode</span>=<span class="value">"spline"</span>  <span class="attribute">keySplines</span>=<span class="value">".5 0 .5 1; 0 0 1 1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以最后一个为例，values 确定动画的关键位置，keyTimes 确定到这个关键点需要的时间，keySplines 确定的是每个时间点段之间的贝塞尔曲线，也就是具体的缓动表现。这与CSS3中的 transition 动画和animation动画效果类似，只不过是这里的特殊情况。transition动画里面，values 值就两个，所以，keyTimes 只能是 0;1, 贝塞尔曲线就只有一个，要不 ease, 要不 linear 等。而animation动画里面，values 值和keyTimes 可以定义多个，同时也能定义一个贝塞尔曲线作为时间函数。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> bounce </span>&#123;</span><br><span class="line">    0% <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    80% <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">80px</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">animation-timing-function</span>:<span class="value"> ease-in</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    100% <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">160px</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">animation-timing-function</span>:<span class="value"> linear</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>repeatCount, repeatDur</li>
+</ol>
+<p>repeatCount表示动画执行次数，可以是合法数值或者”indefinite“（动画循环到电脑死机）。<br>repeatDur定义重复动画的总时间。可以是普通时间值或者”indefinite（”动画循环到电脑死机）。<br>例如这个：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"x"</span> <span class="attribute">to</span>=<span class="value">"60"</span> <span class="attribute">dur</span>=<span class="value">"3s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="attribute">repeatDur</span>=<span class="value">"10s"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>fill</li>
+</ol>
+<p>fill表示动画间隙的填充方式。支持参数有：freeze | remove. 其中remove是默认值，表示动画结束直接回到开始的地方。freeze“冻结”表示动画结束后像是被冻住了，元素保持了动画结束之后的状态。</p>
+<ol>
+<li>accumulate, additive</li>
+</ol>
+<p>accumulate 是累积的意思。支持参数有：none | sum。 默认值是 none 。如果值是 sum 表示动画结束时候的位置作为下次动画的起始位置。</p>
+<p>additive控制动画是否附加。支持参数有：replace | sum. 默认值是 replace 。如果值是 sum 表示动画的基础知识会附加到其他低优先级的动画上，<br>举两个例子，下面是例子1：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">...</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">animateMotion</span> <span class="attribute">begin</span>=<span class="value">"0"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">path</span>=<span class="value">"[some path]"</span> <span class="attribute">additive</span>=<span class="value">"sum"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">animateMotion</span> <span class="attribute">begin</span>=<span class="value">"5s"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">path</span>=<span class="value">"[some path]"</span> <span class="attribute">additive</span>=<span class="value">"sum"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">animateMotion</span> <span class="attribute">begin</span>=<span class="value">"10s"</span> <span class="attribute">dur</span>=<span class="value">"5s"</span> <span class="attribute">path</span>=<span class="value">"[some path]"</span> <span class="attribute">additive</span>=<span class="value">"sum"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">img</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里轮到第二个动画的时候，路径是从第一个动画路径结束地方开始的，于是，3个动画完美无缝连接起来了。</p>
+<p>例子2：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">animateTransform</span> <span class="attribute">attributeName</span>=<span class="value">"transform"</span> <span class="attribute">type</span>=<span class="value">"scale"</span> <span class="attribute">from</span>=<span class="value">"1"</span> <span class="attribute">to</span>=<span class="value">"3"</span> <span class="attribute">dur</span>=<span class="value">"10s"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="attribute">additive</span>=<span class="value">"sum"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">animateTransform</span> <span class="attribute">attributeName</span>=<span class="value">"transform"</span> <span class="attribute">type</span>=<span class="value">"rotate"</span> <span class="attribute">from</span>=<span class="value">"0 30 20"</span> <span class="attribute">to</span>=<span class="value">"360 30 20"</span> <span class="attribute">dur</span>=<span class="value">"10s"</span> <span class="attribute">fill</span>=<span class="value">"freeze"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="attribute">additive</span>=<span class="value">"sum"</span>/&gt;</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这里，两个动画同时都是transform，都要使用一个type属性，好在这个例子additive=”sum”是累加的而不是replace替换。于是，我们就可以是实现一边旋转一边放大的效果。</p>
+<ol>
+<li>restart</li>
+</ol>
+<p>restart控制重新开启动画的规则。支持的参数有：always | whenNotActive | never.</p>
+<ul>
+<li>always 是默认值，表示总是，也就是点一次圈圈，马儿跑一下。</li>
+<li>whenNotActive 表示动画正在进行的时候，是不能重启动画的。</li>
+<li>never 表示动画是一波流。</li>
+</ul>
+<h4 id="动画的暂停与播放">动画的暂停与播放</h4><p>SVG animation中是有内置的API可以暂停和启动动画的。语法为：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// svg指当前svg DOM元素</span></span><br><span class="line">svg.pauseAnimations(); <span class="comment">// 暂停</span></span><br><span class="line">svg.unpauseAnimations(); <span class="comment">// 重启动</span></span><br></pre></td></tr></table></figure></p>
+<p>附上SMIL动画规范的官方文档链接：<a href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/" target="_blank" rel="external">http://www.w3.org/TR/2001/REC-smil-animation-20010904/</a></p>
+<h4 id="实例：变形动画"><animate>实例：变形动画</animate></h4><p>在 SMIL 中，SVG <path></path> 元素的 d 属性是可以被动画的元素属性之一。d 属性是你绘制的图形的轮廓的数据。我们可以通过这个属性来制作 SVG 路径变形动画。要制作 SVG 路径变形动画，你可以指定 attributeName 属性为 d，然后设置 from 和 to 值来指定开始和结束图形。你也可以使用 values 属性来指定中间值。</p>
+<p>下面是一个路径变形动画的小例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">viewBox</span>=<span class="value">"0 0 100 100"</span> <span class="attribute">width</span>=<span class="value">"500"</span> <span class="attribute">height</span>=<span class="value">"150"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">fill</span>=<span class="value">"#1EB287"</span> <span class="attribute">d</span>=<span class="value">"M 5.15151 0 C 52.5758 2.57575 52.5758 2.57575 100 5.15151 C 97.4242 52.5758 97.4242 52.5758 94.8485 100 C 47.4242 97.4242 47.4242 97.4242 0 94.8485 C 2.57575 47.4242 2.57575 47.4242 5.15151 0 Z"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"d"</span> <span class="attribute">dur</span>=<span class="value">"1440ms"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="attribute">keyTimes</span>=<span class="value">"0;</span><br><span class="line">                       .0625;</span><br><span class="line">                       .208333333;</span><br><span class="line">                       .3125;</span><br><span class="line">                       .395833333;</span><br><span class="line">                       .645833333;</span><br><span class="line">                       .833333333;</span><br><span class="line">                       1"</span> <span class="attribute">calcMode</span>=<span class="value">"spline"</span> <span class="attribute">keySplines</span>=<span class="value">"0,0,1,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,1,1;</span><br><span class="line">                         0,0,.58,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,.58,1"</span> <span class="attribute">values</span>=<span class="value">"M 0,0 </span><br><span class="line">                     C 50,0 50,0 100,0</span><br><span class="line">                     100,50 100,50 100,100</span><br><span class="line">                     50,100 50,100 0,100</span><br><span class="line">                     0,50 0,50 0,0</span><br><span class="line">                     Z;</span><br><span class="line"></span><br><span class="line">                     M 0,0 </span><br><span class="line">                     C 50,0 50,0 100,0</span><br><span class="line">                     100,50 100,50 100,100</span><br><span class="line">                     50,100 50,100 0,100</span><br><span class="line">                     0,50 0,50 0,0</span><br><span class="line">                     Z;</span><br><span class="line"></span><br><span class="line">                     M 50,0 </span><br><span class="line">                     C 75,25 75,25 100,50 </span><br><span class="line">                     75,75 75,75 50,100</span><br><span class="line">                     25,75 25,75 0,50</span><br><span class="line">                     25,25 25,25 50,0</span><br><span class="line">                     Z;</span><br><span class="line"></span><br><span class="line">                     M 25,50 </span><br><span class="line">                     C 37.5,25 37.5,25 50,0 </span><br><span class="line">                     75,50 75,50 100,100</span><br><span class="line">                     50,100 50,100 0,100</span><br><span class="line">                     12.5,75 12.5,75 25,50</span><br><span class="line">                     Z;</span><br><span class="line"></span><br><span class="line">                     M 25,50 </span><br><span class="line">                     C 37.5,25 37.5,25 50,0 </span><br><span class="line">                     75,50 75,50 100,100</span><br><span class="line">                     50,100 50,100 0,100</span><br><span class="line">                     12.5,75 12.5,75 25,50</span><br><span class="line">                     Z;</span><br><span class="line"></span><br><span class="line">                     M 50,0</span><br><span class="line">                     C 77.6,0 100,22.4 100,50 </span><br><span class="line">                     100,77.6 77.6,100 50,100</span><br><span class="line">                     22.4,100, 0,77.6, 0,50</span><br><span class="line">                     0,22.4, 22.4,0, 50,0</span><br><span class="line">                     Z;</span><br><span class="line">                     </span><br><span class="line">                     M 50,0</span><br><span class="line">                     C 77.6,0 100,22.4 100,50 </span><br><span class="line">                     100,77.6 77.6,100 50,100</span><br><span class="line">                     22.4,100, 0,77.6, 0,50</span><br><span class="line">                     0,22.4, 22.4,0, 50,0</span><br><span class="line">                     Z;</span><br><span class="line">                     </span><br><span class="line">                     M 100,0 </span><br><span class="line">                     C 100,50 100,50 100,100</span><br><span class="line">                     50,100 50,100 0,100</span><br><span class="line">                     0,50 0,50 0,0</span><br><span class="line">                     50,0 50,0 100,0</span><br><span class="line">                     Z;"</span>&gt;</span><span class="tag">&lt;/<span class="title">animate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">animate</span> <span class="attribute">attributeName</span>=<span class="value">"fill"</span> <span class="attribute">dur</span>=<span class="value">"1440ms"</span> <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="attribute">keyTimes</span>=<span class="value">"0;</span><br><span class="line">                       .0625;</span><br><span class="line">                       .208333333;</span><br><span class="line">                       .3125;</span><br><span class="line">                       .395833333;</span><br><span class="line">                       .645833333;</span><br><span class="line">                       .833333333;</span><br><span class="line">                       1"</span> <span class="attribute">calcMode</span>=<span class="value">"spline"</span> <span class="attribute">keySplines</span>=<span class="value">"0,0,1,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,1,1;</span><br><span class="line">                         0,0,.58,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,.58,1;</span><br><span class="line">                         .42,0,.58,1"</span> <span class="attribute">values</span>=<span class="value">"#1eb287;</span><br><span class="line">                     #1eb287;</span><br><span class="line">                     #1ca69e;</span><br><span class="line">                     #188fc2;</span><br><span class="line">                     #188fc2;</span><br><span class="line">                     #bb625e;</span><br><span class="line">                     #ca5f52;</span><br><span class="line">                     #1eb287;"</span>&gt;</span><span class="tag">&lt;/<span class="title">animate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">path</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<svg viewbox="0 0 100 100" width="500" height="150"> <path fill="#1EB287" d="M 5.15151 0 C 52.5758 2.57575 52.5758 2.57575 100 5.15151 C 97.4242 52.5758 97.4242 52.5758 94.8485 100 C 47.4242 97.4242 47.4242 97.4242 0 94.8485 C 2.57575 47.4242 2.57575 47.4242 5.15151 0 Z"/> <animate attributename="d" dur="1440ms" repeatcount="indefinite" keytimes="0; .0625; .208333333; .3125; .395833333; .645833333; .833333333; 1" calcmode="spline" keysplines="0,0,1,1; .42,0,.58,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1" values="M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z; M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z; M 50,0 C 75,25 75,25 100,50 75,75 75,75 50,100 25,75 25,75 0,50 25,25 25,25 50,0 Z; M 25,50 C 37.5,25 37.5,25 50,0 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 Z; M 25,50 C 37.5,25 37.5,25 50,0 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 Z; M 50,0 C 77.6,0 100,22.4 100,50 100,77.6 77.6,100 50,100 22.4,100, 0,77.6, 0,50 0,22.4, 22.4,0, 50,0 Z; M 50,0 C 77.6,0 100,22.4 100,50 100,77.6 77.6,100 50,100 22.4,100, 0,77.6, 0,50 0,22.4, 22.4,0, 50,0 Z; M 100,0 C 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 50,0 50,0 100,0 Z;"/> <animate attributename="fill" dur="1440ms" repeatcount="indefinite" keytimes="0; .0625; .208333333; .3125; .395833333; .645833333; .833333333; 1" calcmode="spline" keysplines="0,0,1,1; .42,0,.58,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1" values="#1eb287; #1eb287; #1ca69e; #188fc2; #188fc2; #bb625e; #ca5f52; #1eb287;"/>  </svg>
+
+
+<h3 id="SVG与CSS3的关系">SVG与CSS3的关系</h3><ol>
+<li>使用CSS属性变换SVG</li>
+</ol>
+<ul>
+<li><p>需要符合css3属性规范</p>
+<p>例如：函数参数必须逗号隔开；rotate()函数不接受<code>&lt;cx&gt;</code>和<code>&lt;cy&gt;</code>值, 旋转中心使用transform-origin属性声明。另外，CSS变换函数接受角度和坐标单位，例如角度的rad(radians)和坐标的px,em等。</p>
+</li>
+<li><p>使用SVG自身的变换规则</p>
+<p>SVG元素也可以使用CSS 3D变换在三维空间中变换。依然要注意SVG元素坐标系与HTML元素上的坐标系的不同</p>
+</li>
+</ul>
+<blockquote>
+<p>通过CSS来变换SVG元素非常类似于通过CSS来变换HTML元素在语法层面上相同，但是实际变换规则不同。</p>
+</blockquote>
+<ol>
+<li>使用CSS属性定义动画</li>
+</ol>
+<p>SVG元素可以像HTML元素一样，使用CSS keyframes和animation属性或者CSS transitions来制作各种动画效果。大多数情况下，一个复杂的动画效果需要组合多种变换效果：旋转、倾斜、缩放以及他们的转换和过渡效果。</p>
+<p>多数情况下，SVG元素和HTML元素在使用transform和transform-origin上是相同的。但它们之间也有不同之处:<br>1) SVG元素不能使用box model来管理，因此，它没有margin、padding、border或content boxes。<br>2) 默认情况下，一个HTML元素的transform原点位于该元素的(50%, 50%)的地方，这里是元素的中心点。与之不同，SVG 元素的 transform 原点位于当前用户坐标系统的原点上，这个点是画布的左上角位置。[如果有不理解的地方，参阅前文的SVG的坐标系统相关章节]</p>
+<blockquote>
+<p>TIPS: 如果希望显式的改变坐标原点，可以使用transform-origin属性来明确的设置HTML元素或者SVG元素的原点位置。<br>    在HTML元素上设置转换原点是一件非常简单的事情：你设置的任何值都是相对于元素的border box。<br>    在SVG中，transform原点可以使用百分比值或一个绝度值（如像素）来设置。如果你使用百分比值来设置transform-origin，这个值被设置为相对于元素的bounding box，它包括用于绘制边框的stroke。如果你使用一个绝对值来来设置transform-origin，那么这个值被设置为相对于用户的当前坐标系统，即SVG的画布。如果我们要将上例中的<code>&lt;div&gt;</code>和<code>&lt;rect&gt;</code>都使用百分比来设置其transform原点到中心，代码如下：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">  <span class="tag">div</span>, <span class="tag">rect</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">transform-origin</span>:<span class="value"> <span class="number">50%</span> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Firefox浏览器仍不支持使用百分比来设置transform的原点。</p>
+</blockquote>
+<h3 id="SVG_与_javascript">SVG 与 javascript</h3><p>当SVG嵌入到HTML页面的时候，你可以使用javascript来操作SVG元素，就像操作其他HTML元素一样。例如，我们可以通过javascript来修改SVG元素属性，使它产生动画效果，或者在SVG图像上监听鼠标事件等等。<br>1) 通过ID获取SVG的引用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svgElement = <span class="built_in">document</span>.getElementById(<span class="string">"rect1"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>2) 读取/修改属性值<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svgElement = <span class="built_in">document</span>.getElementById(<span class="string">"rect1"</span>);</span><br><span class="line"><span class="keyword">var</span> width = svgElement.getAttribute(<span class="string">"width"</span>);       </span><br><span class="line">svgElement.setAttribute(<span class="string">"width"</span>, <span class="string">"100"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>2) 读取/修改CSS属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svgElement = <span class="built_in">document</span>.getElementById(<span class="string">"rect1"</span>);</span><br><span class="line">svgElement.style.stroke = <span class="string">"#ff0000"</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>要注意的是，在某些SVG的CSS属性中，属性名称带有-连接符，例如stroke-width。这时候我们就需要通过[‘’]结构来引用它。</p>
+</blockquote>
+<p>4) 事件监听<br>支持 DOM0 级事件和 DOM2 级和 DOM3 级事件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">rect</span> <span class="attribute">x</span>=<span class="value">"10"</span> <span class="attribute">y</span>=<span class="value">"10"</span> <span class="attribute">width</span>=<span class="value">"100"</span> <span class="attribute">height</span>=<span class="value">"75"</span></span><br><span class="line">      <span class="attribute">style</span>=<span class="value">"stroke: #000000; fill: #eeeeee;"</span></span><br><span class="line">      <span class="attribute">onmouseover</span>=<span class="value">"this.style.stroke = '#ff0000'; this.style['stroke-width'] = 5;"</span></span><br><span class="line">      <span class="attribute">onmouseout</span>=<span class="value">"this.style.stroke = '#000000'; this.style['stroke-width'] = 1;"</span></span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svgElement = <span class="built_in">document</span>.getElementById(<span class="string">"rect1"</span>);</span><br><span class="line">svgElement.addEventListener(<span class="string">"mouseover"</span>, mouseOver);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mouseOver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"事件被触发!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SVG在移动页面的应用">SVG在移动页面的应用</h3><h4 id="使用SVG中的Symbol元素制作图标">使用SVG中的Symbol元素制作图标</h4><p>［参考文献］<br><a href="http://isux.tencent.com/16292.html" target="_blank" rel="external">http://isux.tencent.com/16292.html</a><br><a href="http://io-meter.com/2014/07/20/replace-icon-fonts-with-svg/" target="_blank" rel="external">http://io-meter.com/2014/07/20/replace-icon-fonts-with-svg/</a><br><a href="https://css-tricks.com/svg-symbol-good-choice-icons/" target="_blank" rel="external">https://css-tricks.com/svg-symbol-good-choice-icons/</a></p>
+<p>随着高清屏幕的普及，相比使用png等位图而言，使用SVG等矢量图形是一种全新的设计方式。更重要的是相比位图而言，SVG有着无可比拟的优势。总结来说，SVG具有以下优势：</p>
+<ul>
+<li>SVG是矢量图形文件，可以随意改变大小，而不影响图标质量</li>
+<li>可以用CSS样式来自由定义图标颜色，比如颜色/尺寸等效果（整体或者局部改变）</li>
+<li>所有的SVG可以全部在一个文件中，节省HTTP请求</li>
+<li>使用SMIL、CSS3或者是javascript可以制作充满灵性的交互动画效果</li>
+<li>由于SVG也是一种XML节点的文件，可以使用gzip的方式把文件压缩到很小</li>
+</ul>
+<blockquote>
+<p>字体图标也是一种基于矢量图形的技术封装</p>
+</blockquote>
+<p>网站icomoon提供免费的svg图标下载。访问 <a href="https://icomoon.io" target="_blank" rel="external">https://icomoon.io</a> 点击你需要下载的图形，选中它，然后点击下载按钮。</p>
+<p>每个图标都以symbol的方式进行定义<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">symbol</span> <span class="attribute">id</span>=<span class="value">"icon-image"</span> <span class="attribute">viewBox</span>=<span class="value">"0 0 1024 1024"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">title</span>&gt;</span>image<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">class</span>=<span class="value">"path1"</span> <span class="attribute">d</span>=<span class="value">"M959.884 128c0.040 0.034 0.082 0.076 0.116 0.116v767.77c-0.034 0.040-0.076 0.082-0.116 0.116h-895.77c-0.040-0.034-0.082-0.076-0.114-0.116v-767.772c0.034-0.040 0.076-0.082 0.114-0.114h895.77zM960 64h-896c-35.2 0-64 28.8-64 64v768c0 35.2 28.8 64 64 64h896c35.2 0 64-28.8 64-64v-768c0-35.2-28.8-64-64-64v0z"</span>&gt;</span><span class="tag">&lt;/<span class="title">path</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">class</span>=<span class="value">"path2"</span> <span class="attribute">d</span>=<span class="value">"M832 288c0 53.020-42.98 96-96 96s-96-42.98-96-96 42.98-96 96-96 96 42.98 96 96z"</span>&gt;</span><span class="tag">&lt;/<span class="title">path</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">path</span> <span class="attribute">class</span>=<span class="value">"path3"</span> <span class="attribute">d</span>=<span class="value">"M896 832h-768v-128l224-384 256 320h64l224-192z"</span>&gt;</span><span class="tag">&lt;/<span class="title">path</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">symbol</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用图标的时候只需<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">svg</span> <span class="attribute">class</span>=<span class="value">"icon icon-image"</span>&gt;</span><span class="tag">&lt;<span class="title">use</span> <span class="attribute">xlink:href</span>=<span class="value">"#icon-image"</span>&gt;</span><span class="tag">&lt;/<span class="title">use</span>&gt;</span><span class="tag">&lt;/<span class="title">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="利用SVG特性制作高级动画">利用SVG特性制作高级动画</h4><h5 id="基于SVG的path动画">基于SVG的path动画</h5><p>利用SVG的Path，可以制作生成许多复杂的动画，其中之一便是Path的变形动画。在《移动H5页面开发系列——part2:移动H5页面优秀案例赏析》一文中，新百伦的运动鞋宣传页面案例《青春是一种什么颜色？》的背景颜色动画就可以使用Path变形动画进行实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;svg viewBox=&#34;0 0 320 480 &#34; width=&#34;320&#34; height=&#34;480&#34;&#62;&#10;  &#60;path fill=&#34;tomato&#34; d=&#34;M0 100 L0 480 L320 480 L320 100 Q250,80 100,110 T0,0&#34;&#62;&#10;    &#60;animate attributeName=&#34;d&#34; dur=&#34;4440ms&#34; repeatCount=&#34;indefinite&#34; keyTimes=&#34;0;0.3;0.6;1&#34;  calcMode=&#34;spline&#34; &#10;    keySplines=&#34;0,0,1,1;0,0,1,1;0,0,1,1;&#34; &#10;    values=&#34;M0 400 L0 480 L320 480 L320 400 Q500,350 300,380 T0,400;&#10;            M0 300 L0 480 L320 480 L320 300 Q400,250 300,280 T0,300;&#10;            M0 200 L0 480 L320 480 L320 200 Q450,250 200,210 T0,200;&#10;            M0 100 L0 480 L320 480 L320 100 Q250,80  100,110 T0,0&#34;&#62;&#60;/animate&#62;&#10;  &#60;/path&#62;&#10;&#60;/svg&#62;</span><br></pre></td></tr></table></figure>
+<p>实际效果可以刷查看下面的案例：</p>
+<iframe src="http://sandbox.runjs.cn/show/lk7nbykz" width="100%" height="500"></iframe>
+
+<h5 id="基于线条的描绘动画：">基于线条的描绘动画：</h5><p>另外一种动画是利用SVG特性实现线条的描绘动画和图像的上色动画。</p>
+<p>线条的描绘动画，CSS3比较难实现，这里可以用SVG实现，主要代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.path</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">stroke-dasharray</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">stroke-dashoffset</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">animation</span>:<span class="value"> dash <span class="number">5s</span> linear forwards</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> dash </span>&#123;</span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">stroke-dashoffset</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际效果可以刷新页面查看：</p>
+<iframe src="http://sandbox.runjs.cn/show/7hujlkjt" width="100%" height="500"></iframe>
+
+<p>参考文献：<a href="https://jakearchibald.com/2013/animated-line-drawing-svg/" target="_blank" rel="external">https://jakearchibald.com/2013/animated-line-drawing-svg/</a></p>
+<h5 id="细节动画">细节动画</h5><p>由于SVG是一种类似DOM节点组成的文本文档，所以我们可以很精细的控制SVG图形的每一个部分，并且可以使用SMIL动画、CSS3动画或者是javascript来制作动画效果，可用于制造一些高品质的细腻逼真的动画，精确刻画每一个动画细节。</p>
+<iframe src="http://sandbox.runjs.cn/show/anzvpikn" width="100%" height="320"></iframe>
+
+<p>更多例子，请参考下面的链接：<br><a href="http://fang.youku.com/2014/timet" target="_blank" rel="external">http://fang.youku.com/2014/timet</a><br><a href="http://codepen.io/ghepting/pen/xnezB" target="_blank" rel="external">http://codepen.io/ghepting/pen/xnezB</a><br><a href="http://codepen.io/TimPietrusky/pen/vKuja" target="_blank" rel="external">http://codepen.io/TimPietrusky/pen/vKuja</a><br><a href="http://www.html5tricks.com/demo/html5-svg-smile-faces/index.html" target="_blank" rel="external">http://www.html5tricks.com/demo/html5-svg-smile-faces/index.html</a><br><a href="http://www.gbtags.com/gb/demoviewer/4001/9ca6f6cd-65cc-4d9a-8fed-613f9c0cba6c/svg-page-loading.html.htm" target="_blank" rel="external">http://www.gbtags.com/gb/demoviewer/4001/9ca6f6cd-65cc-4d9a-8fed-613f9c0cba6c/svg-page-loading.html.htm</a><br><a href="http://www.html5tricks.com/demo/html5-svg-shanche-animation/index2.html" target="_blank" rel="external">http://www.html5tricks.com/demo/html5-svg-shanche-animation/index2.html</a></p>
+<h4 id="SVG_的缺点">SVG 的缺点</h4><p>1) 渲染成本<br>理论上讲，SVG的效率可能会不如PNG好，这是因为它需要运行时的计算和对应平台的渲染绘制。而且对于PNG来说的另一优势是在开启硬件加速的设备上，绘制Bitmap一个非常快速的过程。</p>
+<p>2) 渲染效果<br>不同的浏览器乃至不同的平台的抗锯齿处理千差万别，你的图标如果多边形比较多，在底分辨屏幕上的效果可能千差万别，特别是如果赶上蛋疼的用户关掉抗锯齿，图标会惨不忍睹的。</p>
+<p>3) Fallback的支持<br>SVG虽然有很多很好的特性，但是无论是web的ie8-还是mobile上的Android2.3-，都得做一套fallback。</p>
+<p>4) 文件大<br>由于SVG以XML的方式描述图像，其文件大小通常是icon-font的数倍。如果大家对icon image进行优化，会发现如果icon / logo较小的时候用位图反而更有利于节省带宽。所以大家如果用SVG还是用icon-font，自然也就一目了然。在一些应用场景，SVG会有自身的优势，因此要酌情使用。但多数情况下，web开发以及浏览器开发的人，处理font的经验相对于矢量图要多一些。</p>
+<h3 id="结语">结语</h3><p>没有结语。<br>以上，轻拍。<br>(EOF)</p>
+<h3 id="参考文章">参考文章</h3><ol>
+<li><a href="http://www.w3cplus.com/html5/svg-introduction-and-embedded-html-page.html" target="_blank" rel="external">http://www.w3cplus.com/html5/svg-introduction-and-embedded-html-page.html</a></li>
+<li><a href="http://www.w3cplus.com/html5/svg-file-structure.html" target="_blank" rel="external">http://www.w3cplus.com/html5/svg-file-structure.html</a></li>
+<li><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507082192.html" target="_blank" rel="external">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507082192.html</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/23/mobile-html5-page-development-skills-part4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/23/mobile-html5-page-development-skills-part6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动H5页面开发系列——part6:Canvas元素在移动H5页面动画的应用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

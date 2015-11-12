@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS核心可视化格式模型: 浮动(Float) part6 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="浮动是可视化格式模型中非常重要的一节。浮动跟堆叠层级(stack level)也有一定的关系。可视化模型是一个3维的模型，并不是二维的。元素在页面上的排列，从我们的角度看是二维的，元素的位置可以用x，y轴坐标来表示。但是，元素和元素之间的位置如果有所重叠，谁显示在前面，就涉及到另一个轴：z轴。我们经常使用的 z-index 就是如此得来的。浮动框在整个模型中，z轴坐标比常规流中的值要高，所以会飘在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS核心可视化格式模型: 浮动(Float) part6">
+<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part6/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="浮动是可视化格式模型中非常重要的一节。浮动跟堆叠层级(stack level)也有一定的关系。可视化模型是一个3维的模型，并不是二维的。元素在页面上的排列，从我们的角度看是二维的，元素的位置可以用x，y轴坐标来表示。但是，元素和元素之间的位置如果有所重叠，谁显示在前面，就涉及到另一个轴：z轴。我们经常使用的 z-index 就是如此得来的。浮动框在整个模型中，z轴坐标比常规流中的值要高，所以会飘在">
+<meta property="og:updated_time" content="2015-10-30T03:03:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS核心可视化格式模型: 浮动(Float) part6">
+<meta name="twitter:description" content="浮动是可视化格式模型中非常重要的一节。浮动跟堆叠层级(stack level)也有一定的关系。可视化模型是一个3维的模型，并不是二维的。元素在页面上的排列，从我们的角度看是二维的，元素的位置可以用x，y轴坐标来表示。但是，元素和元素之间的位置如果有所重叠，谁显示在前面，就涉及到另一个轴：z轴。我们经常使用的 z-index 就是如此得来的。浮动框在整个模型中，z轴坐标比常规流中的值要高，所以会飘在">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-css-visual-formatting-model-part6" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/css-visual-formatting-model-part6/" class="article-date">
+  	<time datetime="2015-10-29T09:04:40.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS核心可视化格式模型: 浮动(Float) part6
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>浮动是可视化格式模型中非常重要的一节。浮动跟<code>堆叠层级(stack level)</code>也有一定的关系。<strong>可视化模型是一个3维的模型，并不是二维的</strong>。元素在页面上的排列，从我们的角度看是二维的，元素的位置可以用x，y轴坐标来表示。但是，元素和元素之间的位置如果有所重叠，谁显示在前面，就涉及到另一个轴：z轴。我们经常使用的 z-index 就是如此得来的。浮动框在整个模型中，z轴坐标比常规流中的值要高，所以会飘在它上面。也可以把这个模型看作是 Photoshop中的图层，我们就好像在好多层玻璃上画框框，这些玻璃都叠在一起，我们只能透过一个窗口(浏览器可见窗口)来看这些玻璃重叠后的图画。浮动可以看作其中的一个图层。</p>
+<a id="more"></a>
+<h3 id="浮动概述">浮动概述</h3><p><strong>浮动和文字环绕</strong><br><code>浮动框</code>就是一个框在当前行被向左或向右挪动(偏移)，它不在常规流中，浮动框由浮动元素的框组成。<code>浮动框( float, “floated” or “floating” box)</code>最有趣的特性是内容可以沿着它的边缘渲染（或设置’clear’属性禁止此特性）。内容排列在沿着左浮动框的右边排列，而沿着右浮动框的左边排列，也就是我们常说的文字环绕效果。<br>请看下面的例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">P</span> <span class="attribute">style</span>=<span class="value">"margin: 2em; border: 1px solid red; width: 200px;"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"width:100px; height:100px; background-color:green; margin:20px;float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    The SPAN box is floated to the left. The content that follows is formatted to the</span><br><span class="line">    right of the float, starting on the same line as the float.</span><br><span class="line"><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p></p><p style="margin: 2em; border: 1px solid red; width: 200px;"> <span style="width:100px; height:100px; background-color:green; margin:20px;float:left;"></span> The SPAN box is floated to the left. The content that follows is formatted to the right of the float, starting on the same line as the float. </p><p></p>
+<p>如上图，文字和绿色的块之间有空白，可见，文字是围绕绿块的 margin 排列的。</p>
+<p><strong>浮动框的放置</strong></p>
+<p>一个<code>浮动框</code>，会被向左或向右偏移，直到它的<code>外边界</code>( outter edge，又叫margin edge ) 接触到它 <code>包含块</code> 的边界或另一个<code>浮动元素的外边界</code> ，如果存在一个行框，浮动框的顶边会和当前行框的顶部对齐。</p>
+<p>如果水平方向没有足够的空间放置浮动元素，它将向下移动，直到有足够的空间或没有更多的浮动元素为止。</p>
+<p><strong>浮动元素会缩短行框</strong><br>由于浮动框并不在常规流中，在该浮动框之前或之后创建的非定位框垂直排列，就好象浮动框并不存在一样。然而，浮动框之后创建的行框 会被缩短，比便为浮动元素的 margin 框提供空间。如果被缩短的行框无法再容纳更多的内容，它将向下移动，直到有足够的空间或没有更多的浮动元素为止。当前行里浮动框前的任何内容，都将被重新排列到该浮动另一侧的第一个可用行里。也就是说，如果在遇到左浮动框之前，行内框被放置到行上，剩余的行框空间足够容纳该左浮动框，那么，左浮动框就会被放置在该行上，并与该行框的顶端对齐，然后，已经在行上的行内框被相应地移动到该浮动框的右侧（右侧成了该左浮动框的另一侧），反之亦然，对于 rtl 和 右浮动框也是一样。<br>如上图中的文字环绕的例子，包含文字的行框被缩短，是包含块减去浮动元素的 margin 宽度。其中，The content两字，分别被放到了两行，因为，一行中的剩余空间无法再容纳content。</p>
+<p><strong>TABLE 元素、块级替换元素、BFC元素和浮动元素</strong><br>TABLE 元素、块级替换元素或者在常规流中创建了 block formatting contexts 的元素，它们的  border box 在同一个  block formatting contexts  中，一定不能覆盖任何浮动元素。如果有必要，实现工具应该通过把元素放置到前面浮动元素的下面，以清理先前说到的元素，但是，如果有足够的空间，也可以把它紧临浮动元素放置。它们可能造成所说元素的 border box 比10.3.3中定义的要短。<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"C"</span> <span class="attribute">style</span>=<span class="value">"margin: 2em; border: 1px solid red; width: 200px; overflow: hidden;"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"A"</span> <span class="attribute">style</span>=<span class="value">"width:50px; height:50px; background-color:green; margin:20px; float: left;"</span>&gt;</span>A<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"B"</span> <span class="attribute">style</span>=<span class="value">" width:50px; background-color:blue; overflow:hidden;"</span>&gt;</span>B<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div id="C" style="margin: 2em; border: 1px solid red; width: 200px; overflow: hidden;"> <div id="A" style="width:50px; height:50px; background-color:green; margin:20px; float: left;">A</div> <div id="B" style=" width:50px; background-color:blue; overflow:hidden;">B</div> </div>
+
+<p>这时，B的宽度为50px，它和浮动元素A的包含块都是C，宽度为200px。浮动元素在放置后，还有足够的空间放置B，所以，B 被紧挨着A 的margin 框被放置。</p>
+<p>将B的宽度改为150px，这时：</p>
+<div id="C" style="margin: 2em; border: 1px solid red; width: 200px; overflow: hidden;"> <div id="A" style="width:50px; height:50px; background-color:green; margin:20px; float: left;">A</div> <div id="B" style=" width:150px; background-color:blue; overflow:hidden;">B</div> </div>
+
+<p>需要注意的时，这种方式与使用 clear 特性清除浮动不同。后面将介绍 clear 特性。</p>
+<h3 id="浮动属性详解">浮动属性详解</h3><p>浮动特性非常有用，3大布局核心之一。虽然如此，它涉及内容过多，浏览器兼容性问题也很多。它的定位不仅涉及<code>包含块</code>，还涉及到了<code>行框</code>，<code>块框</code>，还有<code>行内框</code>等内容；并且，各浏览器对其的支持还有不少兼容性问题。</p>
+<p><strong>适用于哪些元素</strong><br>可设置给任意元素，但只适用于生成非绝对定位框的元素。<br>例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:500px; height:150px; border:1px solid green; position:relative;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:100px; height:100px; float:right; position:absolute; border:1px solid red;"</span>&gt;</span>absolute<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:100px; height:100px; float:right; position:relative; border:1px solid red;"</span>&gt;</span>relative<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>实际效果如下：</p>
+<div style="width:500px; height:150px; border:1px solid green; position:relative;"> <div style="width:100px; height:100px; float:right; position:absolute; border:1px solid red;">absolute</div> <div style="width:100px; height:100px; float:right; position:relative; border:1px solid red;">relative</div> </div>
+
+<p>可见，对于绝对定位的元素，浮动没有任何效果。这也体现了浮动和绝对定位之间的一种平衡。</p>
+<p><strong>特性值的含义</strong><br>该属性指定框应当向左右移动或者不移动。特性值有如下含义：<br>left: 该元素产生一个向左浮动的<code>块框</code>。内容在该框的右边排列，就是之前所说的文字环绕，起点是框的顶部（会受’clear’属性的影响）。<br>right: 与left类似，框向右侧浮动，内容在该框的左侧排列，从顶部开始。<br>none: 该框不浮动。</p>
+<p><strong>浮动细则</strong></p>
+<ol>
+<li><p>对于根元素的浮动，浏览器应该当作 none<br>根元素无所谓是否浮动，没有实际意义。</p>
+</li>
+<li><p>左浮动框的<code>左外边界</code>(margin edge)不可以出现在它<code>包含块</code>左边界之左。对于右浮动的元素也有类似规则</p>
+</li>
+</ol>
+<p>也就是说左浮动元素的左 margin 最多紧贴包含块的左边界。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:500px; border:2px solid red; overflow:hidden;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:left;width: 100px; height: 100px; background-color: green; margin:0 20px;"</span>&gt;</span>left<span class="tag">&lt;/<span class="title">div</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:right;width: 100px; height: 100px; background-color: green; margin:0 20px;"</span>&gt;</span>right<span class="tag">&lt;/<span class="title">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>示意图：</p>
+<div style="width:500px; border:2px solid red; overflow:hidden;"> <div class="sub" style="float:left;width: 100px; height: 100px; background-color: green; margin:0 20px;">left</div> <div class="sub" style="float:right;width: 100px; height: 100px; background-color: green; margin:0 20px;">right</div> </div>
+
+<ol>
+<li>如果当前框是左浮动框，并且在源文档中存在更早生成的左浮动框，那么对于任意这些先前的框，要么当前框的左外边出现在先前框的右外边之右，要么它的顶部必须在先前框的底部之下。对于向右浮动的框也有类似的规则。</li>
+</ol>
+<p>也就是说，浮动元素的定位受先前生成的浮动框的影响。后面的浮动元素，需要紧挨着先前同向浮动元素的 margin 边进行定位，如果空间不足，则折行，放置到它之前元素的下面。<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width:500px; border:2px solid red; overflow:hidden;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:left;width: 200px; height: 100px; background-color: green; margin:10px;"</span>&gt;</span>left1<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:left;width: 200px; height: 100px; background-color: green; margin:10px;"</span>&gt;</span>left2<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:left;width: 200px; height: 100px; background-color: green; margin:10px;"</span>&gt;</span>left3<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>示意图：</p>
+<div style="width:500px; border:2px solid red; overflow:hidden;"> <div class="sub" style="float:left;width: 200px; height: 100px; background-color: green; margin:10px;">left1</div> <div class="sub" style="float:left;width: 200px; height: 100px; background-color: green; margin:10px;">left2</div> <div class="sub" style="float:left;width: 200px; height: 100px; background-color: green; margin:10px;">left3</div> </div>
+
+<p>如上图中，把left2当作当前元素，那么，它前面有left1生成的浮动框，所以，它会贴着left1的右 margin 边排列。而到left3 的时候，剩余的空间已经不能够放置它了，所以，折行放置。</p>
+<ol>
+<li>左浮动框的右外边不可以出现在它右侧的任何右浮动框的左外边之右。对于向右浮动的元素也有类似的规则。</li>
+</ol>
+<p>注意，以上说的是右侧，不是下侧，此规则不包括左浮动框下面的右浮动框。就是说，同一行中的左浮动元素和有浮动元素不能够有互相折叠的现象。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">style</span>=<span class="value">"width:200px; overflow:hidden; border:1px solid red;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:left;width: 100px; height: 100px; background-color: green; margin: 10px;"</span>&gt;</span>left<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span> <span class="attribute">style</span>=<span class="value">"float:right;width: 100px; height: 100px; background-color: green; margin: 10px;"</span>&gt;</span>right<span class="tag">&lt;/<span class="title">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>示意图：</p>
+<div id="container" style="width:200px; overflow:hidden; border:1px solid red;"> <div class="sub" style="float:left;width: 100px; height: 100px; background-color: green; margin: 10px;">left</div> <div class="sub" style="float:right;width: 100px; height: 100px; background-color: green; margin: 10px;">right</div> </div>
+
+<p>以上两个浮动元素的包含块宽度为200px，无法在一行放置，所以，右浮动元素只好折行显示了。<br>宽度设置成300px之后，则可以放到一行。</p>
+<ol>
+<li>浮动框的顶外边不能高于它包含块的顶部。当一个浮动框发生在两个margin折叠的中间时，浮动元素的定位好像它有另一个空的块级父框位于常规流中。那个空父框的定位规则在margin 折叠一节有说明。</li>
+</ol>
+<p>第一句好理解，说的是顶边不能超出包含块，跟左边右边不能超出一个道理。<br>后面的规则是说，当浮动框处于两个发生margin折叠的地方时，会被当作被包含在一个空的块框中，它上面和下面的margin会穿过它发生margin折叠，当它不存在。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line">    <span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">background-color</span>:<span class="value"> green</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span>A<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"float:left; margin:10px; background-color: red;"</span>&gt;</span>O<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span>B<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上代码中，3个 div 的包含块是初始包含块。O 处于 A 和 B 的中间，A和B在理论上应当发生margin 折叠。那么，发生了么？<br>看截图：</p>
+<ol>
+<li><p>浮动框的顶边不可以高于源文档中先前元素产生的块框或浮动框的顶</p>
+</li>
+<li><p>浮动框的顶边不可以高于源文档中先前元素产生的包含一个框的任何行框的顶。<br>在前面的内容中说到过，浮动元素会缩短行框。</p>
+</li>
+<li><p>左浮动框左边如果有另外一个左浮动框，它的右外边不可以出现在它包含块的右边之右。（或者比较宽松的要求是：一个左浮动不可以超出右边，除非它已经尽可能地靠左排列。）对于向右浮动的元素也有类似的规则。<br>此条规则也是限定浮动元素的位置范围，不可超出包含块。</p>
+</li>
+<li><p>浮动框要放置得尽可能的高。<br>在符合所有规则的情况下，尽可能的向上放，注意6、7两条关于其顶边的规则。</p>
+</li>
+<li><p>左浮动框必须尽量靠左放置，右浮动框必须尽量靠右放置。在更高的位置和更靠左或靠右的位置间，选择前者。<br>和第9条，可以算是浮动的大规则吧，尽量的向上向左/右放。</p>
+</li>
+</ol>
+<p>这些规则中所说的<code>其它元素</code>仅仅是指与浮动框在同一个<code>块格式化上下文</code>的<code>其它元素</code>。</p>
+<h3 id="总结">总结</h3><p>可见，浮动的规则却是很让人迷惑，但从这几条规则中你也不难发现，浮动的宗旨是，<strong>在不溢出包含块的情况下，尽量的靠上靠左/右放置，但是不能高于它前面生成的块框、浮动框和行框的顶</strong>。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 控制紧接浮动的排列-clear 特性 part7
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS核心可视化格式模型: 常规流中的格式化上下文 part5</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

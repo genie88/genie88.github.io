@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS核心可视化格式模型: 框的生成 part3 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文描述了CSS 2.1中可能产生的框的类型。在某种程度上，框的类型会影响其在视觉格式化模型中的表现。CSS属性中的display属性用来指定框的类型。
+我们经常用到块元素、行内元素的概念，那么，到底什么是块元素，什么是行内元素，它们有什么特点，怎么形成的，有什么作用呢？什么是块框，什么又是行内框呢？下面，请大家跟我一起走近W3C标准，看个究竟吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS核心可视化格式模型: 框的生成 part3">
+<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part3/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="本文描述了CSS 2.1中可能产生的框的类型。在某种程度上，框的类型会影响其在视觉格式化模型中的表现。CSS属性中的display属性用来指定框的类型。
+我们经常用到块元素、行内元素的概念，那么，到底什么是块元素，什么是行内元素，它们有什么特点，怎么形成的，有什么作用呢？什么是块框，什么又是行内框呢？下面，请大家跟我一起走近W3C标准，看个究竟吧。">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/12219371/10836964/17376f9c-7eef-11e5-91a9-5545f5b4387c.jpg">
+<meta property="og:updated_time" content="2015-10-30T02:44:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS核心可视化格式模型: 框的生成 part3">
+<meta name="twitter:description" content="本文描述了CSS 2.1中可能产生的框的类型。在某种程度上，框的类型会影响其在视觉格式化模型中的表现。CSS属性中的display属性用来指定框的类型。
+我们经常用到块元素、行内元素的概念，那么，到底什么是块元素，什么是行内元素，它们有什么特点，怎么形成的，有什么作用呢？什么是块框，什么又是行内框呢？下面，请大家跟我一起走近W3C标准，看个究竟吧。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-css-visual-formatting-model-part3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/css-visual-formatting-model-part3/" class="article-date">
+  	<time datetime="2015-10-29T03:35:04.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS核心可视化格式模型: 框的生成 part3
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文描述了CSS 2.1中可能产生的框的类型。在某种程度上，框的类型会影响其在视觉格式化模型中的表现。CSS属性中的<code>display</code>属性用来指定框的类型。</p>
+<p>我们经常用到块元素、行内元素的概念，那么，到底什么是块元素，什么是行内元素，它们有什么特点，怎么形成的，有什么作用呢？什么是块框，什么又是行内框呢？下面，请大家跟我一起走近W3C标准，看个究竟吧。<br><a id="more"></a></p>
+<h3 id="块级元素和块框(block_box)">块级元素和块框(block box)</h3><p><code>块级元素</code>是源文档中那些在视觉上被格式化为块（如：段落）的元素。某些 ‘display’ 特性的取值会产生块级元素：’block’，’list-item’ 和 ‘table’。</p>
+<p><code>块级框</code>是参与块格式化上下文的框。每个块级元素生成一个<code>主要的块级框</code>来包含其子框和生成的内容，同时任何定位方案都会与这个主要的框有关。某些块级元素还会在主要框之外产生额外的框：例如“list-item”元素。这些额外的框会相对于主要框来放置。</p>
+<p><strong>除了table框，和可替换元素，一个块级框同时也是一个块容器框</strong>。一个<code>块容器框</code>要么只包含<code>块级框</code>，要么创建一个<code>行格式化上下文</code>而只包含行<code>内级框</code>。</p>
+<p>并非所有的<code>块容器框</code>都是<code>块级框</code>：不可替换的行内块和不可替换的table cell也是<code>块容器</code>但不是<code>块级框</code>。是<code>块级框</code>的<code>块容器</code>称作<code>块框</code>。</p>
+<p>三个术语：块级框（block-level box）、块容器框（block container box）和块框（block box）在意义明确的时候简称为块（block）。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/12219371/10836964/17376f9c-7eef-11e5-91a9-5545f5b4387c.jpg" alt="block_box"></p>
+<p><code>块级元素</code>（不包含 table），会形成仅包含<code>块框</code>或仅包含<code>行内框</code>的<code>主块框</code>( principal block box )。<code>主块框</code>会为子孙元素建立<code>包含块</code>，生成内容，并且也是涉及所有定位体系的框。<code>主块框</code>参与block formatting context。</p>
+<blockquote>
+<p>某些块级元素在主块框之外生成额外的框, 这些额外的框根据主块框来定位。 例如，<code>&lt;li&gt;</code> 元素</p>
+</blockquote>
+<h3 id="匿名块框">匿名块框</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">DIV</span>&gt;</span></span><br><span class="line">  Some text</span><br><span class="line">  <span class="tag">&lt;<span class="title">P</span>&gt;</span>More text<span class="tag">&lt;/<span class="title">P</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">DIV</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div style="border: 1px solid #ff0;"> <p style="border: 1px solid #f00;">Some text</p> <p style="border: 1px solid #f0f;">More text</p> </div>
+
+<p>上面的代码形成了三个框，分别是：div对应的块框，P对应的块框，以及包含 “Some text” 的<code>匿名块框</code>。</p>
+<p>换句话说：如果一个<code>块框</code>（如上例中为DIV生成的框）在其中包含另外一个块框（如上例中的P），那么，我们强迫它只能包含块框。因此，上面的 “Some text” 被强制加到一个匿名的块框里面。</p>
+<p>当一个<code>行内框</code>包含一个<code>块框(block box)</code>时，这个<code>行内框 (inline box)</code> （和与它处于同一<code>行框(line box)</code>内的祖先行内框）会围绕着<code>块框</code>被截断。断点之前和之后的<code>行框(line boxes)</code>会被分别封闭到<code>匿名的块框</code>里，并且，这个<code>块框</code>会成为这些<code>匿名块框</code>的兄弟框。当这样的行内框受到相对定位的影响时，相对定位也会影响块框。</p>
+<p>来看个实际的行框包含一个块框的例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"width: 200px; border: 1px solid gold;"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"border: 1px solid red;"</span>&gt;</span>This is anonymous text before the P.</span><br><span class="line">       <span class="tag">&lt;<span class="title">P</span> <span class="attribute">style</span>=<span class="value">"width: 100px; border: 1px solid green;"</span>&gt;</span>This is the content of P.<span class="tag">&lt;/<span class="title">P</span>&gt;</span></span><br><span class="line">         This is anonymous text after the P.</span><br><span class="line">   <span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div style="width: 200px; border: 1px solid gold;"> <span style="border: 1px solid red;">This is anonymous text before the P. <p style="width: 100px; border: 1px solid green;">This is the content of P.</p> This is anonymous text after the P. </span> </div>
+
+<p>上述代码中，SPAN 元素包含匿名文本区块 C1，后跟块级元素 P ，最后是匿名文本区块 C2。最后的框(boxes)是围绕 SPAN 的DIV形成的块框，包含 C1 的匿名块框，P 的块框，和另一个包含 C2 的匿名块框。</p>
+<blockquote>
+<p>注意，行框(line box)和行内框(inline box)是两个不同的概念，后续会说到行框(line box)。</p>
+</blockquote>
+<p>匿名块框的特性(properties)从包含它的非匿名块框那里继承而来（比如，例1中，匿名块框会继承包含它的 DIV 特性）。不可继承特性会使用初始值。比如，字体，匿名框会从DIV继承，但是margin值会是 0 。</p>
+<p>匿名块框不会影响元素的原有特性设置。如例2中 SPAN 设置了 border，产生匿名块框后，C1 C2还是被红色的边框包围。</p>
+<p>注意，块框会占据一整行。</p>
+<h3 id="行级元素和行内框(inline_box)">行级元素和行内框(inline box)</h3><p><code>行级元素</code>是源文档中那些不形成新的内容块的元素；内容在行内分布（如，段落内着重的文本<code>em</code>, <code>span</code>, <code>i</code>, 行内图形 <code>img</code>等等）。某些’display’特性的值形成行内元素：’inline’，’inline-table’和 ‘inline-block’。<code>行级元素</code>生成<code>行级框</code>，而这些框会参与某个<code>行格式化上下文</code>。</p>
+<p>1）一个行级框以其内容参与了包含它的行格式化上下文则可称之为<code>行内框</code>。 例如’display’值是’inline’的非替换元素会生成一个行内框。</p>
+<p>2）一个行级框以单一不透明框的形式(不可拆分, 当成一个整体)参与了包含它的行格式化上下文则可称之为<code>原子行级框</code>。例如可替换的行级元素、行内块元素’inline-block’、行内表格元素’inline-table’。</p>
+<h3 id="匿名行内框">匿名行内框</h3><p>任何直接被包含在一个块容器元素（而不是行内元素）中的文本必须视为匿名行内元素。<br>在如下的文档中:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">P</span>&gt;</span>Some <span class="tag">&lt;<span class="title">EM</span>&gt;</span>emphasized<span class="tag">&lt;/<span class="title">em</span>&gt;</span> text<span class="tag">&lt;/<span class="title">P</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>P元素生成一个<code>块框</code>，其内还有几个<code>行内框</code>。”emphasized”的框是一个行内元素（<code>&lt;em&gt;</code>）产生的行内框，而其它的框（”Some” 和 “text”）是块级元素（P）产生的<code>行内框</code>。后者就称为<code>匿名行内框</code>，因为它们没有与之相关的行级元素，所以，这些框被叫做<code>匿名行内框</code>。</p>
+<p>这样的行内框从其父块框那里继承可以继承的属性。非继承属性取它们的初始值。例子中，初始匿名框的颜色继承自P，而背景是透明的。</p>
+<p>空格内容会根据 ‘white-space’ 特性被压缩，不会创建任何匿名行内框。</p>
+<p><code>匿名行内框</code>和<code>匿名块框</code>可以被统称为<code>匿名框</code>。</p>
+<h3 id="控制框与display属性">控制框与display属性</h3><h4 id="‘display’特性">‘display’特性</h4><p>值：      inline | block | list-item | run-in | compact | marker |table | inline-table | table-row-group | table-header-group |table-footer-group | table-row | table-column-group | table-column |table-cell | table-caption | none | inherit<br>初始值：    inline<br>适用于：    所有元素<br>可否继承：   否<br>百分比：    N/A<br>媒介：     所有</p>
+<ul>
+<li>block<br>该值使一个元素生成一个块框。</li>
+<li>inline-block<br>该值使一个元素生成一个块框，自身在文档流中像一个行内元素，跟替换元素相似。元素的内部按照块框格式化，自身按照一个行内替换元素格式化。</li>
+<li>inline<br>该值使一个元素生成一个或多个行内框。</li>
+<li>list-item<br>该值使一个元素（如HTML中的LI）生成一个原始块框和一个列表项行内框。要了解列表和列表格式化的信息，请参见列表一节。</li>
+<li>none<br>该值使一个元素在格式化结构中不显示（换言之，该元素对布局没有影响）。子孙元素也不产生任何框；该行为不能由设置子孙元素的 ‘display’ 属性而被覆盖。</li>
+</ul>
+<blockquote>
+<p>请注意 ‘none’ 的显示特性并不生成一个不可见的框；它根本不生成框。CSS包含了机制使一个元素能够在格式化结构中生成框而影响格式化，但本身不可见( visible 特性)。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 定位体系(Position Scheme) part4
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS核心可视化格式模型: 包含块(containing block) part2</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

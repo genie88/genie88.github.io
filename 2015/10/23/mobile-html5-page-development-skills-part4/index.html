@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理 | 盖聂的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文将重点分析下H5移动页面的精灵动画的实现原理和技巧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理">
+<meta property="og:url" content="http://genie88.github.io/2015/10/23/mobile-html5-page-development-skills-part4/index.html">
+<meta property="og:site_name" content="盖聂的个人博客">
+<meta property="og:description" content="本文将重点分析下H5移动页面的精灵动画的实现原理和技巧。">
+<meta property="og:image" content="http://genie88.github.io/assets/57.png">
+<meta property="og:image" content="http://img.xiaoho.com/2014/12/test.png">
+<meta property="og:updated_time" content="2015-10-28T06:34:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理">
+<meta name="twitter:description" content="本文将重点分析下H5移动页面的精灵动画的实现原理和技巧。">
+  
+    <link rel="alternative" href="/atom.xml" title="盖聂的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">盖聂</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/html5">html5</a></li>
+				        
+							<li><a href="/tags/ReactJs">JS</a></li>
+				        
+							<li><a href="/tags/css">CSS</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/ReactJs/" style="font-size: 20px;">ReactJs</a> <a href="/tags/cdn/" style="font-size: 10px;">cdn</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/meta/" style="font-size: 10px;">meta</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/reactjs/" style="font-size: 10px;">reactjs</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">和设计师一样细腻,和程序员一样严谨;游走在设计师和工程师之间,游刃于用户体验和技术实现之间,斡旋在用户利益和商业利益之间。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">盖聂</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">盖聂</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/html5">html5</a></li>
+		        
+					<li><a href="/tags/ReactJs">JS</a></li>
+		        
+					<li><a href="/tags/css">CSS</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/genie88" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/genie88@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-mobile-html5-page-development-skills-part4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/23/mobile-html5-page-development-skills-part4/" class="article-date">
+  	<time datetime="2015-10-23T01:18:09.000Z" itemprop="datePublished">2015-10-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动H5页面开发系列——part4:移动H5页面精灵动画的实现原理
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文将重点分析下H5移动页面的精灵动画的实现原理和技巧。</p>
+<p><img src="/assets/57.png" alt="genie.github.io"><br><a id="more"></a><br>动画就是一系列连续的画面按顺序呈现出来而已，只是，在电影电视中，这些画面实现已经被准备好了，而在电脑程序中，我们见到每一瞬间的画面都是即时绘制的。这里借用2D游戏中的术语，将H5移动页面中出现的每个元素称之为“动画精灵”。</p>
+<h1 id="精灵动画的原理">精灵动画的原理</h1><p>1）transition动画<br>可以实现初始和结束两个关键状态的简单动画，浏览器会自动计算并生成补间动画。</p>
+<p>2）animation动画<br>可以实现多关键点的复杂动画，浏览器会自动计算并生成补间动画。每个动画区间可以单独采用不同的时间函数（timing-function）进行控制。</p>
+<p>3）animation steps实现帧动画<br>这种动画的实现原理和2D游戏中精灵动画的实现原理最为相似，采用一组连续的sprite运动图，通过快速改变元素图片（或者背景图片显示位置），实现运动效果。这种技术可以在一定程度上弥补CSS3动画在制作复杂动画上的缺陷，但是因为需要较大的图片作为基础，需要牺牲一定的带宽。<br><img src="http://img.xiaoho.com/2014/12/test.png" alt="genie.github.io"><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.sprite</span><span class="rules">&#123; </span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">90px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"><span class="function">url</span>(http://img.xiaoho.com/<span class="number">2014</span>/<span class="number">12</span>/test.png) no-repeat <span class="number">0</span> <span class="number">0</span></span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-animation</span>:<span class="value">run <span class="number">350ms</span> <span class="function">steps</span>(<span class="number">1</span>, start) infinite <span class="number">0s</span></span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">-webkit-keyframes</span> run </span>&#123; </span><br><span class="line">    0% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value"><span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">    20% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value">-<span class="number">90px</span> <span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">    40% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value">-<span class="number">180px</span> <span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">    60% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value">-<span class="number">270px</span> <span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">    80% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value">-<span class="number">360px</span> <span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">    100% <span class="rules">&#123; <span class="rule"><span class="attribute">background-position</span>:<span class="value">-<span class="number">450px</span> <span class="number">0</span></span></span>; &#125;</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<iframe src="http://sandbox.runjs.cn/show/szm3ydzu" width="100%" height="500"></iframe>
+
+<p>4) svg动画<br>svg内容请移步文章《移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用》相关章节内容。</p>
+<h1 id="精灵动画的几种常见方式">精灵动画的几种常见方式</h1><p>按照动画的作用可以分为以下几大类：</p>
+<ul>
+<li>入场动画</li>
+<li>出场动画</li>
+<li>强调动画</li>
+</ul>
+<h2 id="入场动画">入场动画</h2><h4 id="向下滑入(从顶部滑入)">向下滑入(从顶部滑入)</h4><p>向下滑入的实现关键是同时改变元素的tranlateY值。同理也可以实现从底部滑入的效果。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> fadeInDown </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, -<span class="number">100%</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">visibility</span>:<span class="value"> visible</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="向下渐入(从顶部飞入)">向下渐入(从顶部飞入)</h4><p>向下渐入的实现关键是同时改变元素的tranlateY值和透明度值来实现。同理也可以实现从底部飞入的效果。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> fadeInDown </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, -<span class="number">2000px</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> none</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="向右渐入(从左侧飞入)">向右渐入(从左侧飞入)</h4><p>向下渐入的实现关键是同时改变元素的tranlateX值和透明度值来实现。同理也可以实现从右侧飞入的效果。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> fadeInLeft </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(-<span class="number">2000px</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> none</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="渐大出现">渐大出现</h4><p>渐大出现的实现关键是同时改变元素的scale值和透明度值来实现。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> zoomIn </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">scale3d</span>(.<span class="number">3</span>, .<span class="number">3</span>, .<span class="number">3</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  50% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="旋转飞入">旋转飞入</h4><p>旋转飞入出现的关键是同时改变元素的rotate值、translateX值和透明度值来实现。类似的也可以实现旋转飞出的动画<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> rollIn </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(-<span class="number">100%</span>, <span class="number">0</span>, <span class="number">0</span>) <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, -<span class="number">120deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> none</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="加速飞入">加速飞入</h4><p>加速飞入的关键是同时改变元素translateX值和透明度值来实现，同时采用X方向的扭曲（skewX）来模拟加速运动过程中导致的惯性变形现象，使得动画显得更加真实。类似的也可以实现加速飞出的动画。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> lightSpeedIn </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">100%</span>, <span class="number">0</span>, <span class="number">0</span>) <span class="function">skewX</span>(-<span class="number">30deg</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  60% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">skewX</span>(<span class="number">20deg</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  80% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">skewX</span>(-<span class="number">5deg</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> none</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> none</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="出场动画">出场动画</h2><p>出场动画的实现原理和入场动画的实现原理一致，再次不做过多解释。</p>
+<h2 id="强调动画">强调动画</h2><p>一些局部细节如果还是渐现显示，会枯燥没什么感觉，例如标题、按钮等，需要一种强调。例如可以采用 flash（闪烁）、bounce（ 弹跳）、swing（摇摆）等方式进行强调，吸引用户的视觉焦点。 </p>
+<h4 id="闪烁动画">闪烁动画</h4><p>闪烁动画的实现关键是动态改变元素的透明度值来实现。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> flash </span>&#123;</span><br><span class="line">  <span class="tag">from</span>, 50%, <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  25%, 75% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="弹跳动画">弹跳动画</h4><p>弹跳动画的实现关键是动态改变元素的tranlateY值， 通过改变timing－function可以控制弹跳到不同阶段的运动速度。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> bounce </span>&#123;</span><br><span class="line">  <span class="tag">from</span>, 20%, 53%, 80%, <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">animation-timing-function</span>:<span class="value"> <span class="function">cubic-bezier</span>(<span class="number">0.215</span>, <span class="number">0.610</span>, <span class="number">0.355</span>, <span class="number">1.000</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  40%, 43% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">animation-timing-function</span>:<span class="value"> <span class="function">cubic-bezier</span>(<span class="number">0.755</span>, <span class="number">0.050</span>, <span class="number">0.855</span>, <span class="number">0.060</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, -<span class="number">30px</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  70% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">animation-timing-function</span>:<span class="value"> <span class="function">cubic-bezier</span>(<span class="number">0.755</span>, <span class="number">0.050</span>, <span class="number">0.855</span>, <span class="number">0.060</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, -<span class="number">15px</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  90% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>,-<span class="number">4px</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="摇摆动画">摇摆动画</h4><p>摇摆动画的实现关键是动态改变元素的rotateZ值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> swing </span>&#123;</span><br><span class="line">  20% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">15deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  40% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, -<span class="number">10deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  60% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">5deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  80% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, -<span class="number">5deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0deg</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里仅演示部分的动画效果，更多动画效果，请移步 <a href="http://daneden.github.io/animate.css/" target="_blank" rel="external">http://daneden.github.io/animate.css/</a></p>
+<h1 id="精灵动画的组合与叠加">精灵动画的组合与叠加</h1><p>1) 同一元素，同时运用不同的动画效果，生成新的动画效果（动效叠加）</p>
+<ul>
+<li>采用特殊的keyframe关键帧定义</li>
+<li>可以采用子父元素嵌套实现</li>
+</ul>
+<p>需求举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19968;&#39063;&#26143;&#26143;&#20174;&#19978;&#24448;&#19979;&#28369;&#33853;&#65292;&#19968;&#36793;&#28369;&#33853;&#26102;&#19968;&#36793;&#38378;&#28865;</span><br></pre></td></tr></table></figure></p>
+<p>由于CSS3并未提供给一个元素同时添加多个动画效果的方法，就是说一个元素，只能给它定义一个动画效果，不能同时定义。根据需求，我们可以写出如下的关键帧定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.star&#123;&#10;    animation: dropFlash 6s infinite linear;&#10;&#125;&#10;@keyframes dropFlash &#123;&#10;  from &#123;&#10;    transform: translate3d(0, -100%, 0);&#10;    opacity: 1;&#10;  &#125;&#10;  50%&#123;&#10;    opacity: 1;&#10;  &#125;&#10;  25%, 75% &#123;&#10;    opacity: 0;&#10;  &#125;&#10;  to &#123;&#10;    transform: translate3d(0, 0, 0);&#10;    opacity: 1;&#10;  &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是发现这样的代码很难实现复用，所以我们将动画效果进行拆分，分别定义了如下两个动画序列： drop  和 flash</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> drop </span>&#123;</span><br><span class="line">  <span class="tag">from</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, -<span class="number">100%</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> flash </span>&#123;</span><br><span class="line">  <span class="tag">from</span>, 50%, <span class="tag">to</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">  25%, 75% <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在star元素的上一层，在套用一个父元素，分别用于实现不同的动画效果，实现了不同动画效果的叠加。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"star-wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"star"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">    <span class="class">.star-wrapper</span><span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">animation</span>:<span class="value"> drop <span class="number">6s</span> infinite linear</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    <span class="class">.star</span><span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">animation</span>:<span class="value"> flash <span class="number">6s</span> infinite linear</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2) 同一元素，不同时间段的动画相互衔接，构成动画序列（时间组合）</p>
+<ul>
+<li>可以采用特殊的keyframe关键帧定义</li>
+<li>或者采用js脚本控制动画切换</li>
+<li>可以采用子父元素嵌套实现＋animation-delay实现</li>
+</ul>
+<p>需求举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19968;&#39063;&#26143;&#26143;&#20174;&#19978;&#24448;&#19979;&#28369;&#33853;&#65292;&#24403;&#28369;&#33853;&#21040;&#25351;&#23450;&#20301;&#32622;&#26102;&#38378;&#28865;&#20004;&#27425;</span><br></pre></td></tr></table></figure></p>
+<p>动画分解：1. 从上往下滑落 (单次动画) 2. 闪烁 (单次动画)</p>
+<p>需求举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19968;&#39063;&#26143;&#26143;&#20174;&#19978;&#24448;&#19979;&#28369;&#33853;&#65292;&#24403;&#28369;&#33853;&#21040;&#25351;&#23450;&#20301;&#32622;&#26102;&#24320;&#22987;&#38378;&#28865;</span><br></pre></td></tr></table></figure></p>
+<p>动画分解：1. 从上往下滑落 (单次动画) 2. 闪烁 (循环动画)</p>
+<p>3) 不同元素，在同一时间段的动画相互配合，构成动画画面（空间组合）<br>可以采用视差效应或者相对运动实现不同的动画效果</p>
+<p>需求举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#36816;&#21160;&#21592;&#22312;&#36187;&#22330;&#19978;&#36305;&#27493;&#65292;&#20294;&#26159;&#38656;&#35201;&#20445;&#25345;&#36816;&#21160;&#21592;&#19968;&#30452;&#22266;&#23450;&#22312;&#23631;&#24149;&#20013;&#22830;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>可以采用运动员原地跑步运动，移动变换不同的背景，让背景持续向左移动，产生运动员持续向右跑动的效果。</p>
+<p>2) 不同元素，不同时间段的动画相互衔接，构成动画场景（时间空间组合）<br>可以采用animation-delay实现动画之间的延时效果<br>或者采用js脚本控制动画切换</p>
+<h1 id="精灵动画的播放暂停控制">精灵动画的播放暂停控制</h1><p>精灵动画的播放暂停控制有两类方法，主要包括：</p>
+<ul>
+<li>js动态直接切换动画相关class类名，或者animation属性</li>
+</ul>
+<p>js动态增加动画相关类名时，动画立即开始，删除动画相关类名时，动画立即结束。这种控制方式比较适合页面的换场动画的开启和结束。<br>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开始换场动画</span></span><br><span class="line">$fromPage.addClass(<span class="string">'animation-slideToTop'</span>);</span><br><span class="line">$toPage.addClass(<span class="string">'animation-slideFromBottom'</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//换场动画结束后</span></span><br><span class="line">  $fromPage.removeClass(<span class="string">'animation-slideToTop'</span>);</span><br><span class="line">  $toPage.removeClass(<span class="string">'animation-slideFromBottom'</span>);</span><br><span class="line">&#125;, <span class="number">600</span>);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>animation-play-state: paused | running</li>
+</ul>
+<p>由于CSS3的animation规范中提供了一个 animation-play-state 属性，js 可以控制这个属性的 paused 和 running 来控制动画。这类方法适合页面的精灵动画的开启。</p>
+<p>为方便切换，可以先定义如下的样式类<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.page-active</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">animation-play-state</span>:<span class="value"> running</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在js脚本中可以切换这个类实现动画播放暂停控制。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//页面中的精灵动画开始播放</span></span><br><span class="line">$toPage.addClass(<span class="string">'page-active'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//页面中的精灵动画停止播放</span></span><br><span class="line">$toPage.removeClass(<span class="string">'page-active'</span>);</span><br></pre></td></tr></table></figure></p>
+<h1 id="结语">结语</h1><p>以上，轻拍。</p>
+<p>(EOF)</p>
+<p>参考文献<br><a href="http://daneden.github.io/animate.css/" target="_blank" rel="external">http://daneden.github.io/animate.css/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/css-visual-formatting-model-part1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CSS核心可视化格式模型: 概念和简介 part-1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/23/mobile-html5-page-development-skills-part5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动H5页面开发系列——part5:SVG元素在移动H5页面动画的应用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- html5game -->
+<ins class="adsbygoogle"
+     style="position:fixed; top:0; left:0; z-index: 2000;display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6116214991814288"
+     data-ad-slot="3514360454"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 盖聂
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
