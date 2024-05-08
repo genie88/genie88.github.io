@@ -8,14 +8,14 @@
   <meta name="description" content="在之前的文章中，我们了解了H5移动页面的主要特点，适用场景和设计技巧，也欣赏、学习了一些经典的H5移动页面案例，本文将重点分析下H5移动页面的换场动画的实现原理和技巧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动H5页面开发系列——part3:移动H5页面换场动画的实现原理">
-<meta property="og:url" content="http://genie88.github.io/2015/10/23/mobile-html5-page-development-skills-part3/index.html">
+<meta property="og:url" content="https://genie88.github.io/2015/10/23/mobile-html5-page-development-skills-part3/index.html">
 <meta property="og:site_name" content="盖聂的个人博客">
 <meta property="og:description" content="在之前的文章中，我们了解了H5移动页面的主要特点，适用场景和设计技巧，也欣赏、学习了一些经典的H5移动页面案例，本文将重点分析下H5移动页面的换场动画的实现原理和技巧。">
-<meta property="og:image" content="http://genie88.github.io/assets/57.png">
-<meta property="og:image" content="http://genie88.github.io/assets/70.png">
-<meta property="og:image" content="http://genie88.github.io/assets/71.png">
-<meta property="og:image" content="http://genie88.github.io/assets/72.png">
-<meta property="og:image" content="http://genie88.github.io/assets/73.png">
+<meta property="og:image" content="https://genie88.github.io/assets/57.png">
+<meta property="og:image" content="https://genie88.github.io/assets/70.png">
+<meta property="og:image" content="https://genie88.github.io/assets/71.png">
+<meta property="og:image" content="https://genie88.github.io/assets/72.png">
+<meta property="og:image" content="https://genie88.github.io/assets/73.png">
 <meta property="og:updated_time" content="2015-11-12T03:13:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动H5页面开发系列——part3:移动H5页面换场动画的实现原理">
@@ -27,7 +27,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -128,9 +128,9 @@
 				<section class="switch-part switch-part3">
 					<div id="js-friends">
 					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://react-china.org/">React中文网</a>
 			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://daqianduan.com">大前端</a>
 			        
 			        </div>
 				</section>
@@ -235,22 +235,22 @@
 <p><img src="/assets/70.png" alt="genie.github.io"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> index=<span class="number">0</span>;</span><br><span class="line">$(<span class="string">'body'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(index==<span class="number">5</span>) index=<span class="number">0</span>;</span><br><span class="line">    $(<span class="string">'.container'</span>).css(&#123;</span><br><span class="line">        transform: <span class="string">'translateY(-'</span>+ index*<span class="number">20</span> +<span class="string">'%)'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>实际效果，请查看案例演示（鼠标点击进行翻页操作）</p>
-<iframe src="http://sandbox.runjs.cn/show/fvsfab47" width="320" height="480"></iframe>
+<iframe src="https://sandbox.runjs.cn/show/fvsfab47" width="320" height="480"></iframe>
 
 <h3 id="单个页面滑动">单个页面滑动</h3><p>之前我们把滚动放在container上，现在将会移动关注点放到page上。现在page采用绝对定位，而将container采用相对定位，作为page页面进行偏移的参考。<br>主要是将要呈现的页面的一半先覆盖在目前页面上并设置opacity为0，然后使用transition动画，改变opacity及translateX为0。<br><img src="/assets/71.png" alt="genie.github.io"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> index=<span class="number">1</span>;</span><br><span class="line">$(<span class="string">'body'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(index==<span class="number">6</span>) index=<span class="number">1</span>;</span><br><span class="line">    $(<span class="string">'.page-'</span>+index)</span><br><span class="line">        .removeClass(<span class="string">'hide'</span>)</span><br><span class="line">        .css(&#123;</span><br><span class="line">            opacity: <span class="number">0</span>,</span><br><span class="line">            transform: <span class="string">'translateY(50%)'</span></span><br><span class="line">        &#125;).animate(&#123;</span><br><span class="line">            opacity: <span class="number">1</span>,</span><br><span class="line">            transform: <span class="string">'translateY(0%)'</span> </span><br><span class="line">        &#125;, <span class="number">700</span>, <span class="string">'linear'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'.page-'</span>+(index-<span class="number">1</span>)).addClass(<span class="string">'hide'</span>)</span><br><span class="line">        &#125;)    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>实际效果，请查看案例演示（鼠标点击进行翻页操作）</p>
-<iframe src="http://sandbox.runjs.cn/show/gzeykuhr" width="320" height="480"></iframe>
+<iframe src="https://sandbox.runjs.cn/show/gzeykuhr" width="320" height="480"></iframe>
 
 <h3 id="双页联动滑动">双页联动滑动</h3><p>这种将会涉及两个page页面的动画，当前页面和即将呈现的页面同时向上或向下偏移100%，两者的运动频率一样，跟第一种容器整体滑动的效果看起来是没什么区别的。<br><img src="/assets/72.png" alt="genie.github.io"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> index=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> isAnimating = <span class="literal">false</span>;</span><br><span class="line">$(<span class="string">'body'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(isAnimating) <span class="keyword">return</span>;</span><br><span class="line">    isAnimating = <span class="literal">true</span>;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(index==<span class="number">6</span>) index=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> from = $(<span class="string">'.page-'</span>+(index-<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">var</span> to = $(<span class="string">'.page-'</span>+index);</span><br><span class="line">    </span><br><span class="line">    from</span><br><span class="line">      .css(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(0%)'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      .animate(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(-100%)'</span></span><br><span class="line">      &#125;, <span class="number">700</span>, <span class="string">'linear'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          from.addClass(<span class="string">'hide'</span>)</span><br><span class="line">            isAnimating = <span class="literal">false</span>;</span><br><span class="line">      &#125;)</span><br><span class="line">            </span><br><span class="line">    to</span><br><span class="line">      .removeClass(<span class="string">'hide'</span>)</span><br><span class="line">      .css(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(100%)'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      .animate(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(0%)'</span></span><br><span class="line">      &#125;, <span class="number">700</span>, <span class="string">'linear'</span>)    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>实际效果，请查看案例演示（鼠标点击进行翻页操作）</p>
-<iframe src="http://sandbox.runjs.cn/show/qtzuloay" width="320" height="480"></iframe>
+<iframe src="https://sandbox.runjs.cn/show/qtzuloay" width="320" height="480"></iframe>
 
 <h3 id="双页视差滑动">双页视差滑动</h3><p>在第三种的基础上提供一种视差效果，让当前页面的离开和即将呈现的页面运动频率不一致，以达到视觉上的美感<br><img src="/assets/73.png" alt="genie.github.io"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> index=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> isAnimating = <span class="literal">false</span>;</span><br><span class="line">$(<span class="string">'body'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(isAnimating) <span class="keyword">return</span>;</span><br><span class="line">    isAnimating = <span class="literal">true</span>;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(index==<span class="number">6</span>) index=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> from = $(<span class="string">'.page-'</span>+(index-<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">var</span> to = $(<span class="string">'.page-'</span>+index);</span><br><span class="line">    </span><br><span class="line">    from</span><br><span class="line">      .css(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(0%)'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      .animate(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(-100%)'</span></span><br><span class="line">      &#125;, <span class="number">1000</span>, <span class="string">'linear'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          from.addClass(<span class="string">'hide'</span>)</span><br><span class="line">            isAnimating = <span class="literal">false</span>;</span><br><span class="line">      &#125;)</span><br><span class="line">            </span><br><span class="line">    to.removeClass(<span class="string">'hide'</span>)</span><br><span class="line">      .css(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(100%)'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      .animate(&#123;</span><br><span class="line">            transform: <span class="string">'translateY(0%)'</span></span><br><span class="line">      &#125;, <span class="number">700</span>, <span class="string">'linear'</span>)    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>实际效果，请查看案例演示（鼠标点击进行翻页操作）</p>
-<iframe src="http://sandbox.runjs.cn/show/52pijjre" width="320" height="480"></iframe>
+<iframe src="https://sandbox.runjs.cn/show/52pijjre" width="320" height="480"></iframe>
 
 
 <h2 id="结语">结语</h2><p>以上，轻拍。</p>
@@ -305,7 +305,7 @@
     		&copy; 2015 盖聂
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
@@ -342,7 +342,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 

@@ -8,7 +8,7 @@
   <meta name="description" content="在上文中，大致介绍了可视化模型中的定位体系。其中，常规流是最为基础的。这次就和大家分享常规流的一些布局要点和重要的概念。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS核心可视化格式模型: 常规流中的格式化上下文 part5">
-<meta property="og:url" content="http://genie88.github.io/2015/10/29/css-visual-formatting-model-part5/index.html">
+<meta property="og:url" content="https://genie88.github.io/2015/10/29/css-visual-formatting-model-part5/index.html">
 <meta property="og:site_name" content="盖聂的个人博客">
 <meta property="og:description" content="在上文中，大致介绍了可视化模型中的定位体系。其中，常规流是最为基础的。这次就和大家分享常规流的一些布局要点和重要的概念。">
 <meta property="og:updated_time" content="2015-10-30T02:59:07.000Z">
@@ -22,7 +22,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -123,9 +123,9 @@
 				<section class="switch-part switch-part3">
 					<div id="js-friends">
 					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://react-china.org/">React中文网</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://react-china.org/">React中文网</a>
 			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://daqianduan.com">大前端</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://daqianduan.com">大前端</a>
 			        
 			        </div>
 				</section>
@@ -226,7 +226,7 @@
         <p>在上文中，大致介绍了可视化模型中的定位体系。其中，常规流是最为基础的。这次就和大家分享常规流的一些布局要点和重要的概念。<br><a id="more"></a><br>在常规流中的框（boxes，元素形成的矩形区域），都属于一个格式化的上下文中，可能是块的，也可能是行内的，但不可能同时是行内的又是块的。<code>块框</code>参与<code>块格式化上下文(block formatting context)</code>。<code>行内框</code>参与<code>行内格式化上下文(inline formatting context)</code>。</p>
 <h3 id="块格式化上下文(Block_formatting_contexts)">块格式化上下文(Block formatting contexts)</h3><p><strong>如何触发</strong><br>有这几种框会为其内容创建新的块格式化上下文：浮动元素，绝对定位元素，inline-blocks，table-cells，table-captions，以及 ‘overflow’不是 ‘visible’的元素，会创建新的block formatting context。</p>
 <blockquote>
-<p>在CSS3中，对这个概念做了改动：<a href="http://www.w3.org/TR/css3-box/#block-level0" target="_blank" rel="external">http://www.w3.org/TR/css3-box/#block-level0</a> CSS3中，将Block formatting context 叫做 flow root。对于触发方式也做了修改：The value of ‘position’ is neither ‘static’ nor ‘relative’ (见[CSS3]).从上下文（context）变成了根（root），这个概念确实挺费解的。可见，CSS3中的描述更加准确，position在 ‘fixed’ 的时候也会创建 flow root。这并不是CSS2.1的疏忽，因为 position:fixed 本身就是 position:absolute 的一个子类。</p>
+<p>在CSS3中，对这个概念做了改动：<a href="https://www.w3.org/TR/css3-box/#block-level0" target="_blank" rel="external">https://www.w3.org/TR/css3-box/#block-level0</a> CSS3中，将Block formatting context 叫做 flow root。对于触发方式也做了修改：The value of ‘position’ is neither ‘static’ nor ‘relative’ (见[CSS3]).从上下文（context）变成了根（root），这个概念确实挺费解的。可见，CSS3中的描述更加准确，position在 ‘fixed’ 的时候也会创建 flow root。这并不是CSS2.1的疏忽，因为 position:fixed 本身就是 position:absolute 的一个子类。</p>
 </blockquote>
 <p>注意，display:table 本身并不产生 block formatting contexts。但是，它可以产生匿名框，其中包含 display:table-cell 的框会产生 block formatting context。总之，对于 display:table 的元素，产生 block formatting contexts 的是匿名框而不是 display:table。</p>
 <p><strong>它做了什么</strong><br>这也是一个比较抽象的概念。可以把它想象成一个大箱子，里面装着很多元素，箱子可以隔开里面的元素和外面的元素。好像JS中的闭包，保护其中的元素。它可以包含浮动元素，可以阻止margin折叠，可以防止元素被浮动元素覆盖……</p>
@@ -327,7 +327,7 @@
     		&copy; 2015 盖聂
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
@@ -364,7 +364,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
